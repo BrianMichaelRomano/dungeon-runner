@@ -1,0 +1,78 @@
+||||||||||||||||||||||||||||||||||||||||||||||||
+||||||||| Dungeon Runner Specs Sheet |||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||
+
+@Attributes
+CON: Constitution
+STR: Stregth
+DEX: Dexterity
+INT: Intelligence
+WIS: Wisdom
+
+@Statistics
+HP: Hit Points - CON, STR
+AP: Action Points - DEX, CON
+MP: Magic Points - INT
+AR: Armor Rating - Based on equipment
+DR: Defense Rating - CON, DEX
+AC: Attack Chance - DEX, STR
+MC: Magic Chance - WIS
+WD: Weapon Effect Rating - Weapon, STR
+MD: Magic Effect Rating - INT, WIS
+IR: Initiative Rating - DEX
+
+@Actions
+Use Melee
+Use Magic
+Use Defense
+Use Item
+Flee Combat
+
+=====================================================================================
+Demo: Player Model
+
+Player = {
+    attributes: {
+        CON: 10,
+        STR: 10,
+        DEX: 10,
+        INT: 10,
+        WIS: 10
+    },
+    statistics: {
+        HP: 10 + this.attributes.CON + this.attributes.STR,
+        AP: 10 + this.attributes.DEX + this.attributes.CON,
+        MP: this.attributes.INT * 10,
+        AR: "Based on equipment",
+        DR: this.attributes.CON + this.attributes.DEX,
+        AC: this.attributes.DEX + this.attributes.STR,
+        MC: this.attributes.WIS,
+        WD: "Weapon Damage Rating plus STR,
+        MD: this.attributes.INT + this.attributes.WIS,
+        IR: this.attributes.DEX,
+    },
+    actions: {
+        useMelee: "Use Melee",
+        useMagic: "Use Magic",
+        useDefense: "Use Defense",
+        useItem: "Use Item",
+        fleeCombat: "Flee Combat"
+    },
+    inventory: [
+        {
+            itemName: "Healing Potion",
+            type: "potion",
+            effect: "heal",
+            rating: 100,
+            worth: 10
+        }
+    ],
+    equipment: {
+        helm: "Wooden Helm",
+        armor: "Rags",
+        gloves: "Rag Gloves",
+        boots: "Rag Boots",
+        Weopon: "Wooden Sword",
+        ring: "Wooden Ring"
+    }
+}
