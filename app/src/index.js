@@ -2,11 +2,12 @@
 const PlayerModel = require('./modules/models/playerModel');
 const ViewController = require('./modules/view/viewController');
 
-// Variables
+// Intantiations
 const player = new PlayerModel('Firecore');
 const view = new ViewController();
 
 // Event Listeners
+// toggle character sheet
 view.characterBtn.addEventListener('click', () => {
     view.toggleCharacterSheet();
 });
