@@ -9,3 +9,4 @@ const view = new ViewController();
 // logic
     // Render Player Attributes to  view
 view.renderAttributes(player);
+view.renderStatistics(player.getCalculatedStats());
