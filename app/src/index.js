@@ -19,8 +19,12 @@ view.characterBtn.addEventListener('click', () => {
     view.toggleCharacterSheet();
 });
 
-    // Render Player Attributes to  view
+// Render Player Attributes to  view
 view.renderAttributes(player);
 view.renderStatistics(stats.getCalculatedStats(player));
 
+// Save Game state to local storage 
 gameState.saveGameState(currentGameState);
+
+// Log current game state to console
+console.log('Current Game State: ', currentGameState);

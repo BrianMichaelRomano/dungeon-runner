@@ -94,6 +94,8 @@ view.renderStatistics(stats.getCalculatedStats(player));
 
 gameState.saveGameState(currentGameState);
 
+console.log('Current Game State: ', currentGameState);
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
