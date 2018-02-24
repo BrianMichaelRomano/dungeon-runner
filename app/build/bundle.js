@@ -68,17 +68,17 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 // Required Modules
-const PlayerModel = __webpack_require__(1);
-const ViewController = __webpack_require__(2);
-const GameStateController = __webpack_require__(3);
+const ViewController = __webpack_require__(1);
+const GameStateController = __webpack_require__(2);
 
 // Intantiations
 const gameState = new GameStateController();
-const player = new PlayerModel('Firecore');
 const view = new ViewController();
 
-// Load Saved game if exists
-gameState.loadSavedGame();
+// Load gameState if saved exists or creates new gameState
+const loadedGameState = gameState.loadSavedGame();
+// load player from gameState
+const player = loadedGameState.player;
 
 // Event Listeners
 // toggle character sheet
@@ -92,58 +92,6 @@ view.renderStatistics(player.getCalculatedStats());
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-module.exports =  class PlayerModel {
-    constructor(name) {
-        // Attributes
-        // CON: Constitution
-        // STR: Stregth
-        // DEX: Dexterity
-        // INT: Intelligence
-        // WIS: Wisdom
-
-        this.name = name;
-        this.CON = 10;
-        this.STR = 10;
-        this.DEX = 10;
-        this.INT = 10;
-        this.WIS = 10;
-    }
-
-    getCalculatedStats() {
-        // Statistics
-        // HP: Hit Points - CON, STR
-        // AP: Action Points - DEX, CON
-        // MP: Magic Points - INT
-        // AR: Armor Rating - Based on equipment
-        // DR: Defense Rating - CON, DEX
-        // AC: Attack Chance - DEX, STR
-        // MC: Magic Chance - WIS
-        // WER: Weapon Effect Rating - Weapon, STR
-        // MER: Magic Effect Rating - INT, WIS
-        // IR: Initiative Rating - DEX
-
-        const playerStats = {
-            HP: 10 + this.CON + this.STR,
-            AP: 10 + this.DEX + this.CON,
-            MP: this.INT * 10,
-            AR: null,
-            DR: this.CON + this.DEX,
-            AC: this.DEX + this.STR,
-            MC: this.WIS,
-            WER: null,
-            MER: this.INT + this.WIS,
-            IR: this.DEX,
-        };
-
-        return playerStats;
-    }
-}
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 module.exports = class ViewController {
@@ -202,18 +150,91 @@ module.exports = class ViewController {
 }
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const PlayerModel = __webpack_require__(3);
 
 module.exports = class GameStateController {
     constructor() {
-
+        
     }
 
     loadSavedGame() {
         console.log('Loading saved game...');
+
+        let gameState;
+
+        if(localStorage.getItem('DRstate')) {
+            console.log('There is a saved game.');
+        } else {
+            gameState = {
+                player: new PlayerModel('Firecore'),
+                state: 'newGame'
+            };
+        }
+
+        console.log('Saved Game Loaded...');
+
+        return gameState;
+    }
+
+    loadPlayer() {
+        return this.gameState.player;
     }
 }
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports =  class PlayerModel {
+    constructor(name) {
+        // Attributes
+        // CON: Constitution
+        // STR: Stregth
+        // DEX: Dexterity
+        // INT: Intelligence
+        // WIS: Wisdom
+
+        this.name = name;
+        this.CON = 10;
+        this.STR = 10;
+        this.DEX = 10;
+        this.INT = 10;
+        this.WIS = 10;
+    }
+
+    getCalculatedStats() {
+        // Statistics
+        // HP: Hit Points - CON, STR
+        // AP: Action Points - DEX, CON
+        // MP: Magic Points - INT
+        // AR: Armor Rating - Based on equipment
+        // DR: Defense Rating - CON, DEX
+        // AC: Attack Chance - DEX, STR
+        // MC: Magic Chance - WIS
+        // WER: Weapon Effect Rating - Weapon, STR
+        // MER: Magic Effect Rating - INT, WIS
+        // IR: Initiative Rating - DEX
+
+        const playerStats = {
+            HP: 10 + this.CON + this.STR,
+            AP: 10 + this.DEX + this.CON,
+            MP: this.INT * 10,
+            AR: null,
+            DR: this.CON + this.DEX,
+            AC: this.DEX + this.STR,
+            MC: this.WIS,
+            WER: null,
+            MER: this.INT + this.WIS,
+            IR: this.DEX,
+        };
+
+        return playerStats;
+    }
+}
+
 
 /***/ })
 /******/ ]);

@@ -1,15 +1,15 @@
 // Required Modules
-const PlayerModel = require('./modules/models/playerModel');
 const ViewController = require('./modules/view/viewController');
 const GameStateController = require('./modules/gameState/gameStateController');
 
 // Intantiations
 const gameState = new GameStateController();
-const player = new PlayerModel('Firecore');
 const view = new ViewController();
 
-// Load Saved game if exists
-gameState.loadSavedGame();
+// Load gameState if saved exists or creates new gameState
+const loadedGameState = gameState.loadSavedGame();
+// load player from gameState
+const player = loadedGameState.player;
 
 // Event Listeners
 // toggle character sheet
