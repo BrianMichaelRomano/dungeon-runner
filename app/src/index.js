@@ -11,7 +11,6 @@ view.characterBtn.addEventListener('click', () => {
     view.toggleCharacterSheet();
 });
 
-// logic
     // Render Player Attributes to  view
 view.renderAttributes(player);
 view.renderStatistics(player.getCalculatedStats());
