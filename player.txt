@@ -17,8 +17,8 @@ AR: Armor Rating - Based on equipment
 DR: Defense Rating - CON, DEX
 AC: Attack Chance - DEX, STR
 MC: Magic Chance - WIS
-WD: Weapon Effect Rating - Weapon, STR
-MD: Magic Effect Rating - INT, WIS
+WER: Weapon Effect Rating - Weapon, STR
+MER: Magic Effect Rating - INT, WIS
 IR: Initiative Rating - DEX
 
 @Actions
