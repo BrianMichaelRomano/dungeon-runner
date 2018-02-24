@@ -78,7 +78,7 @@ const view = new ViewController();
 const stats = new StatsController();
 
 // Load gameState if saved exists or creates new gameState
-const currentGameState = gameState.loadSavedGame();
+const currentGameState = gameState.loadGameState();
 // load player from gameState
 const player = currentGameState.player;
 
@@ -88,12 +88,14 @@ view.characterBtn.addEventListener('click', () => {
     view.toggleCharacterSheet();
 });
 
-    // Render Player Attributes to  view
+// Render Player Attributes to  view
 view.renderAttributes(player);
 view.renderStatistics(stats.getCalculatedStats(player));
 
+// Save Game state to local storage 
 gameState.saveGameState(currentGameState);
 
+// Log current game state to console
 console.log('Current Game State: ', currentGameState);
 
 /***/ }),
@@ -166,14 +168,18 @@ module.exports = class GameStateController {
         
     }
 
-    loadSavedGame() {
-        
+    // Load game state if exists else creates new game state 
+    loadGameState() {
+        // game state to return
         let gameState;
         
+        // Check if game state exist in localstorage
         if(localStorage.getItem('DRstate')) {
             console.log('Loading saved game...');
+            // If game state exists in local storage set it to gameState 
             gameState = JSON.parse(localStorage.getItem('DRstate'));
         } else {
+            // Set gameState to new gameState if no gameState in localStorage
             gameState = {
                 player: new PlayerModel('Firecore'),
                 state: 'newGame'
@@ -181,13 +187,11 @@ module.exports = class GameStateController {
         }
         console.log('Game State loaded.');
 
+        // Return gameState
         return gameState;
     }
 
-    loadPlayer() {
-        return this.gameState.player;
-    }
-
+    // Save current gameState
     saveGameState(gameState) {
         console.log('Saving game...');
         localStorage.setItem('DRstate', JSON.stringify(gameState));

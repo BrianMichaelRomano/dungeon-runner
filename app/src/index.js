@@ -9,7 +9,7 @@ const view = new ViewController();
 const stats = new StatsController();
 
 // Load gameState if saved exists or creates new gameState
-const currentGameState = gameState.loadSavedGame();
+const currentGameState = gameState.loadGameState();
 // load player from gameState
 const player = currentGameState.player;
 
