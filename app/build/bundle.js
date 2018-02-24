@@ -70,15 +70,17 @@
 // Required Modules
 const ViewController = __webpack_require__(1);
 const GameStateController = __webpack_require__(2);
+const StatsController = __webpack_require__(4);
 
 // Intantiations
 const gameState = new GameStateController();
 const view = new ViewController();
+const stats = new StatsController();
 
 // Load gameState if saved exists or creates new gameState
-const loadedGameState = gameState.loadSavedGame();
+const currentGameState = gameState.loadSavedGame();
 // load player from gameState
-const player = loadedGameState.player;
+const player = currentGameState.player;
 
 // Event Listeners
 // toggle character sheet
@@ -88,7 +90,9 @@ view.characterBtn.addEventListener('click', () => {
 
     // Render Player Attributes to  view
 view.renderAttributes(player);
-view.renderStatistics(player.getCalculatedStats());
+view.renderStatistics(stats.getCalculatedStats(player));
+
+gameState.saveGameState(currentGameState);
 
 /***/ }),
 /* 1 */
@@ -161,26 +165,31 @@ module.exports = class GameStateController {
     }
 
     loadSavedGame() {
-        console.log('Loading saved game...');
-
+        
         let gameState;
-
+        
         if(localStorage.getItem('DRstate')) {
-            console.log('There is a saved game.');
+            console.log('Loading saved game...');
+            gameState = JSON.parse(localStorage.getItem('DRstate'));
         } else {
             gameState = {
                 player: new PlayerModel('Firecore'),
                 state: 'newGame'
             };
         }
-
-        console.log('Saved Game Loaded...');
+        console.log('Game State loaded.');
 
         return gameState;
     }
 
     loadPlayer() {
         return this.gameState.player;
+    }
+
+    saveGameState(gameState) {
+        console.log('Saving game...');
+        localStorage.setItem('DRstate', JSON.stringify(gameState));
+        console.log('Game saved.');
     }
 }
 
@@ -204,8 +213,19 @@ module.exports =  class PlayerModel {
         this.INT = 10;
         this.WIS = 10;
     }
+}
 
-    getCalculatedStats() {
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = class StatsController {
+    constructor() {
+         
+    }
+
+    getCalculatedStats(player) {
         // Statistics
         // HP: Hit Points - CON, STR
         // AP: Action Points - DEX, CON
@@ -219,22 +239,21 @@ module.exports =  class PlayerModel {
         // IR: Initiative Rating - DEX
 
         const playerStats = {
-            HP: 10 + this.CON + this.STR,
-            AP: 10 + this.DEX + this.CON,
-            MP: this.INT * 10,
+            HP: 10 + player.CON + player.STR,
+            AP: 10 + player.DEX + player.CON,
+            MP: player.INT * 10,
             AR: null,
-            DR: this.CON + this.DEX,
-            AC: this.DEX + this.STR,
-            MC: this.WIS,
+            DR: player.CON + player.DEX,
+            AC: player.DEX + player.STR,
+            MC: player.WIS,
             WER: null,
-            MER: this.INT + this.WIS,
-            IR: this.DEX,
+            MER: player.INT + player.WIS,
+            IR: player.DEX,
         };
 
         return playerStats;
     }
 }
-
 
 /***/ })
 /******/ ]);

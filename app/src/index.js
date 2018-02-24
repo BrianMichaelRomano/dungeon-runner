@@ -1,15 +1,17 @@
 // Required Modules
 const ViewController = require('./modules/view/viewController');
 const GameStateController = require('./modules/gameState/gameStateController');
+const StatsController = require('./modules/stats/statsController');
 
 // Intantiations
 const gameState = new GameStateController();
 const view = new ViewController();
+const stats = new StatsController();
 
 // Load gameState if saved exists or creates new gameState
-const loadedGameState = gameState.loadSavedGame();
+const currentGameState = gameState.loadSavedGame();
 // load player from gameState
-const player = loadedGameState.player;
+const player = currentGameState.player;
 
 // Event Listeners
 // toggle character sheet
@@ -19,4 +21,6 @@ view.characterBtn.addEventListener('click', () => {
 
     // Render Player Attributes to  view
 view.renderAttributes(player);
-view.renderStatistics(player.getCalculatedStats());
+view.renderStatistics(stats.getCalculatedStats(player));
+
+gameState.saveGameState(currentGameState);
