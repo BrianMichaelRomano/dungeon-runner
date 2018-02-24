@@ -70,17 +70,22 @@
 // Required Modules
 const PlayerModel = __webpack_require__(1);
 const ViewController = __webpack_require__(2);
+const GameStateController = __webpack_require__(3);
 
-// Variables
+// Intantiations
+const gameState = new GameStateController();
 const player = new PlayerModel('Firecore');
 const view = new ViewController();
 
+// Load Saved game if exists
+gameState.loadSavedGame();
+
 // Event Listeners
+// toggle character sheet
 view.characterBtn.addEventListener('click', () => {
     view.toggleCharacterSheet();
 });
 
-// logic
     // Render Player Attributes to  view
 view.renderAttributes(player);
 view.renderStatistics(player.getCalculatedStats());
@@ -193,6 +198,20 @@ module.exports = class ViewController {
         } else {
             this.characterSheet.style.display = 'none';
         }
+    }
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = class GameStateController {
+    constructor() {
+
+    }
+
+    loadSavedGame() {
+        console.log('Loading saved game...');
     }
 }
 
