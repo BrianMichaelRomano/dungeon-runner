@@ -15,7 +15,7 @@ module.exports = class ViewController {
         `;
 
         // Log player attributes used in template 
-        console.log('View Rendered Player: ',player);
+        console.log('View Rendered Player Attributes: ',player);
         // set <ul> innerHTML to template output
         this.charAttributeList.innerHTML = output;
     }
@@ -36,7 +36,7 @@ module.exports = class ViewController {
     `;
 
     // Log player Statistics used in template 
-    console.log('View Rendered Player: ',playerStats);
+    console.log('View Rendered Player Stats: ',playerStats);
     // set <ul> innerHTML to template output
     this.charStatisticsList.innerHTML = output;
     }
