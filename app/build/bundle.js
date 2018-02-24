@@ -75,6 +75,11 @@ const ViewController = __webpack_require__(2);
 const player = new PlayerModel('Firecore');
 const view = new ViewController();
 
+// Event Listeners
+view.characterBtn.addEventListener('click', () => {
+    view.toggleCharacterSheet();
+});
+
 // logic
     // Render Player Attributes to  view
 view.renderAttributes(player);
@@ -141,6 +146,8 @@ module.exports = class ViewController {
         // select view elements
         this.charAttributeList = document.querySelector('#charAttributeList');
         this.charStatisticsList = document.querySelector('#charStatisticsList');
+        this.characterSheet = document.querySelector('#characterSheet');
+        this.characterBtn = document.querySelector('#characterBtn');
     }
     // Render Player Attributes In <ul>
     renderAttributes(player) {
@@ -177,6 +184,15 @@ module.exports = class ViewController {
     console.log('View Rendered Player Stats: ',playerStats);
     // set <ul> innerHTML to template output
     this.charStatisticsList.innerHTML = output;
+    }
+
+    // Toggle the character sheet in view
+    toggleCharacterSheet() {
+        if(this.characterSheet.style.display === 'none') {
+            this.characterSheet.style.display = 'block';
+        } else {
+            this.characterSheet.style.display = 'none';
+        }
     }
 }
 
