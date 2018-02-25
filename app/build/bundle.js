@@ -68,7 +68,7 @@
 /***/ (function(module, exports) {
 
 module.exports = {
-    // Grab elements and store in variables
+    // Grab elements and store in variables for use in viewRenderer
     homeBtn: document.querySelector('#home-btn'),
     dungeonBtn: document.querySelector('#dungeon-btn'),
     characterBtn: document.querySelector('#character-btn'),
@@ -81,45 +81,44 @@ module.exports = {
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// Load Route Controller
 const viewRouteController = __webpack_require__(2);
+// Run Controller
 viewRouteController();
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// Load view selectors
 const viewEl = __webpack_require__(0);
+// Load view renderer functions
 const viewRenderer = __webpack_require__(3);
 
 module.exports = function() {
 // register event listeners
     // Home Route
     viewEl.homeBtn.addEventListener('click', () => {
-        console.log('Home clicked!');
         viewRenderer.renderHome();
     });
 
     // Dungeon Route
     viewEl.dungeonBtn.addEventListener('click', () => {
-        console.log('Dungeon clicked!');
         viewRenderer.renderDungeon();
     });
 
     // Character Route
     viewEl.characterBtn.addEventListener('click', () => {
-        console.log('Character clicked!');
         viewRenderer.renderCharacter();
     });
 
     // Shop Route
     viewEl.shopBtn.addEventListener('click', () => {
-        console.log('Shop clicked!');
         viewRenderer.renderShop();
     });
 
     // Inventory Route
     viewEl.inventoryBtn.addEventListener('click', () => {
-        console.log('Inventory clicked!');
         viewRenderer.renderInventory();
     });
 }
@@ -128,8 +127,10 @@ module.exports = function() {
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// Load View Selectors
 const viewEl = __webpack_require__(0);
 
+// Export each view render function
 module.exports = {
 // Render Home 
     renderHome() {
@@ -138,8 +139,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering home page!');
     },
 
 // Render Dungeon
@@ -149,8 +148,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering Dungeon page!');
     },
 
 // Render Character
@@ -160,8 +157,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering Character page!');
     },
 
 // Render Shop
@@ -171,8 +166,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering Shop page!');
     },
 
 // Render Inventory
@@ -182,8 +175,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering Inventory page!');
     }
 }
 
