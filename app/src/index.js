@@ -3,6 +3,7 @@ const ViewController = require('./modules/view/viewController');
 const GameStateController = require('./modules/gameState/gameStateController');
 const StatsController = require('./modules/stats/statsController');
 const SkeletonModel = require('./modules/models/skeletonModel');
+const CombatController = require('./modules/combat/combatController');
 
 // Intantiations
 const gameState = new GameStateController();
@@ -24,7 +25,7 @@ view.characterBtn.addEventListener('click', () => {
 // Toggle Dungeon Display
 view.enterDungeonBtn.addEventListener('click', () => {
     view.toggleDungeonDisplay();
-    view.renderEntityCards(player, enemy);
+    CombatController.combatLoop(player, enemy);
 });
 
 // Render Player Attributes to  view

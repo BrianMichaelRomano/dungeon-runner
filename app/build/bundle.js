@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -104,49 +104,6 @@ module.exports = class StatsController {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Required Modules
-const ViewController = __webpack_require__(2);
-const GameStateController = __webpack_require__(3);
-const StatsController = __webpack_require__(0);
-const SkeletonModel = __webpack_require__(5);
-
-// Intantiations
-const gameState = new GameStateController();
-const view = new ViewController();
-const stats = new StatsController();
-
-// Load gameState if saved exists or creates new gameState
-const currentGameState = gameState.loadGameState();
-// load player from gameState
-const player = currentGameState.player;
-const enemy = new SkeletonModel();
-
-// Event Listeners
-// toggle character sheet
-view.characterBtn.addEventListener('click', () => {
-    view.toggleCharacterSheet();
-});
-
-// Toggle Dungeon Display
-view.enterDungeonBtn.addEventListener('click', () => {
-    view.toggleDungeonDisplay();
-    view.renderEntityCards(player, enemy);
-});
-
-// Render Player Attributes to  view
-view.renderAttributes(player);
-view.renderStatistics(stats.getCalculatedStats(player));
-
-// Save Game state to local storage 
-gameState.saveGameState(currentGameState);
-
-// Log current game state to console
-console.log('Current Game State: ', currentGameState);
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const StatsController = __webpack_require__(0);
@@ -240,6 +197,50 @@ module.exports = class ViewController {
 }
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Required Modules
+const ViewController = __webpack_require__(1);
+const GameStateController = __webpack_require__(3);
+const StatsController = __webpack_require__(0);
+const SkeletonModel = __webpack_require__(5);
+const CombatController = __webpack_require__(6);
+
+// Intantiations
+const gameState = new GameStateController();
+const view = new ViewController();
+const stats = new StatsController();
+
+// Load gameState if saved exists or creates new gameState
+const currentGameState = gameState.loadGameState();
+// load player from gameState
+const player = currentGameState.player;
+const enemy = new SkeletonModel();
+
+// Event Listeners
+// toggle character sheet
+view.characterBtn.addEventListener('click', () => {
+    view.toggleCharacterSheet();
+});
+
+// Toggle Dungeon Display
+view.enterDungeonBtn.addEventListener('click', () => {
+    view.toggleDungeonDisplay();
+    CombatController.combatLoop(player, enemy);
+});
+
+// Render Player Attributes to  view
+view.renderAttributes(player);
+view.renderStatistics(stats.getCalculatedStats(player));
+
+// Save Game state to local storage 
+gameState.saveGameState(currentGameState);
+
+// Log current game state to console
+console.log('Current Game State: ', currentGameState);
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -323,6 +324,29 @@ module.exports =  class SkeletonModel {
         this.DEX = 2;
         this.INT = 2;
         this.WIS = 2;
+    }
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const StatsController = __webpack_require__(0);
+const ViewController = __webpack_require__(1);
+
+const stats = new StatsController();
+const view = new ViewController();
+
+module.exports = {
+    combatLoop(player, enemy) {
+        console.log('Entites fighting...');
+        const playerStats = stats.getCalculatedStats(player);
+        const enemyStats = stats.getCalculatedStats(enemy);
+
+        view.renderEntityCards(player, enemy);
+
+        console.log(playerStats);
+        console.log(enemyStats);
     }
 }
 
