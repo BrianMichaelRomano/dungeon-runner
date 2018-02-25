@@ -94,32 +94,38 @@ viewRouteController();
 const viewEl = __webpack_require__(0);
 // Load view renderer functions
 const viewRenderer = __webpack_require__(3);
+// Load Home view
+const homeView = __webpack_require__(4);
+const dungeonView = __webpack_require__(5);
+const characterView = __webpack_require__(6);
+const shopView = __webpack_require__(7);
+const inventoryView = __webpack_require__(8);
 
 module.exports = function() {
 // register event listeners
     // Home Route
     viewEl.homeBtn.addEventListener('click', () => {
-        viewRenderer.renderHome();
+        viewRenderer(homeView);
     });
 
     // Dungeon Route
     viewEl.dungeonBtn.addEventListener('click', () => {
-        viewRenderer.renderDungeon();
+        viewRenderer(dungeonView);
     });
 
     // Character Route
     viewEl.characterBtn.addEventListener('click', () => {
-        viewRenderer.renderCharacter();
+        viewRenderer(characterView);
     });
 
     // Shop Route
     viewEl.shopBtn.addEventListener('click', () => {
-        viewRenderer.renderShop();
+        viewRenderer(shopView);
     });
 
     // Inventory Route
     viewEl.inventoryBtn.addEventListener('click', () => {
-        viewRenderer.renderInventory();
+        viewRenderer(inventoryView);
     });
 }
 
@@ -131,52 +137,49 @@ module.exports = function() {
 const viewEl = __webpack_require__(0);
 
 // Export each view render function
-module.exports = {
-// Render Home 
-    renderHome() {
-        const view = `
-            <h3>Home page being rendered!</h3>
-        `;
-
-        viewEl.viewOutput.innerHTML = view;
-    },
-
-// Render Dungeon
-    renderDungeon() {
-        const view = `
-            <h3>Dungeon page being rendered!</h3>
-        `;
-
-        viewEl.viewOutput.innerHTML = view;
-    },
-
-// Render Character
-    renderCharacter() {
-        const view = `
-            <h3>Character page being rendered!</h3>
-        `;
-
-        viewEl.viewOutput.innerHTML = view;
-    },
-
-// Render Shop
-    renderShop() {
-        const view = `
-            <h3>Shop page being rendered!</h3>
-        `;
-
-        viewEl.viewOutput.innerHTML = view;
-    },
-
-// Render Inventory
-    renderInventory() {
-        const view = `
-            <h3>Inventory page being rendered!</h3>
-        `;
-
-        viewEl.viewOutput.innerHTML = view;
-    }
+module.exports = function(view) {
+    viewEl.viewOutput.innerHTML = view;
 }
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = `
+<h3>Home page being rendered!</h3>
+`;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = `
+<h3>Dungeon page being rendered!</h3>
+`;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = `
+<h3>Character page being rendered!</h3>
+`;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = `
+<h3>Shop page being rendered!</h3>
+`;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = `
+<h3>Inventory page being rendered!</h3>
+`;
 
 /***/ })
 /******/ ]);
