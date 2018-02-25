@@ -19,6 +19,11 @@ view.characterBtn.addEventListener('click', () => {
     view.toggleCharacterSheet();
 });
 
+// Toggle Dungeon Run
+view.dungeonRunBtn.addEventListener('click', () => {
+    view.toggleDungeonRunDisplay();
+});
+
 // Render Player Attributes to  view
 view.renderAttributes(player);
 view.renderStatistics(stats.getCalculatedStats(player));

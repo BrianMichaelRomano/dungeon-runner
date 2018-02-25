@@ -88,6 +88,11 @@ view.characterBtn.addEventListener('click', () => {
     view.toggleCharacterSheet();
 });
 
+// Toggle Dungeon Run
+view.dungeonRunBtn.addEventListener('click', () => {
+    view.toggleDungeonRunDisplay();
+});
+
 // Render Player Attributes to  view
 view.renderAttributes(player);
 view.renderStatistics(stats.getCalculatedStats(player));
@@ -109,6 +114,8 @@ module.exports = class ViewController {
         this.charStatisticsList = document.querySelector('#charStatisticsList');
         this.characterSheet = document.querySelector('#characterSheet');
         this.characterBtn = document.querySelector('#characterBtn');
+        this.dungeonRunDisplay = document.querySelector('#dungeonRunDisplay');
+        this.dungeonRunBtn = document.querySelector('#dungeonRunBtn');
     }
     // Render Player Attributes In <ul>
     renderAttributes(player) {
@@ -153,7 +160,15 @@ module.exports = class ViewController {
             this.characterSheet.style.display = 'block';
         } else {
             this.characterSheet.style.display = 'none';
-        }
+        };
+    }
+
+    toggleDungeonRunDisplay() {
+        if(this.dungeonRunDisplay.style.display === 'none') {
+            this.dungeonRunDisplay.style.display = 'block';
+        } else {
+            this.dungeonRunDisplay.style.display = 'none';
+        };
     }
 }
 
