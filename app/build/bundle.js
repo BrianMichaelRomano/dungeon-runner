@@ -65,9 +65,57 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const viewRouteController = __webpack_require__(1);
+viewRouteController();
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const viewEl = __webpack_require__(2);
+
+module.exports = function() {
+// register event listeners
+    // Home Route
+    viewEl.homeBtn.addEventListener('click', () => {
+        console.log('Home clicked!');
+    });
+
+    // Dungeon Route
+    viewEl.dungeonBtn.addEventListener('click', () => {
+        console.log('Dungeon clicked!');
+    });
+
+    // Character Route
+    viewEl.characterBtn.addEventListener('click', () => {
+        console.log('Character clicked!');
+    });
+
+    // Shop Route
+    viewEl.shopBtn.addEventListener('click', () => {
+        console.log('Shop clicked!');
+    });
+
+    // Inventory Route
+    viewEl.inventoryBtn.addEventListener('click', () => {
+        console.log('Inventory clicked!');
+    });
+}
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
-
+module.exports = {
+    // Grab elements and store in variables
+    homeBtn: document.querySelector('#home-btn'),
+    dungeonBtn: document.querySelector('#dungeon-btn'),
+    characterBtn: document.querySelector('#character-btn'),
+    shopBtn: document.querySelector('#shop-btn'),
+    inventoryBtn: document.querySelector('#inventory-btn')
+}
 
 /***/ })
 /******/ ]);
