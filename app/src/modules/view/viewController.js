@@ -7,6 +7,8 @@ module.exports = class ViewController {
         this.characterBtn = document.querySelector('#characterBtn');
         this.dungeonDisplay = document.querySelector('#dungeonDisplay');
         this.enterDungeonBtn = document.querySelector('#enterDungeonBtn');
+        this.playerCard = document.querySelector('#playerCard');
+        this.enemyCard = document.querySelector('#enemyCard');
     }
     // Render Player Attributes In <ul>
     renderAttributes(player) {
@@ -19,7 +21,7 @@ module.exports = class ViewController {
         `;
 
         // Log player attributes used in template 
-        console.log('View Rendered Player Attributes: ',player);
+        // console.log('View Rendered Player Attributes: ',player);
         // set <ul> innerHTML to template output
         this.charAttributeList.innerHTML = output;
     }
@@ -40,7 +42,7 @@ module.exports = class ViewController {
     `;
 
     // Log player Statistics used in template 
-    console.log('View Rendered Player Stats: ',playerStats);
+    // console.log('View Rendered Player Stats: ',playerStats);
     // set <ul> innerHTML to template output
     this.charStatisticsList.innerHTML = output;
     }
@@ -61,5 +63,10 @@ module.exports = class ViewController {
         } else {
             this.dungeonDisplay.style.display = 'none';
         };
+    }
+
+    // Render entity combat card
+    renderEntityCards(entity) {
+        
     }
 }

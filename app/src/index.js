@@ -2,6 +2,7 @@
 const ViewController = require('./modules/view/viewController');
 const GameStateController = require('./modules/gameState/gameStateController');
 const StatsController = require('./modules/stats/statsController');
+const SkeletonModel = require('./modules/models/skeletonModel');
 
 // Intantiations
 const gameState = new GameStateController();
@@ -12,6 +13,7 @@ const stats = new StatsController();
 const currentGameState = gameState.loadGameState();
 // load player from gameState
 const player = currentGameState.player;
+const enemy = new SkeletonModel();
 
 // Event Listeners
 // toggle character sheet
@@ -22,6 +24,7 @@ view.characterBtn.addEventListener('click', () => {
 // Toggle Dungeon Display
 view.enterDungeonBtn.addEventListener('click', () => {
     view.toggleDungeonDisplay();
+    view.renderEntityCards(player, enemy);
 });
 
 // Render Player Attributes to  view
