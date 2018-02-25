@@ -1,9 +1,9 @@
 // Required Modules
 const ViewController = require('./modules/view/viewController');
 const GameStateController = require('./modules/gameState/gameStateController');
-const stats = require('./modules/stats/statsController');
 const SkeletonModel = require('./modules/models/skeletonModel');
 const CombatController = require('./modules/combat/combatController');
+const stats = require('./modules/stats/statsController');
 
 // Intantiations
 const gameState = new GameStateController();
