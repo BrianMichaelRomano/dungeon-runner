@@ -163,6 +163,7 @@ module.exports = class ViewController {
         };
     }
 
+    // Toggle the dungeon run display in view    
     toggleDungeonRunDisplay() {
         if(this.dungeonRunDisplay.style.display === 'none') {
             this.dungeonRunDisplay.style.display = 'block';
