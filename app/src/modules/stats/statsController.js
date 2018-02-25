@@ -3,7 +3,7 @@ module.exports = class StatsController {
          
     }
 
-    getCalculatedStats(player) {
+    getCalculatedStats(entity) {
         // Statistics
         // HP: Hit Points - CON, STR
         // AP: Action Points - DEX, CON
@@ -16,19 +16,19 @@ module.exports = class StatsController {
         // MER: Magic Effect Rating - INT, WIS
         // IR: Initiative Rating - DEX
 
-        const playerStats = {
-            HP: 10 + player.CON + player.STR,
-            AP: 10 + player.DEX + player.CON,
-            MP: player.INT * 10,
+        const entityStats = {
+            HP: 10 + entity.CON + entity.STR,
+            AP: 10 + entity.DEX + entity.CON,
+            MP: entity.INT * 10,
             AR: null,
-            DR: player.CON + player.DEX,
-            AC: player.DEX + player.STR,
-            MC: player.WIS,
+            DR: entity.CON + entity.DEX,
+            AC: entity.DEX + entity.STR,
+            MC: entity.WIS,
             WER: null,
-            MER: player.INT + player.WIS,
-            IR: player.DEX,
+            MER: entity.INT + entity.WIS,
+            IR: entity.DEX,
         };
 
-        return playerStats;
+        return entityStats;
     }
 }
