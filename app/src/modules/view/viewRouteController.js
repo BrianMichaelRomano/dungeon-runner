@@ -1,4 +1,6 @@
+// Load view selectors
 const viewEl = require('./viewSelectors');
+// Load view renderer functions
 const viewRenderer = require('./viewRenderer');
 
 module.exports = function() {

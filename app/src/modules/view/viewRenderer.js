@@ -1,3 +1,4 @@
+// Load View Selectors
 const viewEl = require('./viewSelectors');
 
 // Export each view render function
