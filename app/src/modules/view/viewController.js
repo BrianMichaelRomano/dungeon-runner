@@ -5,8 +5,8 @@ module.exports = class ViewController {
         this.charStatisticsList = document.querySelector('#charStatisticsList');
         this.characterSheet = document.querySelector('#characterSheet');
         this.characterBtn = document.querySelector('#characterBtn');
-        this.dungeonRunDisplay = document.querySelector('#dungeonRunDisplay');
-        this.dungeonRunBtn = document.querySelector('#dungeonRunBtn');
+        this.dungeonDisplay = document.querySelector('#dungeonDisplay');
+        this.enterDungeonBtn = document.querySelector('#enterDungeonBtn');
     }
     // Render Player Attributes In <ul>
     renderAttributes(player) {
@@ -54,12 +54,12 @@ module.exports = class ViewController {
         };
     }
 
-    // Toggle the dungeon run display in view    
-    toggleDungeonRunDisplay() {
-        if(this.dungeonRunDisplay.style.display === 'none') {
-            this.dungeonRunDisplay.style.display = 'block';
+    // Toggle the dungeon display in view    
+    toggleDungeonDisplay() {
+        if(this.dungeonDisplay.style.display === 'none') {
+            this.dungeonDisplay.style.display = 'block';
         } else {
-            this.dungeonRunDisplay.style.display = 'none';
+            this.dungeonDisplay.style.display = 'none';
         };
     }
 }

@@ -88,9 +88,9 @@ view.characterBtn.addEventListener('click', () => {
     view.toggleCharacterSheet();
 });
 
-// Toggle Dungeon Run
-view.dungeonRunBtn.addEventListener('click', () => {
-    view.toggleDungeonRunDisplay();
+// Toggle Dungeon Display
+view.enterDungeonBtn.addEventListener('click', () => {
+    view.toggleDungeonDisplay();
 });
 
 // Render Player Attributes to  view
@@ -114,8 +114,8 @@ module.exports = class ViewController {
         this.charStatisticsList = document.querySelector('#charStatisticsList');
         this.characterSheet = document.querySelector('#characterSheet');
         this.characterBtn = document.querySelector('#characterBtn');
-        this.dungeonRunDisplay = document.querySelector('#dungeonRunDisplay');
-        this.dungeonRunBtn = document.querySelector('#dungeonRunBtn');
+        this.dungeonDisplay = document.querySelector('#dungeonDisplay');
+        this.enterDungeonBtn = document.querySelector('#enterDungeonBtn');
     }
     // Render Player Attributes In <ul>
     renderAttributes(player) {
@@ -163,12 +163,12 @@ module.exports = class ViewController {
         };
     }
 
-    // Toggle the dungeon run display in view    
-    toggleDungeonRunDisplay() {
-        if(this.dungeonRunDisplay.style.display === 'none') {
-            this.dungeonRunDisplay.style.display = 'block';
+    // Toggle the dungeon display in view    
+    toggleDungeonDisplay() {
+        if(this.dungeonDisplay.style.display === 'none') {
+            this.dungeonDisplay.style.display = 'block';
         } else {
-            this.dungeonRunDisplay.style.display = 'none';
+            this.dungeonDisplay.style.display = 'none';
         };
     }
 }
@@ -247,7 +247,7 @@ module.exports = class StatsController {
          
     }
 
-    getCalculatedStats(player) {
+    getCalculatedStats(entity) {
         // Statistics
         // HP: Hit Points - CON, STR
         // AP: Action Points - DEX, CON
@@ -260,20 +260,20 @@ module.exports = class StatsController {
         // MER: Magic Effect Rating - INT, WIS
         // IR: Initiative Rating - DEX
 
-        const playerStats = {
-            HP: 10 + player.CON + player.STR,
-            AP: 10 + player.DEX + player.CON,
-            MP: player.INT * 10,
+        const entityStats = {
+            HP: 10 + entity.CON + entity.STR,
+            AP: 10 + entity.DEX + entity.CON,
+            MP: entity.INT * 10,
             AR: null,
-            DR: player.CON + player.DEX,
-            AC: player.DEX + player.STR,
-            MC: player.WIS,
+            DR: entity.CON + entity.DEX,
+            AC: entity.DEX + entity.STR,
+            MC: entity.WIS,
             WER: null,
-            MER: player.INT + player.WIS,
-            IR: player.DEX,
+            MER: entity.INT + entity.WIS,
+            IR: entity.DEX,
         };
 
-        return playerStats;
+        return entityStats;
     }
 }
 
