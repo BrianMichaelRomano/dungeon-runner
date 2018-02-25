@@ -94,7 +94,7 @@ viewRouteController();
 const viewEl = __webpack_require__(0);
 // Load view renderer functions
 const viewRenderer = __webpack_require__(3);
-// Load Home view
+// Load all views
 const homeView = __webpack_require__(4);
 const dungeonView = __webpack_require__(5);
 const characterView = __webpack_require__(6);
@@ -138,6 +138,7 @@ const viewEl = __webpack_require__(0);
 
 // Export each view render function
 module.exports = function(view) {
+    // Render inputed view
     viewEl.viewOutput.innerHTML = view;
 }
 
