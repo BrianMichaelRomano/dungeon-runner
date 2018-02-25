@@ -8,10 +8,10 @@ module.exports =  class SkeletonModel {
         // WIS: Wisdom
 
         this.name = "Skeleton";
-        this.CON = 10;
-        this.STR = 10;
-        this.DEX = 10;
-        this.INT = 10;
-        this.WIS = 10;
+        this.CON = 2;
+        this.STR = 2;
+        this.DEX = 2;
+        this.INT = 2;
+        this.WIS = 2;
     }
 }

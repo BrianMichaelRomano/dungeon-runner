@@ -86,9 +86,9 @@ module.exports = class StatsController {
         // IR: Initiative Rating - DEX
 
         const entityStats = {
-            HP: 10 + entity.CON + entity.STR,
+            HP: 100 + entity.CON + entity.STR,
             AP: 10 + entity.DEX + entity.CON,
-            MP: entity.INT * 10,
+            MP: entity.INT * 2,
             AR: null,
             DR: entity.CON + entity.DEX,
             AC: entity.DEX + entity.STR,
@@ -318,11 +318,11 @@ module.exports =  class SkeletonModel {
         // WIS: Wisdom
 
         this.name = "Skeleton";
-        this.CON = 10;
-        this.STR = 10;
-        this.DEX = 10;
-        this.INT = 10;
-        this.WIS = 10;
+        this.CON = 2;
+        this.STR = 2;
+        this.DEX = 2;
+        this.INT = 2;
+        this.WIS = 2;
     }
 }
 

@@ -17,9 +17,9 @@ module.exports = class StatsController {
         // IR: Initiative Rating - DEX
 
         const entityStats = {
-            HP: 10 + entity.CON + entity.STR,
+            HP: 100 + entity.CON + entity.STR,
             AP: 10 + entity.DEX + entity.CON,
-            MP: entity.INT * 10,
+            MP: entity.INT * 2,
             AR: null,
             DR: entity.CON + entity.DEX,
             AC: entity.DEX + entity.STR,
