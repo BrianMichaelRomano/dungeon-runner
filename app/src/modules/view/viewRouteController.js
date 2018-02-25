@@ -9,30 +9,32 @@ const characterView = require('./views/characterView');
 const shopView = require('./views/shopView');
 const inventoryView = require('./views/inventoryView');
 
-module.exports = function() {
-// register event listeners
-    // Home Route
-    viewEl.homeBtn.addEventListener('click', () => {
-        viewRenderer(homeView);
-    });
-
-    // Dungeon Route
-    viewEl.dungeonBtn.addEventListener('click', () => {
-        viewRenderer(dungeonView);
-    });
-
-    // Character Route
-    viewEl.characterBtn.addEventListener('click', () => {
-        viewRenderer(characterView);
-    });
-
-    // Shop Route
-    viewEl.shopBtn.addEventListener('click', () => {
-        viewRenderer(shopView);
-    });
-
-    // Inventory Route
-    viewEl.inventoryBtn.addEventListener('click', () => {
-        viewRenderer(inventoryView);
-    });
+module.exports = {
+    registerListeners: function() {
+        // register event listeners
+        // Home Route
+        viewEl.homeBtn.addEventListener('click', () => {
+            viewRenderer(homeView);
+        });
+        
+        // Dungeon Route
+        viewEl.dungeonBtn.addEventListener('click', () => {
+            viewRenderer(dungeonView);
+        });
+        
+        // Character Route
+        viewEl.characterBtn.addEventListener('click', () => {
+            viewRenderer(characterView);
+        });
+        
+        // Shop Route
+        viewEl.shopBtn.addEventListener('click', () => {
+            viewRenderer(shopView);
+        });
+        
+        // Inventory Route
+        viewEl.inventoryBtn.addEventListener('click', () => {
+            viewRenderer(inventoryView);
+        });
+    }
 }

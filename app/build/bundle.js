@@ -84,7 +84,7 @@ module.exports = {
 // Load Route Controller
 const viewRouteController = __webpack_require__(2);
 // Run Controller
-viewRouteController();
+viewRouteController.registerListeners();
 
 /***/ }),
 /* 2 */
@@ -101,32 +101,34 @@ const characterView = __webpack_require__(6);
 const shopView = __webpack_require__(7);
 const inventoryView = __webpack_require__(8);
 
-module.exports = function() {
-// register event listeners
-    // Home Route
-    viewEl.homeBtn.addEventListener('click', () => {
-        viewRenderer(homeView);
-    });
-
-    // Dungeon Route
-    viewEl.dungeonBtn.addEventListener('click', () => {
-        viewRenderer(dungeonView);
-    });
-
-    // Character Route
-    viewEl.characterBtn.addEventListener('click', () => {
-        viewRenderer(characterView);
-    });
-
-    // Shop Route
-    viewEl.shopBtn.addEventListener('click', () => {
-        viewRenderer(shopView);
-    });
-
-    // Inventory Route
-    viewEl.inventoryBtn.addEventListener('click', () => {
-        viewRenderer(inventoryView);
-    });
+module.exports = {
+    registerListeners: function() {
+        // register event listeners
+        // Home Route
+        viewEl.homeBtn.addEventListener('click', () => {
+            viewRenderer(homeView);
+        });
+        
+        // Dungeon Route
+        viewEl.dungeonBtn.addEventListener('click', () => {
+            viewRenderer(dungeonView);
+        });
+        
+        // Character Route
+        viewEl.characterBtn.addEventListener('click', () => {
+            viewRenderer(characterView);
+        });
+        
+        // Shop Route
+        viewEl.shopBtn.addEventListener('click', () => {
+            viewRenderer(shopView);
+        });
+        
+        // Inventory Route
+        viewEl.inventoryBtn.addEventListener('click', () => {
+            viewRenderer(inventoryView);
+        });
+    }
 }
 
 /***/ }),
