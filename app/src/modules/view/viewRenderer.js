@@ -1,5 +1,6 @@
 const viewEl = require('./viewSelectors');
 
+// Export each view render function
 module.exports = {
 // Render Home 
     renderHome() {
@@ -8,8 +9,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering home page!');
     },
 
 // Render Dungeon
@@ -19,8 +18,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering Dungeon page!');
     },
 
 // Render Character
@@ -30,8 +27,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering Character page!');
     },
 
 // Render Shop
@@ -41,8 +36,6 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering Shop page!');
     },
 
 // Render Inventory
@@ -52,7 +45,5 @@ module.exports = {
         `;
 
         viewEl.viewOutput.innerHTML = view;
-
-        console.log('Rendering Inventory page!');
     }
 }
