@@ -1,7 +1,6 @@
-const StatsController = require('../stats/statsController');
+const stats = require('../stats/statsController');
 const ViewController = require('../view/viewController');
 
-const stats = new StatsController();
 const view = new ViewController();
 
 module.exports = {

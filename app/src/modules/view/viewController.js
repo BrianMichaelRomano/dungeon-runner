@@ -1,6 +1,4 @@
-const StatsController = require('../stats/statsController');
-const stats = new StatsController();
-
+const stats = require('../stats/statsController');
 
 module.exports = class ViewController {
     constructor() {

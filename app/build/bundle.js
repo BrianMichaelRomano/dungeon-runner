@@ -67,10 +67,8 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = class StatsController {
-    constructor() {
-         
-    }
+module.exports = {
+
 
     getCalculatedStats(entity) {
         // Statistics
@@ -106,9 +104,7 @@ module.exports = class StatsController {
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const StatsController = __webpack_require__(0);
-const stats = new StatsController();
-
+const stats = __webpack_require__(0);
 
 module.exports = class ViewController {
     constructor() {
@@ -203,14 +199,13 @@ module.exports = class ViewController {
 // Required Modules
 const ViewController = __webpack_require__(1);
 const GameStateController = __webpack_require__(3);
-const StatsController = __webpack_require__(0);
+const stats = __webpack_require__(0);
 const SkeletonModel = __webpack_require__(5);
 const CombatController = __webpack_require__(6);
 
 // Intantiations
 const gameState = new GameStateController();
 const view = new ViewController();
-const stats = new StatsController();
 
 // Load gameState if saved exists or creates new gameState
 const currentGameState = gameState.loadGameState();
@@ -331,10 +326,9 @@ module.exports =  class SkeletonModel {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const StatsController = __webpack_require__(0);
+const stats = __webpack_require__(0);
 const ViewController = __webpack_require__(1);
 
-const stats = new StatsController();
 const view = new ViewController();
 
 module.exports = {
@@ -344,7 +338,7 @@ module.exports = {
         const enemyStats = stats.getCalculatedStats(enemy);
 
         view.renderEntityCards(player, enemy);
-
+        
         console.log(playerStats);
         console.log(enemyStats);
     }

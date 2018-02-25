@@ -1,7 +1,5 @@
-module.exports = class StatsController {
-    constructor() {
-         
-    }
+module.exports = {
+
 
     getCalculatedStats(entity) {
         // Statistics
