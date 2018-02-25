@@ -83,8 +83,10 @@ module.exports = {
 
 // Load Route Controller
 const viewRouteController = __webpack_require__(2);
-// Run Controller
-viewRouteController();
+// Register event listeners for routes
+viewRouteController.registerListeners();
+// Load view saved in state if exists or load home view
+viewRouteController.loadCurrentView();
 
 /***/ }),
 /* 2 */
@@ -94,39 +96,72 @@ viewRouteController();
 const viewEl = __webpack_require__(0);
 // Load view renderer functions
 const viewRenderer = __webpack_require__(3);
+// Load State Controller
+const stateController = __webpack_require__(4);
 // Load all views
-const homeView = __webpack_require__(4);
-const dungeonView = __webpack_require__(5);
-const characterView = __webpack_require__(6);
-const shopView = __webpack_require__(7);
-const inventoryView = __webpack_require__(8);
+const homeView = __webpack_require__(5);
+const dungeonView = __webpack_require__(6);
+const characterView = __webpack_require__(7);
+const shopView = __webpack_require__(8);
+const inventoryView = __webpack_require__(9);
 
-module.exports = function() {
-// register event listeners
-    // Home Route
-    viewEl.homeBtn.addEventListener('click', () => {
-        viewRenderer(homeView);
-    });
-
-    // Dungeon Route
-    viewEl.dungeonBtn.addEventListener('click', () => {
-        viewRenderer(dungeonView);
-    });
-
-    // Character Route
-    viewEl.characterBtn.addEventListener('click', () => {
-        viewRenderer(characterView);
-    });
-
-    // Shop Route
-    viewEl.shopBtn.addEventListener('click', () => {
-        viewRenderer(shopView);
-    });
-
-    // Inventory Route
-    viewEl.inventoryBtn.addEventListener('click', () => {
-        viewRenderer(inventoryView);
-    });
+module.exports = {
+    registerListeners: function() {
+        // register event listeners that will render selected view and set that view to state
+        // Home Route
+        viewEl.homeBtn.addEventListener('click', () => {
+            viewRenderer(homeView);
+            stateController.setViewState('home');
+        });
+        
+        // Dungeon Route
+        viewEl.dungeonBtn.addEventListener('click', () => {
+            viewRenderer(dungeonView);
+            stateController.setViewState('dungeon');            
+        });
+        
+        // Character Route
+        viewEl.characterBtn.addEventListener('click', () => {
+            viewRenderer(characterView);
+            stateController.setViewState('character');            
+        });
+        
+        // Shop Route
+        viewEl.shopBtn.addEventListener('click', () => {
+            viewRenderer(shopView);
+            stateController.setViewState('shop');
+        });
+        
+        // Inventory Route
+        viewEl.inventoryBtn.addEventListener('click', () => {
+            viewRenderer(inventoryView);
+            stateController.setViewState('inventory');            
+        });
+    },
+    // Loads current view from state or loads home if no saved state
+    loadCurrentView() {
+        console.log('Loading view from saved state...');
+        if(stateController.getViewState() === null) {
+            viewRenderer(homeView);
+        } else {
+            switch(stateController.getViewState()) {
+                case 'dungeon':
+                    viewRenderer(dungeonView);
+                    break;
+                case 'character':
+                    viewRenderer(characterView);
+                    break;
+                case 'shop':
+                    viewRenderer(shopView);
+                    break;
+                case 'inventory':
+                    viewRenderer(inventoryView);
+                    break;
+                default:
+                    viewRenderer(homeView);
+            }
+        }
+    }
 }
 
 /***/ }),
@@ -146,16 +181,23 @@ module.exports = function(view) {
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = `
-<h3>Home page being rendered!</h3>
-`;
+module.exports = {
+    // Set view state
+    setViewState(view) {
+        localStorage.setItem('view', JSON.stringify(view));
+    },
+    // Get view state
+    getViewState() {
+        return JSON.parse(localStorage.getItem('view'));
+    }
+}
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
 module.exports = `
-<h3>Dungeon page being rendered!</h3>
+<h3>Home page being rendered!</h3>
 `;
 
 /***/ }),
@@ -163,7 +205,7 @@ module.exports = `
 /***/ (function(module, exports) {
 
 module.exports = `
-<h3>Character page being rendered!</h3>
+<h3>Dungeon page being rendered!</h3>
 `;
 
 /***/ }),
@@ -171,11 +213,19 @@ module.exports = `
 /***/ (function(module, exports) {
 
 module.exports = `
-<h3>Shop page being rendered!</h3>
+<h3>Character page being rendered!</h3>
 `;
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+module.exports = `
+<h3>Shop page being rendered!</h3>
+`;
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = `
