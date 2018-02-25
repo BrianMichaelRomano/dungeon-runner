@@ -1,3 +1,7 @@
+const StatsController = require('../stats/statsController');
+const stats = new StatsController();
+
+
 module.exports = class ViewController {
     constructor() {
         // select view elements
@@ -7,8 +11,7 @@ module.exports = class ViewController {
         this.characterBtn = document.querySelector('#characterBtn');
         this.dungeonDisplay = document.querySelector('#dungeonDisplay');
         this.enterDungeonBtn = document.querySelector('#enterDungeonBtn');
-        this.playerCard = document.querySelector('#playerCard');
-        this.enemyCard = document.querySelector('#enemyCard');
+        this.entityCards = document.querySelector('#entityCards');
     }
     // Render Player Attributes In <ul>
     renderAttributes(player) {
@@ -66,7 +69,21 @@ module.exports = class ViewController {
     }
 
     // Render entity combat card
-    renderEntityCards(entity) {
-        
+    renderEntityCards(player, enemy) {
+        const playerStats = stats.getCalculatedStats(player);
+        const enemyStats = stats.getCalculatedStats(enemy);
+
+        let output = `
+            <h3>${player.name}</h3>
+            <p>HP: ${playerStats.HP}</p>
+            <p>AP: ${playerStats.AP}</p>
+            <p>MP: ${playerStats.MP}</p>
+            <h3>${enemy.name}</h3>
+            <p>HP: ${enemyStats.HP}</p>
+            <p>AP: ${enemyStats.AP}</p>
+            <p>MP: ${enemyStats.MP}</p>
+        `;
+
+        entityCards.innerHTML = output;
     }
 }

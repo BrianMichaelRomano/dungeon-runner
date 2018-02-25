@@ -60,17 +60,57 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+module.exports = class StatsController {
+    constructor() {
+         
+    }
+
+    getCalculatedStats(entity) {
+        // Statistics
+        // HP: Hit Points - CON, STR
+        // AP: Action Points - DEX, CON
+        // MP: Magic Points - INT
+        // AR: Armor Rating - Based on equipment
+        // DR: Defense Rating - CON, DEX
+        // AC: Attack Chance - DEX, STR
+        // MC: Magic Chance - WIS
+        // WER: Weapon Effect Rating - Weapon, STR
+        // MER: Magic Effect Rating - INT, WIS
+        // IR: Initiative Rating - DEX
+
+        const entityStats = {
+            HP: 10 + entity.CON + entity.STR,
+            AP: 10 + entity.DEX + entity.CON,
+            MP: entity.INT * 10,
+            AR: null,
+            DR: entity.CON + entity.DEX,
+            AC: entity.DEX + entity.STR,
+            MC: entity.WIS,
+            WER: null,
+            MER: entity.INT + entity.WIS,
+            IR: entity.DEX,
+        };
+
+        return entityStats;
+    }
+}
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Required Modules
-const ViewController = __webpack_require__(1);
-const GameStateController = __webpack_require__(2);
-const StatsController = __webpack_require__(4);
+const ViewController = __webpack_require__(2);
+const GameStateController = __webpack_require__(3);
+const StatsController = __webpack_require__(0);
+const SkeletonModel = __webpack_require__(5);
 
 // Intantiations
 const gameState = new GameStateController();
@@ -81,6 +121,7 @@ const stats = new StatsController();
 const currentGameState = gameState.loadGameState();
 // load player from gameState
 const player = currentGameState.player;
+const enemy = new SkeletonModel();
 
 // Event Listeners
 // toggle character sheet
@@ -91,6 +132,7 @@ view.characterBtn.addEventListener('click', () => {
 // Toggle Dungeon Display
 view.enterDungeonBtn.addEventListener('click', () => {
     view.toggleDungeonDisplay();
+    view.renderEntityCards(player, enemy);
 });
 
 // Render Player Attributes to  view
@@ -104,8 +146,12 @@ gameState.saveGameState(currentGameState);
 console.log('Current Game State: ', currentGameState);
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const StatsController = __webpack_require__(0);
+const stats = new StatsController();
+
 
 module.exports = class ViewController {
     constructor() {
@@ -116,6 +162,7 @@ module.exports = class ViewController {
         this.characterBtn = document.querySelector('#characterBtn');
         this.dungeonDisplay = document.querySelector('#dungeonDisplay');
         this.enterDungeonBtn = document.querySelector('#enterDungeonBtn');
+        this.entityCards = document.querySelector('#entityCards');
     }
     // Render Player Attributes In <ul>
     renderAttributes(player) {
@@ -128,7 +175,7 @@ module.exports = class ViewController {
         `;
 
         // Log player attributes used in template 
-        console.log('View Rendered Player Attributes: ',player);
+        // console.log('View Rendered Player Attributes: ',player);
         // set <ul> innerHTML to template output
         this.charAttributeList.innerHTML = output;
     }
@@ -149,7 +196,7 @@ module.exports = class ViewController {
     `;
 
     // Log player Statistics used in template 
-    console.log('View Rendered Player Stats: ',playerStats);
+    // console.log('View Rendered Player Stats: ',playerStats);
     // set <ul> innerHTML to template output
     this.charStatisticsList.innerHTML = output;
     }
@@ -171,13 +218,32 @@ module.exports = class ViewController {
             this.dungeonDisplay.style.display = 'none';
         };
     }
+
+    // Render entity combat card
+    renderEntityCards(player, enemy) {
+        const playerStats = stats.getCalculatedStats(player);
+        const enemyStats = stats.getCalculatedStats(enemy);
+
+        let output = `
+            <h3>${player.name}</h3>
+            <p>HP: ${playerStats.HP}</p>
+            <p>AP: ${playerStats.AP}</p>
+            <p>MP: ${playerStats.MP}</p>
+            <h3>${enemy.name}</h3>
+            <p>HP: ${enemyStats.HP}</p>
+            <p>AP: ${enemyStats.AP}</p>
+            <p>MP: ${enemyStats.MP}</p>
+        `;
+
+        entityCards.innerHTML = output;
+    }
 }
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const PlayerModel = __webpack_require__(3);
+const PlayerModel = __webpack_require__(4);
 
 module.exports = class GameStateController {
     constructor() {
@@ -216,7 +282,7 @@ module.exports = class GameStateController {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports =  class PlayerModel {
@@ -239,41 +305,24 @@ module.exports =  class PlayerModel {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
-module.exports = class StatsController {
+module.exports =  class SkeletonModel {
     constructor() {
-         
-    }
+        // Attributes
+        // CON: Constitution
+        // STR: Stregth
+        // DEX: Dexterity
+        // INT: Intelligence
+        // WIS: Wisdom
 
-    getCalculatedStats(entity) {
-        // Statistics
-        // HP: Hit Points - CON, STR
-        // AP: Action Points - DEX, CON
-        // MP: Magic Points - INT
-        // AR: Armor Rating - Based on equipment
-        // DR: Defense Rating - CON, DEX
-        // AC: Attack Chance - DEX, STR
-        // MC: Magic Chance - WIS
-        // WER: Weapon Effect Rating - Weapon, STR
-        // MER: Magic Effect Rating - INT, WIS
-        // IR: Initiative Rating - DEX
-
-        const entityStats = {
-            HP: 10 + entity.CON + entity.STR,
-            AP: 10 + entity.DEX + entity.CON,
-            MP: entity.INT * 10,
-            AR: null,
-            DR: entity.CON + entity.DEX,
-            AC: entity.DEX + entity.STR,
-            MC: entity.WIS,
-            WER: null,
-            MER: entity.INT + entity.WIS,
-            IR: entity.DEX,
-        };
-
-        return entityStats;
+        this.name = "Skeleton";
+        this.CON = 10;
+        this.STR = 10;
+        this.DEX = 10;
+        this.INT = 10;
+        this.WIS = 10;
     }
 }
 
