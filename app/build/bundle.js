@@ -60,52 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const viewRouteController = __webpack_require__(1);
-viewRouteController();
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const viewEl = __webpack_require__(2);
-
-module.exports = function() {
-// register event listeners
-    // Home Route
-    viewEl.homeBtn.addEventListener('click', () => {
-        console.log('Home clicked!');
-    });
-
-    // Dungeon Route
-    viewEl.dungeonBtn.addEventListener('click', () => {
-        console.log('Dungeon clicked!');
-    });
-
-    // Character Route
-    viewEl.characterBtn.addEventListener('click', () => {
-        console.log('Character clicked!');
-    });
-
-    // Shop Route
-    viewEl.shopBtn.addEventListener('click', () => {
-        console.log('Shop clicked!');
-    });
-
-    // Inventory Route
-    viewEl.inventoryBtn.addEventListener('click', () => {
-        console.log('Inventory clicked!');
-    });
-}
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -114,7 +73,118 @@ module.exports = {
     dungeonBtn: document.querySelector('#dungeon-btn'),
     characterBtn: document.querySelector('#character-btn'),
     shopBtn: document.querySelector('#shop-btn'),
-    inventoryBtn: document.querySelector('#inventory-btn')
+    inventoryBtn: document.querySelector('#inventory-btn'),
+    viewOutput: document.querySelector('#view-output')
+}
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const viewRouteController = __webpack_require__(2);
+viewRouteController();
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const viewEl = __webpack_require__(0);
+const viewRenderer = __webpack_require__(3);
+
+module.exports = function() {
+// register event listeners
+    // Home Route
+    viewEl.homeBtn.addEventListener('click', () => {
+        console.log('Home clicked!');
+        viewRenderer.renderHome();
+    });
+
+    // Dungeon Route
+    viewEl.dungeonBtn.addEventListener('click', () => {
+        console.log('Dungeon clicked!');
+        viewRenderer.renderDungeon();
+    });
+
+    // Character Route
+    viewEl.characterBtn.addEventListener('click', () => {
+        console.log('Character clicked!');
+        viewRenderer.renderCharacter();
+    });
+
+    // Shop Route
+    viewEl.shopBtn.addEventListener('click', () => {
+        console.log('Shop clicked!');
+        viewRenderer.renderShop();
+    });
+
+    // Inventory Route
+    viewEl.inventoryBtn.addEventListener('click', () => {
+        console.log('Inventory clicked!');
+        viewRenderer.renderInventory();
+    });
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const viewEl = __webpack_require__(0);
+
+module.exports = {
+// Render Home 
+    renderHome() {
+        const view = `
+            <h3>Home page being rendered!</h3>
+        `;
+
+        viewEl.viewOutput.innerHTML = view;
+
+        console.log('Rendering home page!');
+    },
+
+// Render Dungeon
+    renderDungeon() {
+        const view = `
+            <h3>Dungeon page being rendered!</h3>
+        `;
+
+        viewEl.viewOutput.innerHTML = view;
+
+        console.log('Rendering Dungeon page!');
+    },
+
+// Render Character
+    renderCharacter() {
+        const view = `
+            <h3>Character page being rendered!</h3>
+        `;
+
+        viewEl.viewOutput.innerHTML = view;
+
+        console.log('Rendering Character page!');
+    },
+
+// Render Shop
+    renderShop() {
+        const view = `
+            <h3>Shop page being rendered!</h3>
+        `;
+
+        viewEl.viewOutput.innerHTML = view;
+
+        console.log('Rendering Shop page!');
+    },
+
+// Render Inventory
+    renderInventory() {
+        const view = `
+            <h3>Inventory page being rendered!</h3>
+        `;
+
+        viewEl.viewOutput.innerHTML = view;
+
+        console.log('Rendering Inventory page!');
+    }
 }
 
 /***/ })
