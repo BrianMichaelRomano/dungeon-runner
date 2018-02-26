@@ -7,3 +7,38 @@ nav {
     display: flex;
     justify-content: space-around;
 }
+
+/* Home View */
+
+#home-view #hv-header {
+    display: flex;
+    justify-content: center;
+}
+
+/* Dungeon View */
+
+#dungeon-view #dv-header {
+    display: flex;
+    justify-content: center;
+}
+
+/* Character View */
+
+#character-view #cv-header {
+    display: flex;
+    justify-content: center;
+}
+
+/* Shop View */
+
+#shop-view #sv-header {
+    display: flex;
+    justify-content: center;
+}
+
+/* Inventory View */
+
+#inventory-view #iv-header {
+    display: flex;
+    justify-content: center;
+}
