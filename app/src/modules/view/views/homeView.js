@@ -1,3 +1,14 @@
-module.exports = `
-<h3>Home page being rendered!</h3>
+const view = `
+<div id="home-view">
+
+    <div id="hv-header">
+        <h2>Home</h2>
+    </div>
+
+</div>
 `;
+
+module.exports = {
+    template: view,
+    viewController: { }
+}

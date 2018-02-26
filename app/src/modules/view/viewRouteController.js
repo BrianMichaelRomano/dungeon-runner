@@ -16,55 +16,57 @@ module.exports = {
         // register event listeners that will render selected view and set that view to state
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
-            viewRenderer(homeView);
+            viewRenderer(homeView.template);
             stateController.setViewState('home');
         });
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
-            viewRenderer(dungeonView);
+            viewRenderer(dungeonView.template);
+            dungeonView.viewController.loadListeners();            
             stateController.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
-            viewRenderer(characterView);
+            viewRenderer(characterView.template);
             stateController.setViewState('character');            
         });
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
-            viewRenderer(shopView);
+            viewRenderer(shopView.template);
             stateController.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
-            viewRenderer(inventoryView);
+            viewRenderer(inventoryView.template);
             stateController.setViewState('inventory');            
         });
     },
-    // Loads current view from state or loads home if no saved state
+    // Loads current view from state or loads home on browser refresh if no saved state
     loadCurrentView() {
-        console.log('Loading view from saved state...');
+
         if(stateController.getViewState() === null) {
-            viewRenderer(homeView);
+            viewRenderer(homeView.template);
         } else {
             switch(stateController.getViewState()) {
                 case 'dungeon':
-                    viewRenderer(dungeonView);
+                    viewRenderer(dungeonView.template);
+                    dungeonView.viewController.loadListeners();
                     break;
                 case 'character':
-                    viewRenderer(characterView);
+                    viewRenderer(characterView.template);
                     break;
                 case 'shop':
-                    viewRenderer(shopView);
+                    viewRenderer(shopView.template);
                     break;
                 case 'inventory':
-                    viewRenderer(inventoryView);
+                    viewRenderer(inventoryView.template);
                     break;
                 default:
-                    viewRenderer(homeView);
+                    viewRenderer(homeView.template);
             }
         }
     }
