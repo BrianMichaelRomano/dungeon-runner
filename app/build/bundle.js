@@ -85,7 +85,7 @@ module.exports = {
 const viewRouteController = __webpack_require__(2);
 // Register event listeners for routes
 viewRouteController.registerListeners();
-// Load view saved in state if exists or load home view
+// Load view saved in state if exists or load home view on browser refresh
 viewRouteController.loadCurrentView();
 
 /***/ }),
@@ -110,55 +110,57 @@ module.exports = {
         // register event listeners that will render selected view and set that view to state
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
-            viewRenderer(homeView);
+            viewRenderer(homeView.template);
             stateController.setViewState('home');
         });
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
-            viewRenderer(dungeonView);
+            viewRenderer(dungeonView.template);
+            dungeonView.viewController.loadListeners();            
             stateController.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
-            viewRenderer(characterView);
+            viewRenderer(characterView.template);
             stateController.setViewState('character');            
         });
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
-            viewRenderer(shopView);
+            viewRenderer(shopView.template);
             stateController.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
-            viewRenderer(inventoryView);
+            viewRenderer(inventoryView.template);
             stateController.setViewState('inventory');            
         });
     },
-    // Loads current view from state or loads home if no saved state
+    // Loads current view from state or loads home on browser refresh if no saved state
     loadCurrentView() {
-        console.log('Loading view from saved state...');
+
         if(stateController.getViewState() === null) {
-            viewRenderer(homeView);
+            viewRenderer(homeView.template);
         } else {
             switch(stateController.getViewState()) {
                 case 'dungeon':
-                    viewRenderer(dungeonView);
+                    viewRenderer(dungeonView.template);
+                    dungeonView.viewController.loadListeners();
                     break;
                 case 'character':
-                    viewRenderer(characterView);
+                    viewRenderer(characterView.template);
                     break;
                 case 'shop':
-                    viewRenderer(shopView);
+                    viewRenderer(shopView.template);
                     break;
                 case 'inventory':
-                    viewRenderer(inventoryView);
+                    viewRenderer(inventoryView.template);
                     break;
                 default:
-                    viewRenderer(homeView);
+                    viewRenderer(homeView.template);
             }
         }
     }
@@ -196,41 +198,104 @@ module.exports = {
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = `
-<h3>Home page being rendered!</h3>
+const view = `
+<div id="home-view">
+
+    <div id="hv-header">
+        <h2>Home</h2>
+    </div>
+
+</div>
 `;
+
+module.exports = {
+    template: view,
+    viewController: { }
+}
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = `
-<h3>Dungeon page being rendered!</h3>
+const view = `
+<div id="dungeon-view">
+
+    <div id="dv-header">
+        <h2>Dungeon</h2>
+    </div>
+    <button id="enter-dungeon-btn">Enter Dungeon</button>
+
+</div>
 `;
+
+module.exports = {
+    template: view,
+    viewController: {
+        loadListeners: function() {
+            // load Event Listeners
+            document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
+                console.log('Entering Dungeon...');
+            });
+        }
+    }
+}
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = `
-<h3>Character page being rendered!</h3>
+const view = `
+<div id="character-view">
+
+    <div id="cv-header">
+        <h2>Character</h2>
+    </div>
+
+</div>
 `;
+
+module.exports = {
+    template: view,
+    viewController: { }
+}
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = `
-<h3>Shop page being rendered!</h3>
+const view = `
+<div id="shop-view">
+
+    <div id="sv-header">
+        <h2>Shop</h2>
+    </div>
+
+</div>
 `;
+
+module.exports = {
+    template: view,
+    viewController: { }
+}
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = `
-<h3>Inventory page being rendered!</h3>
+const view = `
+<div id="inventory-view">
+
+    <div id="iv-header">
+        <h2>Inventory</h2>
+    </div>
+
+</div>
 `;
+
+module.exports = {
+    template: view,
+    viewController: { }
+}
 
 /***/ })
 /******/ ]);
