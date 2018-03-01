@@ -281,16 +281,20 @@ const combat = __webpack_require__(7);
 const view = `
 <div id="dungeon-view">
 
-<div id="dv-header">
-<h2>Dungeon</h2>
-</div>
-<button id="enter-dungeon-btn">Enter Dungeon</button>
+    <div id="dv-header">
+        <h2>Dungeon</h2>
+    </div>
 
-<div id="dungeon-messages"></div>
+    <div id="rendered-dungeon">
 
-<div id="entity-cards"></div>
+        <button id="enter-dungeon-btn">Enter Dungeon</button>
 
-<div id="action-btns"></div>    
+        <div id="dungeon-messages"></div>
+
+        <div id="entity-cards"></div>
+
+        <div id="action-btns"></div>    
+    </div>
 
 </div>
 `;

@@ -4,3 +4,10 @@
     display: flex;
     justify-content: center;
 }
+
+/* Rendered Dungeon View */
+#rendered-dungeon {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
