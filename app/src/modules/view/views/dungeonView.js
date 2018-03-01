@@ -20,7 +20,7 @@ const view = `
 
 module.exports = {
     template: view,
-    viewController: {
+    dungeonController: {
         // Event Listeners
         loadListeners: function() {
             // load Event Listeners

@@ -23,7 +23,7 @@ module.exports = {
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
             viewRenderer(dungeonView.template);
-            dungeonView.viewController.loadListeners();            
+            dungeonView.dungeonController.loadListeners();            
             stateController.view.setViewState('dungeon');            
         });
         
@@ -54,7 +54,7 @@ module.exports = {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
                     viewRenderer(dungeonView.template);
-                    dungeonView.viewController.loadListeners();
+                    dungeonView.dungeonController.loadListeners();
                     break;
                 case 'character':
                     viewRenderer(characterView.template);
