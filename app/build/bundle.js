@@ -71,6 +71,7 @@ module.exports = {
     clearState: function() {
         localStorage.removeItem('view');
         localStorage.removeItem('player');   
+        localStorage.removeItem('skeleton');   
         console.log('State reset!')     
     },
     view: {
@@ -113,6 +114,16 @@ module.exports = {
         },
         setPlayerState(player) {
             localStorage.setItem('player', JSON.stringify(player));
+        },
+        getSkeletonState() {
+            if(localStorage.getItem('skeleton') === null) {
+                return this.getNewSkeleton();
+            } else {
+                return JSON.parse(localStorage.getItem('skeleton'));
+            }
+        },
+        setSkeletonState(skeleton) {
+            localStorage.setItem('skeleton', JSON.stringify(skeleton));
         }
     }
 }
@@ -266,22 +277,20 @@ module.exports = {
 const state = __webpack_require__(0);
 const combat = __webpack_require__(7);
 
-const player = state.entity.getPlayerState();
-const enemy = state.entity.getNewSkeleton();
 
 const view = `
 <div id="dungeon-view">
 
-    <div id="dv-header">
-        <h2>Dungeon</h2>
-    </div>
-    <button id="enter-dungeon-btn">Enter Dungeon</button>
+<div id="dv-header">
+<h2>Dungeon</h2>
+</div>
+<button id="enter-dungeon-btn">Enter Dungeon</button>
 
-    <div id="dungeon-messages"></div>
+<div id="dungeon-messages"></div>
 
-    <div id="entity-cards"></div>
+<div id="entity-cards"></div>
 
-    <div id="action-btns"></div>    
+<div id="action-btns"></div>    
 
 </div>
 `;
@@ -298,6 +307,9 @@ module.exports = {
             });
         },
         renderDungeon: function() {
+            let player = state.entity.getPlayerState();
+            let enemy = state.entity.getSkeletonState();
+
             if(document.querySelector('#enter-dungeon-btn')) {
                 document.querySelector('#enter-dungeon-btn').remove();
             }
@@ -333,6 +345,8 @@ module.exports = {
             document.querySelector('#attack-btn').addEventListener('click', () => {
                 enemy.HP = combat.attack(player, enemy);
                 console.log(enemy.HP);
+                state.entity.setPlayerState(player);
+                state.entity.setSkeletonState(enemy);
                 this.renderDungeon();
             });
         }
