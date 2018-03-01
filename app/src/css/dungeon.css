@@ -1,0 +1,6 @@
+/* Dungeon View */
+
+#dungeon-view #dv-header {
+    display: flex;
+    justify-content: center;
+}

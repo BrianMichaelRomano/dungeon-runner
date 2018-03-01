@@ -1,0 +1,6 @@
+/* Shop View */
+
+#shop-view #sv-header {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,6 @@
+/* Home View */
+
+#home-view #hv-header {
+    display: flex;
+    justify-content: center;
+}

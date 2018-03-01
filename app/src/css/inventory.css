@@ -1,0 +1,6 @@
+/* Inventory View */
+
+#inventory-view #iv-header {
+    display: flex;
+    justify-content: center;
+}
