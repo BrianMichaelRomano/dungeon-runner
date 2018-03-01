@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,31 +79,80 @@ module.exports = {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    view: {
+        // Set view state
+        setViewState(view) {
+            localStorage.setItem('view', JSON.stringify(view));
+        },
+        // Get view state
+        getViewState() {
+            return JSON.parse(localStorage.getItem('view'));
+        }
+    },
+    entity: {
+        getNewPlayer() {
+            const player = {
+                name: 'Firecore',
+                HP: 100,
+                AP: 80,
+                MP: 60,
+                ATT: 10
+            }
+            return player;
+        },
+        getNewSkeleton() {
+            const skeleton = {
+                name: 'Skeleton',
+                HP: 80,
+                AP: 60,
+                MP: 40,
+                ATT: 10
+            }
+            return skeleton;
+        },
+        getPlayerState() {
+            if(localStorage.getItem('player') === null) {
+                return this.getNewPlayer();
+            } else {
+                return JSON.parse(localStorage.getItem('player'));
+            }
+        },
+        setPlayerState(player) {
+            localStorage.setItem('player', JSON.stringify(player));
+        }
+    }
+}
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load Route Controller
-const viewRouteController = __webpack_require__(2);
+const viewRouteController = __webpack_require__(3);
 // Register event listeners for routes
 viewRouteController.registerListeners();
 // Load view saved in state if exists or load home view on browser refresh
 viewRouteController.loadCurrentView();
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load view selectors
 const viewEl = __webpack_require__(0);
 // Load view renderer functions
-const viewRenderer = __webpack_require__(3);
+const viewRenderer = __webpack_require__(4);
 // Load State Controller
-const stateController = __webpack_require__(4);
+const stateController = __webpack_require__(1);
 // Load all views
 const homeView = __webpack_require__(5);
 const dungeonView = __webpack_require__(6);
-const characterView = __webpack_require__(7);
-const shopView = __webpack_require__(8);
-const inventoryView = __webpack_require__(9);
+const characterView = __webpack_require__(8);
+const shopView = __webpack_require__(9);
+const inventoryView = __webpack_require__(10);
 
 module.exports = {
     registerListeners: function() {
@@ -111,44 +160,44 @@ module.exports = {
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
             viewRenderer(homeView.template);
-            stateController.setViewState('home');
+            stateController.view.setViewState('home');
         });
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
             viewRenderer(dungeonView.template);
-            dungeonView.viewController.loadListeners();            
-            stateController.setViewState('dungeon');            
+            dungeonView.dungeonController.loadListeners();            
+            stateController.view.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
             viewRenderer(characterView.template);
-            stateController.setViewState('character');            
+            stateController.view.setViewState('character');            
         });
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
             viewRenderer(shopView.template);
-            stateController.setViewState('shop');
+            stateController.view.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
             viewRenderer(inventoryView.template);
-            stateController.setViewState('inventory');            
+            stateController.view.setViewState('inventory');            
         });
     },
     // Loads current view from state or loads home on browser refresh if no saved state
     loadCurrentView() {
 
-        if(stateController.getViewState() === null) {
+        if(stateController.view.getViewState() === null) {
             viewRenderer(homeView.template);
         } else {
-            switch(stateController.getViewState()) {
+            switch(stateController.view.getViewState()) {
                 case 'dungeon':
                     viewRenderer(dungeonView.template);
-                    dungeonView.viewController.loadListeners();
+                    dungeonView.dungeonController.loadListeners();
                     break;
                 case 'character':
                     viewRenderer(characterView.template);
@@ -167,7 +216,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load View Selectors
@@ -177,21 +226,6 @@ const viewEl = __webpack_require__(0);
 module.exports = function(view) {
     // Render inputed view
     viewEl.viewOutput.innerHTML = view;
-}
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    // Set view state
-    setViewState(view) {
-        localStorage.setItem('view', JSON.stringify(view));
-    },
-    // Get view state
-    getViewState() {
-        return JSON.parse(localStorage.getItem('view'));
-    }
 }
 
 /***/ }),
@@ -215,7 +249,13 @@ module.exports = {
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+const state = __webpack_require__(1);
+const combat = __webpack_require__(7);
+
+const player = state.entity.getPlayerState();
+const enemy = state.entity.getNewSkeleton();
 
 const view = `
 <div id="dungeon-view">
@@ -225,23 +265,82 @@ const view = `
     </div>
     <button id="enter-dungeon-btn">Enter Dungeon</button>
 
+    <div id="dungeon-messages"></div>
+
+    <div id="entity-cards"></div>
+
+    <div id="action-btns"></div>    
+
 </div>
 `;
 
 module.exports = {
     template: view,
-    viewController: {
+    dungeonController: {
+        // Event Listeners
         loadListeners: function() {
             // load Event Listeners
             document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
-                console.log('Entering Dungeon...');
+                console.log('Dungeon Entered...');
+                this.renderDungeon();
+            });
+        },
+        renderDungeon: function() {
+            if(document.querySelector('#enter-dungeon-btn')) {
+                document.querySelector('#enter-dungeon-btn').remove();
+            }
+            document.querySelector('#dungeon-messages').innerHTML = `
+                <p>You are now in the dungeon!</p>
+            `;
+            document.querySelector('#entity-cards').innerHTML = `
+                <div id="player-card">
+                    <ul>
+                        <li>${player.name}</li>
+                        <li>${player.HP}</li>
+                        <li>${player.AP}</li>
+                        <li>${player.MP}</li>
+                    </ul>    
+                </div>
+                <div id="enemy-card">
+                    <ul>
+                        <li>${enemy.name}</li>
+                        <li>${enemy.HP}</li>
+                        <li>${enemy.AP}</li>
+                        <li>${enemy.MP}</li>
+                    </ul>    
+                </div>
+            `;
+            document.querySelector('#action-btns').innerHTML = `
+                <button id="attack-btn">Attack</button>
+                <button id="defend-btn">Defend</button>
+                <button id="magic-btn">Use Magic</button>
+                <button id="item-btn">Use Item</button>
+                <button id="flee-btn">Flee</button>
+            `;
+            // Action Button Listeners
+            document.querySelector('#attack-btn').addEventListener('click', () => {
+                enemy.HP = combat.attack(player, enemy);
+                console.log(enemy.HP);
+                this.renderDungeon();
             });
         }
     }
+
 }
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    attack: function(player, enemy) {
+        console.log(`${player.name} does ${player.ATT} damage to ${enemy.name}`);
+        return enemy.HP - player.ATT;
+    }
+}
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 const view = `
@@ -260,7 +359,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 const view = `
@@ -279,7 +378,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 const view = `
