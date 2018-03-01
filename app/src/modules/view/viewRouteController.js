@@ -17,41 +17,41 @@ module.exports = {
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
             viewRenderer(homeView.template);
-            stateController.setViewState('home');
+            stateController.view.setViewState('home');
         });
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
             viewRenderer(dungeonView.template);
             dungeonView.viewController.loadListeners();            
-            stateController.setViewState('dungeon');            
+            stateController.view.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
             viewRenderer(characterView.template);
-            stateController.setViewState('character');            
+            stateController.view.setViewState('character');            
         });
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
             viewRenderer(shopView.template);
-            stateController.setViewState('shop');
+            stateController.view.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
             viewRenderer(inventoryView.template);
-            stateController.setViewState('inventory');            
+            stateController.view.setViewState('inventory');            
         });
     },
     // Loads current view from state or loads home on browser refresh if no saved state
     loadCurrentView() {
 
-        if(stateController.getViewState() === null) {
+        if(stateController.view.getViewState() === null) {
             viewRenderer(homeView.template);
         } else {
-            switch(stateController.getViewState()) {
+            switch(stateController.view.getViewState()) {
                 case 'dungeon':
                     viewRenderer(dungeonView.template);
                     dungeonView.viewController.loadListeners();
