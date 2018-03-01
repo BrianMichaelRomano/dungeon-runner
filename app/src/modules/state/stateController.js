@@ -1,4 +1,9 @@
 module.exports = {
+    clearState: function() {
+        localStorage.removeItem('view');
+        localStorage.removeItem('player');   
+        console.log('State reset!')     
+    },
     view: {
         // Set view state
         setViewState(view) {

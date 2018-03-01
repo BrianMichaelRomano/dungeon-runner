@@ -68,20 +68,11 @@
 /***/ (function(module, exports) {
 
 module.exports = {
-    // Grab elements and store in variables for use in viewRenderer
-    homeBtn: document.querySelector('#home-btn'),
-    dungeonBtn: document.querySelector('#dungeon-btn'),
-    characterBtn: document.querySelector('#character-btn'),
-    shopBtn: document.querySelector('#shop-btn'),
-    inventoryBtn: document.querySelector('#inventory-btn'),
-    viewOutput: document.querySelector('#view-output')
-}
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = {
+    clearState: function() {
+        localStorage.removeItem('view');
+        localStorage.removeItem('player');   
+        console.log('State reset!')     
+    },
     view: {
         // Set view state
         setViewState(view) {
@@ -127,26 +118,47 @@ module.exports = {
 }
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    // Grab elements and store in variables for use in viewRenderer
+    homeBtn: document.querySelector('#home-btn'),
+    dungeonBtn: document.querySelector('#dungeon-btn'),
+    characterBtn: document.querySelector('#character-btn'),
+    shopBtn: document.querySelector('#shop-btn'),
+    inventoryBtn: document.querySelector('#inventory-btn'),
+    viewOutput: document.querySelector('#view-output')
+}
+
+/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load Route Controller
 const viewRouteController = __webpack_require__(3);
+// Load State Controller
+const state = __webpack_require__(0);
 // Register event listeners for routes
 viewRouteController.registerListeners();
 // Load view saved in state if exists or load home view on browser refresh
 viewRouteController.loadCurrentView();
+// Register Event Listener for Reset State button
+document.querySelector('#reset-state-btn').addEventListener('click', () => {
+    state.clearState();
+    viewRouteController.loadCurrentView();
+});
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load view selectors
-const viewEl = __webpack_require__(0);
+const viewEl = __webpack_require__(1);
 // Load view renderer functions
 const viewRenderer = __webpack_require__(4);
 // Load State Controller
-const stateController = __webpack_require__(1);
+const stateController = __webpack_require__(0);
 // Load all views
 const homeView = __webpack_require__(5);
 const dungeonView = __webpack_require__(6);
@@ -220,7 +232,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load View Selectors
-const viewEl = __webpack_require__(0);
+const viewEl = __webpack_require__(1);
 
 // Export each view render function
 module.exports = function(view) {
@@ -251,7 +263,7 @@ module.exports = {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const state = __webpack_require__(1);
+const state = __webpack_require__(0);
 const combat = __webpack_require__(7);
 
 const player = state.entity.getPlayerState();
