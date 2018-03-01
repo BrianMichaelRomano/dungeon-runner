@@ -98,7 +98,8 @@ module.exports = {
                 name: 'Firecore',
                 HP: 100,
                 AP: 80,
-                MP: 60
+                MP: 60,
+                ATT: 10
             }
             return player;
         },
@@ -107,7 +108,8 @@ module.exports = {
                 name: 'Skeleton',
                 HP: 80,
                 AP: 60,
-                MP: 40
+                MP: 40,
+                ATT: 10
             }
             return skeleton;
         },
@@ -148,9 +150,9 @@ const stateController = __webpack_require__(1);
 // Load all views
 const homeView = __webpack_require__(5);
 const dungeonView = __webpack_require__(6);
-const characterView = __webpack_require__(7);
-const shopView = __webpack_require__(8);
-const inventoryView = __webpack_require__(9);
+const characterView = __webpack_require__(8);
+const shopView = __webpack_require__(9);
+const inventoryView = __webpack_require__(10);
 
 module.exports = {
     registerListeners: function() {
@@ -250,6 +252,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 const state = __webpack_require__(1);
+const combat = __webpack_require__(7);
 
 const player = state.entity.getPlayerState();
 const enemy = state.entity.getNewSkeleton();
@@ -283,7 +286,9 @@ module.exports = {
             });
         },
         renderDungeon: function() {
-            document.querySelector('#enter-dungeon-btn').remove();
+            if(document.querySelector('#enter-dungeon-btn')) {
+                document.querySelector('#enter-dungeon-btn').remove();
+            }
             document.querySelector('#dungeon-messages').innerHTML = `
                 <p>You are now in the dungeon!</p>
             `;
@@ -314,9 +319,10 @@ module.exports = {
             `;
             // Action Button Listeners
             document.querySelector('#attack-btn').addEventListener('click', () => {
-                console.log(`You attack ${enemy.name}`);
+                enemy.HP = combat.attack(player, enemy);
+                console.log(enemy.HP);
+                this.renderDungeon();
             });
-            
         }
     }
 
@@ -324,6 +330,17 @@ module.exports = {
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    attack: function(player, enemy) {
+        console.log(`${player.name} does ${player.ATT} damage to ${enemy.name}`);
+        return enemy.HP - player.ATT;
+    }
+}
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 const view = `
@@ -342,7 +359,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 const view = `
@@ -361,7 +378,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 const view = `
