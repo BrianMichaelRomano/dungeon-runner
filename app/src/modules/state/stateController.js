@@ -15,7 +15,8 @@ module.exports = {
                 name: 'Firecore',
                 HP: 100,
                 AP: 80,
-                MP: 60
+                MP: 60,
+                ATT: 10
             }
             return player;
         },
@@ -24,7 +25,8 @@ module.exports = {
                 name: 'Skeleton',
                 HP: 80,
                 AP: 60,
-                MP: 40
+                MP: 40,
+                ATT: 10
             }
             return skeleton;
         },
