@@ -1,4 +1,5 @@
 const state = require('../../state/stateController');
+const combat = require('../../combat/combatcontroller');
 
 const player = state.entity.getPlayerState();
 const enemy = state.entity.getNewSkeleton();
@@ -32,7 +33,9 @@ module.exports = {
             });
         },
         renderDungeon: function() {
-            document.querySelector('#enter-dungeon-btn').remove();
+            if(document.querySelector('#enter-dungeon-btn')) {
+                document.querySelector('#enter-dungeon-btn').remove();
+            }
             document.querySelector('#dungeon-messages').innerHTML = `
                 <p>You are now in the dungeon!</p>
             `;
@@ -63,9 +66,10 @@ module.exports = {
             `;
             // Action Button Listeners
             document.querySelector('#attack-btn').addEventListener('click', () => {
-                console.log(`You attack ${enemy.name}`);
+                enemy.HP = combat.attack(player, enemy);
+                console.log(enemy.HP);
+                this.renderDungeon();
             });
-            
         }
     }
 
