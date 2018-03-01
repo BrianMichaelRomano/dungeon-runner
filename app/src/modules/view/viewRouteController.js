@@ -5,11 +5,11 @@ const viewRenderer = require('./viewRenderer');
 // Load State Controller
 const stateController = require('../state/stateController');
 // Load all views
-const homeView = require('./views/homeView');
-const dungeonView = require('./views/dungeonView');
-const characterView = require('./views/characterView');
-const shopView = require('./views/shopView');
-const inventoryView = require('./views/inventoryView');
+const homeView = require('../components/homeComponent');
+const dungeonView = require('../components/dungeonComponent');
+const characterView = require('../components/characterComponent');
+const shopView = require('../components/shopComponent');
+const inventoryView = require('../components/inventoryComponent');
 
 module.exports = {
     registerListeners: function() {
