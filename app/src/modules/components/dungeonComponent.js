@@ -1,22 +1,20 @@
 const state = require('../state/stateController');
 const combat = require('../combat/combatcontroller');
 
-const player = state.entity.getPlayerState();
-const enemy = state.entity.getSkeleton();
 
 const view = `
 <div id="dungeon-view">
 
-    <div id="dv-header">
-        <h2>Dungeon</h2>
-    </div>
-    <button id="enter-dungeon-btn">Enter Dungeon</button>
+<div id="dv-header">
+<h2>Dungeon</h2>
+</div>
+<button id="enter-dungeon-btn">Enter Dungeon</button>
 
-    <div id="dungeon-messages"></div>
+<div id="dungeon-messages"></div>
 
-    <div id="entity-cards"></div>
+<div id="entity-cards"></div>
 
-    <div id="action-btns"></div>    
+<div id="action-btns"></div>    
 
 </div>
 `;
@@ -33,6 +31,9 @@ module.exports = {
             });
         },
         renderDungeon: function() {
+            let player = state.entity.getPlayerState();
+            let enemy = state.entity.getSkeletonState();
+
             if(document.querySelector('#enter-dungeon-btn')) {
                 document.querySelector('#enter-dungeon-btn').remove();
             }
@@ -68,6 +69,8 @@ module.exports = {
             document.querySelector('#attack-btn').addEventListener('click', () => {
                 enemy.HP = combat.attack(player, enemy);
                 console.log(enemy.HP);
+                state.entity.setPlayerState(player);
+                state.entity.setSkeletonState(enemy);
                 this.renderDungeon();
             });
         }
