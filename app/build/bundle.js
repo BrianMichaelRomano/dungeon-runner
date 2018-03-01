@@ -271,12 +271,27 @@ module.exports = {
             });
         },
         renderDungeon: function() {
+            document.querySelector('#enter-dungeon-btn').remove();
             document.querySelector('#dungeon-messages').innerHTML = `
                 <p>You are now in the dungeon!</p>
             `;
             document.querySelector('#entity-cards').innerHTML = `
-                <div id="player-card">${player.name}</div>
-                <div id="enemy-card">${enemy.name}</div>
+                <div id="player-card">
+                    <ul>
+                        <li>${player.name}</li>
+                        <li>${player.HP}</li>
+                        <li>${player.AP}</li>
+                        <li>${player.MP}</li>
+                    </ul>    
+                </div>
+                <div id="enemy-card">
+                    <ul>
+                        <li>${enemy.name}</li>
+                        <li>${enemy.HP}</li>
+                        <li>${enemy.AP}</li>
+                        <li>${enemy.MP}</li>
+                    </ul>    
+                </div>
             `
         }
     }
