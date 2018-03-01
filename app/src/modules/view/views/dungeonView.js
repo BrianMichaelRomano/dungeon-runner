@@ -1,6 +1,6 @@
 const state = require('../../state/stateController');
 
-const player = state.entity.getNewPlayer();
+const player = state.entity.getPlayerState();
 const enemy = state.entity.getNewSkeleton();
 
 const view = `
@@ -51,7 +51,7 @@ module.exports = {
                         <li>${enemy.MP}</li>
                     </ul>    
                 </div>
-            `
+            `;
         }
     }
 

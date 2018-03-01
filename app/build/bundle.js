@@ -93,7 +93,7 @@ module.exports = {
         }
     },
     entity: {
-        getPlayer() {
+        getNewPlayer() {
             const player = {
                 name: 'Firecore',
                 HP: 100,
@@ -102,7 +102,7 @@ module.exports = {
             }
             return player;
         },
-        getSkeleton() {
+        getNewSkeleton() {
             const skeleton = {
                 name: 'Skeleton',
                 HP: 80,
@@ -110,6 +110,16 @@ module.exports = {
                 MP: 40
             }
             return skeleton;
+        },
+        getPlayerState() {
+            if(localStorage.getItem('player') === null) {
+                return this.getNewPlayer();
+            } else {
+                return JSON.parse(localStorage.getItem('player'));
+            }
+        },
+        setPlayerState(player) {
+            localStorage.setItem('player', JSON.stringify(player));
         }
     }
 }
@@ -241,8 +251,10 @@ module.exports = {
 
 const state = __webpack_require__(1);
 
-const player = state.entity.getPlayer();
-const enemy = state.entity.getSkeleton();
+// const newPlayer = state.entity.getNewPlayer();
+
+const player = state.entity.getPlayerState();
+const enemy = state.entity.getNewSkeleton();
 
 const view = `
 <div id="dungeon-view">

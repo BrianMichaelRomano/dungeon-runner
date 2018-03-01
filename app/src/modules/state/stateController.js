@@ -27,6 +27,16 @@ module.exports = {
                 MP: 40
             }
             return skeleton;
+        },
+        getPlayerState() {
+            if(localStorage.getItem('player') === null) {
+                return this.getNewPlayer();
+            } else {
+                return JSON.parse(localStorage.getItem('player'));
+            }
+        },
+        setPlayerState(player) {
+            localStorage.setItem('player', JSON.stringify(player));
         }
     }
 }
