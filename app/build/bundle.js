@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,25 +79,62 @@ module.exports = {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    view: {
+        // Set view state
+        setViewState(view) {
+            localStorage.setItem('view', JSON.stringify(view));
+        },
+        // Get view state
+        getViewState() {
+            return JSON.parse(localStorage.getItem('view'));
+        }
+    },
+    entity: {
+        getPlayer() {
+            const player = {
+                name: 'Firecore',
+                HP: 100,
+                AP: 80,
+                MP: 60
+            }
+            return player;
+        },
+        getSkeleton() {
+            const skeleton = {
+                name: 'Skeleton',
+                HP: 80,
+                AP: 60,
+                MP: 40
+            }
+            return skeleton;
+        }
+    }
+}
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load Route Controller
-const viewRouteController = __webpack_require__(2);
+const viewRouteController = __webpack_require__(3);
 // Register event listeners for routes
 viewRouteController.registerListeners();
 // Load view saved in state if exists or load home view on browser refresh
 viewRouteController.loadCurrentView();
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load view selectors
 const viewEl = __webpack_require__(0);
 // Load view renderer functions
-const viewRenderer = __webpack_require__(3);
+const viewRenderer = __webpack_require__(4);
 // Load State Controller
-const stateController = __webpack_require__(4);
+const stateController = __webpack_require__(1);
 // Load all views
 const homeView = __webpack_require__(5);
 const dungeonView = __webpack_require__(6);
@@ -111,41 +148,41 @@ module.exports = {
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
             viewRenderer(homeView.template);
-            stateController.setViewState('home');
+            stateController.view.setViewState('home');
         });
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
             viewRenderer(dungeonView.template);
             dungeonView.viewController.loadListeners();            
-            stateController.setViewState('dungeon');            
+            stateController.view.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
             viewRenderer(characterView.template);
-            stateController.setViewState('character');            
+            stateController.view.setViewState('character');            
         });
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
             viewRenderer(shopView.template);
-            stateController.setViewState('shop');
+            stateController.view.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
             viewRenderer(inventoryView.template);
-            stateController.setViewState('inventory');            
+            stateController.view.setViewState('inventory');            
         });
     },
     // Loads current view from state or loads home on browser refresh if no saved state
     loadCurrentView() {
 
-        if(stateController.getViewState() === null) {
+        if(stateController.view.getViewState() === null) {
             viewRenderer(homeView.template);
         } else {
-            switch(stateController.getViewState()) {
+            switch(stateController.view.getViewState()) {
                 case 'dungeon':
                     viewRenderer(dungeonView.template);
                     dungeonView.viewController.loadListeners();
@@ -167,7 +204,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load View Selectors
@@ -177,21 +214,6 @@ const viewEl = __webpack_require__(0);
 module.exports = function(view) {
     // Render inputed view
     viewEl.viewOutput.innerHTML = view;
-}
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    // Set view state
-    setViewState(view) {
-        localStorage.setItem('view', JSON.stringify(view));
-    },
-    // Get view state
-    getViewState() {
-        return JSON.parse(localStorage.getItem('view'));
-    }
 }
 
 /***/ }),
@@ -215,7 +237,12 @@ module.exports = {
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+const state = __webpack_require__(1);
+
+const player = state.entity.getPlayer();
+const enemy = state.entity.getSkeleton();
 
 const view = `
 <div id="dungeon-view">
@@ -225,19 +252,35 @@ const view = `
     </div>
     <button id="enter-dungeon-btn">Enter Dungeon</button>
 
+    <div id="dungeon-messages"></div>
+
+    <div id="entity-cards"></div>
+
 </div>
 `;
 
 module.exports = {
     template: view,
     viewController: {
+        // Event Listeners
         loadListeners: function() {
             // load Event Listeners
             document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
-                console.log('Entering Dungeon...');
+                console.log('Dungeon Entered...');
+                this.renderDungeon();
             });
+        },
+        renderDungeon: function() {
+            document.querySelector('#dungeon-messages').innerHTML = `
+                <p>You are now in the dungeon!</p>
+            `;
+            document.querySelector('#entity-cards').innerHTML = `
+                <div id="player-card">${player.name}</div>
+                <div id="enemy-card">${enemy.name}</div>
+            `
         }
     }
+
 }
 
 /***/ }),
