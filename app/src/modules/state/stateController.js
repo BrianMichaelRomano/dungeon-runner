@@ -2,6 +2,7 @@ module.exports = {
     clearState: function() {
         localStorage.removeItem('view');
         localStorage.removeItem('player');   
+        localStorage.removeItem('skeleton');   
         console.log('State reset!')     
     },
     view: {
