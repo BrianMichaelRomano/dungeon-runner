@@ -44,6 +44,16 @@ module.exports = {
         },
         setPlayerState(player) {
             localStorage.setItem('player', JSON.stringify(player));
+        },
+        getSkeletonState() {
+            if(localStorage.getItem('skeleton') === null) {
+                return this.getNewSkeleton();
+            } else {
+                return JSON.parse(localStorage.getItem('skeleton'));
+            }
+        },
+        setSkeletonState(skeleton) {
+            localStorage.setItem('skeleton', JSON.stringify(skeleton));
         }
     }
 }

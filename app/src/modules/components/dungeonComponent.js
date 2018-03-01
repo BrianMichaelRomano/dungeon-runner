@@ -2,7 +2,7 @@ const state = require('../state/stateController');
 const combat = require('../combat/combatcontroller');
 
 const player = state.entity.getPlayerState();
-const enemy = state.entity.getNewSkeleton();
+const enemy = state.entity.getSkeleton();
 
 const view = `
 <div id="dungeon-view">
