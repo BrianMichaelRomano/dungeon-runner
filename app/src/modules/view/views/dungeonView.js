@@ -15,6 +15,8 @@ const view = `
 
     <div id="entity-cards"></div>
 
+    <div id="action-btns"></div>    
+
 </div>
 `;
 
@@ -52,6 +54,18 @@ module.exports = {
                     </ul>    
                 </div>
             `;
+            document.querySelector('#action-btns').innerHTML = `
+                <button id="attack-btn">Attack</button>
+                <button id="defend-btn">Defend</button>
+                <button id="magic-btn">Use Magic</button>
+                <button id="item-btn">Use Item</button>
+                <button id="flee-btn">Flee</button>
+            `;
+            // Action Button Listeners
+            document.querySelector('#attack-btn').addEventListener('click', () => {
+                console.log(`You attack ${enemy.name}`);
+            });
+            
         }
     }
 
