@@ -10,7 +10,7 @@ module.exports = {
         }
     },
     entity: {
-        getPlayer() {
+        getNewPlayer() {
             const player = {
                 name: 'Firecore',
                 HP: 100,
@@ -19,7 +19,7 @@ module.exports = {
             }
             return player;
         },
-        getSkeleton() {
+        getNewSkeleton() {
             const skeleton = {
                 name: 'Skeleton',
                 HP: 80,

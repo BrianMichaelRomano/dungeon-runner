@@ -1,7 +1,7 @@
 const state = require('../../state/stateController');
 
-const player = state.entity.getPlayer();
-const enemy = state.entity.getSkeleton();
+const player = state.entity.getNewPlayer();
+const enemy = state.entity.getNewSkeleton();
 
 const view = `
 <div id="dungeon-view">
