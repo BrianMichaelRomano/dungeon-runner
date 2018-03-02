@@ -3,6 +3,7 @@ module.exports = {
         localStorage.removeItem('view');
         localStorage.removeItem('player');   
         localStorage.removeItem('skeleton');   
+        localStorage.removeItem('dungeon');   
         console.log('State reset!')     
     },
     view: {
@@ -55,6 +56,19 @@ module.exports = {
         },
         setSkeletonState(skeleton) {
             localStorage.setItem('skeleton', JSON.stringify(skeleton));
+        }
+    },
+    dungeon: {
+        setDungeonState(state) {
+            localStorage.setItem('dungeon', JSON.stringify(state));
+            console.log(`Set dungeon state to ${state}`);
+        },
+        getDungeonState() { 
+            if(localStorage.getItem('dungeon')) {
+                return JSON.parse(localStorage.getItem('dungeon'));
+            } else {
+                console.log('No saved dungeon state');
+            }
         }
     }
 }

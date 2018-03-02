@@ -33,6 +33,7 @@ module.exports = {
             document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
                 console.log('Dungeon Entered...');
                 this.renderDungeon();
+                state.dungeon.setDungeonState('entered');
             });
         },
         renderDungeon: function() {
