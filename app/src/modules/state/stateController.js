@@ -61,13 +61,18 @@ module.exports = {
     dungeon: {
         setDungeonState(state) {
             localStorage.setItem('dungeon', JSON.stringify(state));
-            console.log(`Set dungeon state to ${state}`);
         },
         getDungeonState() { 
             if(localStorage.getItem('dungeon')) {
                 return JSON.parse(localStorage.getItem('dungeon'));
             } else {
-                console.log('No saved dungeon state');
+                const newState = {
+                    turn: 0,
+                    status: 'entered'
+                };
+                localStorage.setItem('dungeon', JSON.stringify(newState));
+    
+                return newState;
             }
         }
     }
