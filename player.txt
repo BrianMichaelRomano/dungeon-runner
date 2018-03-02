@@ -1,70 +1,13 @@
 ||||||||||||||||||||||||||||||||||||||||||||||||
-||||||||| Dungeon Runner Specs Sheet |||||||||||
+||||||||| Dungeon Runner Notes & Specs Sheet |||
 ||||||||||||||||||||||||||||||||||||||||||||||||
 
-@Attributes
-CON: Constitution
-STR: Stregth
-DEX: Dexterity
-INT: Intelligence
-WIS: Wisdom
+Up next:
 
-@Statistics
-HP: Hit Points - CON, STR
-AP: Action Points - DEX, CON
-MP: Magic Points - INT
-AR: Armor Rating - Based on equipment
-DR: Defense Rating - CON, DEX
-DAM: Damage - STR
-ATT: Attack - DEX, STR
-MA: Magic Ability - WIS
-FireR: Fire Resists - Based on equipment
-IceR: Ice Resists - Based on equipment
-AirR: Air Resists - Based on equipment
-EarthR: Earth Resists - Based on equipment
-IR: Initiative Rating - DEX
+Build crude dungeon loop from entering to exit or death
 
-@Actions
-Use Melee
-Use Magic
-Use Defense
-Use Item
-Flee Combat
+should save state of both player and enemy
 
-=====================================================================================
-Demo: Player Model
+should have an attack both entities can make
 
-Player = {
-    attributes: {
-        CON: 10,
-        STR: 10,
-        DEX: 10,
-        INT: 10,
-        WIS: 10
-    },
-    statistics: {
-        HP: 100 + this.attributes.CON + this.attributes.STR,
-        AP: 100 + this.attributes.DEX + this.attributes.CON,
-        MP: 100 + this.attributes.INT + this.attributes.WIS,
-        AR: "Based on equipment",
-        DR: this.attributes.CON + this.attributes.DEX,
-        DAM: this.attributes.STR + equipment,
-        ATT: this.attributes.DEX + this.attributes.STR,
-        MA: this.attributes.WIS,
-        WD: "Weapon Damage Rating plus STR,
-        FireR: "Based on equipment",
-        IceR: "Based on equipment",
-        AirR: "Based on equipment",
-        EarthR: "Based on equipment",
-        IR: this.attributes.DEX,
-    },
-    inventory: [],
-    equipment: {
-        helm: "Wooden Helm",
-        armor: "Rags",
-        gloves: "Rag Gloves",
-        boots: "Rag Boots",
-        Weopon: "Wooden Sword",
-        ring: "Wooden Ring"
-    }
-}
+should end combat loop when one entity has no more HP or Flees
