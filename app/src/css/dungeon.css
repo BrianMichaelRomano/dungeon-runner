@@ -8,6 +8,6 @@
 /* Rendered Dungeon View */
 #rendered-dungeon {
     display: flex;
-    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
