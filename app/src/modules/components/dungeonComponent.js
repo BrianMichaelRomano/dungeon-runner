@@ -33,12 +33,12 @@ module.exports = {
             document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
                 console.log('Dungeon Entered...');
                 this.renderDungeon();
-                state.dungeon.setDungeonState('entered');
             });
         },
         renderDungeon: function() {
             let player = state.entity.getPlayerState();
             let enemy = state.entity.getSkeletonState();
+            let dungeonState = state.dungeon.getDungeonState();
 
             if(document.querySelector('#enter-dungeon-btn')) {
                 document.querySelector('#enter-dungeon-btn').remove();
@@ -73,10 +73,15 @@ module.exports = {
             `;
             // Action Button Listeners
             document.querySelector('#attack-btn').addEventListener('click', () => {
+                // TODO: Create attack method to handle most of this logic
                 enemy.HP = combat.attack(player, enemy);
-                console.log(enemy.HP);
                 state.entity.setPlayerState(player);
                 state.entity.setSkeletonState(enemy);
+                dungeonState.turn += 1;
+                dungeonState.status = 'inCombat';
+                state.dungeon.setDungeonState(dungeonState);
+                console.log('Enemy HP:', enemy.HP);
+                console.log('Dungeon State: ', dungeonState);
                 this.renderDungeon();
             });
         }
