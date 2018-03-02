@@ -182,32 +182,32 @@ module.exports = {
         // register event listeners that will render selected view and set that view to state
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
-            viewRenderer(homeView.template);
+            viewRenderer(homeView.viewTemplate());
             stateController.view.setViewState('home');
         });
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
-            viewRenderer(dungeonView.template);
+            viewRenderer(dungeonView.viewTemplate());
             dungeonView.dungeonController.loadListeners();            
             stateController.view.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
-            viewRenderer(characterView.template);
+            viewRenderer(characterView.viewTemplate());
             stateController.view.setViewState('character');            
         });
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
-            viewRenderer(shopView.template);
+            viewRenderer(shopView.viewTemplate());
             stateController.view.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
-            viewRenderer(inventoryView.template);
+            viewRenderer(inventoryView.viewTemplate());
             stateController.view.setViewState('inventory');            
         });
     },
@@ -215,24 +215,24 @@ module.exports = {
     loadCurrentView() {
 
         if(stateController.view.getViewState() === null) {
-            viewRenderer(homeView.template);
+            viewRenderer(homeView.viewTemplate());
         } else {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
-                    viewRenderer(dungeonView.template);
+                    viewRenderer(dungeonView.viewTemplate());
                     dungeonView.dungeonController.loadListeners();
                     break;
                 case 'character':
-                    viewRenderer(characterView.template);
+                    viewRenderer(characterView.viewTemplate());
                     break;
                 case 'shop':
-                    viewRenderer(shopView.template);
+                    viewRenderer(shopView.viewTemplate());
                     break;
                 case 'inventory':
-                    viewRenderer(inventoryView.template);
+                    viewRenderer(inventoryView.viewTemplate());
                     break;
                 default:
-                    viewRenderer(homeView.template);
+                    viewRenderer(homeView.viewTemplate());
             }
         }
     }
@@ -255,18 +255,20 @@ module.exports = function(view) {
 /* 5 */
 /***/ (function(module, exports) {
 
-const view = `
-<div id="home-view">
-
-    <div id="hv-header">
-        <h2>Home</h2>
-    </div>
-
-</div>
-`;
-
 module.exports = {
-    template: view,
+    viewTemplate: function() {
+        const view = `
+        <div id="home-view">
+        
+            <div id="hv-header">
+                <h2>Home</h2>
+            </div>
+        
+        </div>
+        `;
+
+        return view;
+    },
     viewController: { }
 }
 
@@ -277,30 +279,31 @@ module.exports = {
 const state = __webpack_require__(0);
 const combat = __webpack_require__(7);
 
-
-const view = `
-<div id="dungeon-view">
-
-    <div id="dv-header">
-        <h2>Dungeon</h2>
-    </div>
-
-    <div id="rendered-dungeon">
-
-        <button id="enter-dungeon-btn">Enter Dungeon</button>
-
-        <div id="dungeon-messages"></div>
-
-        <div id="entity-cards"></div>
-
-        <div id="action-btns"></div>    
-    </div>
-
-</div>
-`;
-
 module.exports = {
-    template: view,
+    viewTemplate: function() {
+        const view = `
+        <div id="dungeon-view">
+        
+            <div id="dv-header">
+                <h2>Dungeon</h2>
+            </div>
+        
+            <div id="rendered-dungeon">
+        
+                <button id="enter-dungeon-btn">Enter Dungeon</button>
+        
+                <div id="dungeon-messages"></div>
+        
+                <div id="entity-cards"></div>
+        
+                <div id="action-btns"></div>    
+            </div>
+        
+        </div>
+        `;
+
+        return view;
+    },
     dungeonController: {
         // Event Listeners
         loadListeners: function() {
@@ -373,18 +376,20 @@ module.exports = {
 /* 8 */
 /***/ (function(module, exports) {
 
-const view = `
-<div id="character-view">
-
-    <div id="cv-header">
-        <h2>Character</h2>
-    </div>
-
-</div>
-`;
-
 module.exports = {
-    template: view,
+    viewTemplate: function() {
+        const view = `
+        <div id="character-view">
+        
+            <div id="cv-header">
+                <h2>Character</h2>
+            </div>
+        
+        </div>
+        `;
+        
+        return view;
+    },
     viewController: { }
 }
 
@@ -392,18 +397,20 @@ module.exports = {
 /* 9 */
 /***/ (function(module, exports) {
 
-const view = `
-<div id="shop-view">
-
-    <div id="sv-header">
-        <h2>Shop</h2>
-    </div>
-
-</div>
-`;
-
 module.exports = {
-    template: view,
+    viewTemplate: function() {
+        const view = `
+        <div id="shop-view">
+        
+            <div id="sv-header">
+                <h2>Shop</h2>
+            </div>
+        
+        </div>
+        `;
+        
+        return view;
+    },
     viewController: { }
 }
 
@@ -411,18 +418,20 @@ module.exports = {
 /* 10 */
 /***/ (function(module, exports) {
 
-const view = `
-<div id="inventory-view">
-
-    <div id="iv-header">
-        <h2>Inventory</h2>
-    </div>
-
-</div>
-`;
-
 module.exports = {
-    template: view,
+    viewTemplate: function() {
+        const view = `
+        <div id="inventory-view">
+        
+            <div id="iv-header">
+                <h2>Inventory</h2>
+            </div>
+        
+        </div>
+        `;
+        
+        return view;
+    },
     viewController: { }
 }
 
