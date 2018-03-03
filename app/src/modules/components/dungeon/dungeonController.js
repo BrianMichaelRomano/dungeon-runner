@@ -51,8 +51,9 @@ module.exports = {
 
         // Attack Button Pressed
         attackBtnPressed : function() {
-            const varStates = storageState.getAllStates();
-            combat.attack(varStates);
+            // Perform attack on enemy
+            combat.attack();
+            this.renderDungeon();
         }
     }
 }

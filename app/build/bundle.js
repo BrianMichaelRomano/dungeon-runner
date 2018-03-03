@@ -518,46 +518,36 @@ module.exports = {
 
         // Attack Button Pressed
         attackBtnPressed : function() {
-            const varStates = storageState.getAllStates();
-            combat.attack(varStates);
+            // Perform attack on enemy
+            combat.attack();
+            this.renderDungeon();
         }
     }
 }
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-
+const storageState = __webpack_require__(0);
 
 module.exports = {
-    // Performs an attack based on attacker vs defender
-    attack: function(varStates) {
+    // Performs an attack 
+    attack: function() {
 
-        console.log('Attacking...');
-        // console.log(`${attacker.name} does ${attacker.ATT} damage to ${defender.name}`);
+        const state = storageState.getAllStates();
+        const enemy = state.enemy;
+        const player = state.player;
+        const dungeon = state.dungeon;
         
-        // // Return result new Hit Point value after attack
-        // return defender.HP - attacker.ATT;
+        enemy.HP = enemy.HP - player.ATT;
+        storageState.entity.setSkeletonState(enemy);
+
+        state.dungeon.turn += 1;
+        state.dungeon.status = 'inCombat';
+        storageState.dungeon.setDungeonState(dungeon);
     }
 }
-
-// let varStates = {
-//     player: storageState.entity.getPlayerState(),
-//     enemy: storageState.entity.getSkeletonState(),
-//     dungeonState: storageState.dungeon.getDungeonState()
-// }
-
-// // TODO: Create attack method to handle most of this logic
-// varStates.enemy.HP = combat.attack(varStates.player, varStates.enemy);
-// storageState.entity.setPlayerState(varStates.player);
-// storageState.entity.setSkeletonState(varStates.enemy);
-// varStates.dungeonState.turn += 1;
-// varStates.dungeonState.status = 'inCombat';
-// storageState.dungeon.setDungeonState(varStates.dungeonState);
-// console.log('Enemy HP:', varStates.enemy.HP);
-// console.log('Dungeon State: ', varStates.dungeonState);
-// this.renderDungeon();
 
 /***/ }),
 /* 10 */
