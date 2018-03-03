@@ -18,7 +18,6 @@ module.exports = {
                 // load Event Listener for enter button
                 _.element('#enter-dungeon-btn').addEventListener('click', () => {
                     // Sets dungeon status state to entered
-
                     storageState.dungeon.setDungeonStateProperty('status', 'entered');
                     // Render dungeon
                     this.renderDungeon();
@@ -56,6 +55,6 @@ module.exports = {
         attackBtnPressed : function() {
             const varStates = storageState.getAllStates();
             combat.attack(varStates);
-        }, 
+        }
     }
 }
