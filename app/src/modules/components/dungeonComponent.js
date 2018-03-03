@@ -1,7 +1,10 @@
+// Required Modules
 const state = require('../state/stateController');
 const combat = require('../combat/combatcontroller');
 
+// Export of module object
 module.exports = {
+    // View method that returns the view template string 
     viewTemplate: function() {
         const view = `
         <div id="dungeon-view">
@@ -26,6 +29,7 @@ module.exports = {
 
         return view;
     },
+    // Controller for the logic of dungeon view and view rendering
     dungeonController: {
         // Event Listeners
         loadListeners: function() {
@@ -35,17 +39,23 @@ module.exports = {
                 this.renderDungeon();
             });
         },
+        // Renders dungeon view
         renderDungeon: function() {
+            // Get states that exists or create new states if non exist
             let player = state.entity.getPlayerState();
             let enemy = state.entity.getSkeletonState();
             let dungeonState = state.dungeon.getDungeonState();
 
+            // Check if enter dungeon button has already been pressed and remove it if so
             if(document.querySelector('#enter-dungeon-btn')) {
                 document.querySelector('#enter-dungeon-btn').remove();
             }
+            // this is where dungeon messages should be displayed
             document.querySelector('#dungeon-messages').innerHTML = `
                 <p>You are now in the dungeon!</p>
             `;
+
+            // Template for entity card views
             document.querySelector('#entity-cards').innerHTML = `
                 <div id="player-card">
                     <ul>
@@ -64,6 +74,8 @@ module.exports = {
                     </ul>    
                 </div>
             `;
+
+            // Template for action buttons
             document.querySelector('#action-btns').innerHTML = `
                 <button id="attack-btn">Attack</button>
                 <button id="defend-btn">Defend</button>
@@ -71,6 +83,7 @@ module.exports = {
                 <button id="item-btn">Use Item</button>
                 <button id="flee-btn">Flee</button>
             `;
+            
             // Action Button Listeners
             document.querySelector('#attack-btn').addEventListener('click', () => {
                 // TODO: Create attack method to handle most of this logic
