@@ -4,13 +4,25 @@ const combat = require('../../combat/combatcontroller');
 
 // Export of module object
 module.exports = {
-        // Event Listeners
-        loadListeners: function() {
-            // load Event Listeners
-            document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
-                console.log('Dungeon Entered...');
+        // Loads controller and kicks off view logic
+        loadController: function() {
+            const dungeonState = state.dungeon.getDungeonState();
+            // Checks if dungeon has been entered
+            if(dungeonState.status === 'fresh') {
+                // load Event Listener for enter button
+                document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
+                    console.log('Dungeon Entered...');
+                    // Sets dungeon status state to entered
+                    dungeonState.status = 'entered';
+                    state.dungeon.setDungeonState(dungeonState);
+                    // Render dungeon
+                    this.renderDungeon();
+                });
+            } else {
+                // Render dungeon                
                 this.renderDungeon();
-            });
+            }
+
         },
         // Renders dungeon view
         renderDungeon: function() {
@@ -25,7 +37,7 @@ module.exports = {
             }
             // this is where dungeon messages should be displayed
             document.querySelector('#dungeon-messages').innerHTML = `
-                <p>You are now in the dungeon!</p>
+                <p>Dungeon has been entered!</p>
             `;
 
             // Template for entity card views
