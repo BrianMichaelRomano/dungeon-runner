@@ -179,6 +179,8 @@ const state = __webpack_require__(0);
 viewRouteController.registerListeners();
 // Load view saved in state if exists or load home view on browser refresh
 viewRouteController.loadCurrentView();
+
+// DEVBUTTONS ------------------------------------------------------
 // Register Event Listener for Reset State button
 document.querySelector('#reset-state-btn').addEventListener('click', () => {
     state.clearState();
@@ -189,6 +191,8 @@ document.querySelector('#log-state-btn').addEventListener('click', () => {
     state.logState();
     viewRouteController.loadCurrentView();
 });
+// DEVBUTTONS ------------------------------------------------------
+
 
 /***/ }),
 /* 3 */
@@ -200,44 +204,49 @@ const viewEl = __webpack_require__(1);
 const viewRenderer = __webpack_require__(4);
 // Load State Controller
 const stateController = __webpack_require__(0);
-// Load all views
+// Load all views and controllers
 const homeView = __webpack_require__(5);
-const dungeonView = __webpack_require__(6);
-const characterView = __webpack_require__(8);
-const shopView = __webpack_require__(9);
-const inventoryView = __webpack_require__(10);
+const homeController = __webpack_require__(6);
+const dungeonView = __webpack_require__(7);
+const dungeonController = __webpack_require__(8);
+const characterView = __webpack_require__(10);
+const characterController = __webpack_require__(11);
+const shopView = __webpack_require__(12);
+const shopController = __webpack_require__(13);
+const inventoryView = __webpack_require__(14);
+const inventoryController = __webpack_require__(15);
 
 module.exports = {
     registerListeners: function() {
         // register event listeners that will render selected view and set that view to state
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
-            viewRenderer(homeView.viewTemplate());
+            viewRenderer(homeView());
             stateController.view.setViewState('home');
         });
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
-            viewRenderer(dungeonView.viewTemplate());
-            dungeonView.dungeonController.loadListeners();            
+            viewRenderer(dungeonView());
+            dungeonController.loadListeners();            
             stateController.view.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
-            viewRenderer(characterView.viewTemplate());
+            viewRenderer(characterView());
             stateController.view.setViewState('character');            
         });
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
-            viewRenderer(shopView.viewTemplate());
+            viewRenderer(shopView());
             stateController.view.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
-            viewRenderer(inventoryView.viewTemplate());
+            viewRenderer(inventoryView());
             stateController.view.setViewState('inventory');            
         });
     },
@@ -245,24 +254,24 @@ module.exports = {
     loadCurrentView() {
 
         if(stateController.view.getViewState() === null) {
-            viewRenderer(homeView.viewTemplate());
+            viewRenderer(homeView());
         } else {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
-                    viewRenderer(dungeonView.viewTemplate());
-                    dungeonView.dungeonController.loadListeners();
+                    viewRenderer(dungeonView());
+                    dungeonController.loadListeners();
                     break;
                 case 'character':
-                    viewRenderer(characterView.viewTemplate());
+                    viewRenderer(characterView());
                     break;
                 case 'shop':
-                    viewRenderer(shopView.viewTemplate());
+                    viewRenderer(shopView());
                     break;
                 case 'inventory':
-                    viewRenderer(inventoryView.viewTemplate());
+                    viewRenderer(inventoryView());
                     break;
                 default:
-                    viewRenderer(homeView.viewTemplate());
+                    viewRenderer(homeView());
             }
         }
     }
@@ -285,56 +294,67 @@ module.exports = function(view) {
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="home-view">
-        
-            <div id="hv-header">
-                <h2>Home</h2>
-            </div>
-        
+module.exports = function() {
+    const view = `
+    <div id="home-view">
+    
+        <div id="hv-header">
+            <h2>Home</h2>
         </div>
-        `;
+    
+    </div>
+    `;
 
-        return view;
-    },
-    viewController: { }
+    return view;
 }
+
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+module.exports =  { }
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+// View method that returns the view template string 
+module.exports = function() {
+    const view = `
+    <div id="dungeon-view">
+    
+        <div id="dv-header">
+            <h2>Dungeon</h2>
+        </div>
+    
+        <div id="rendered-dungeon">
+    
+            <button id="enter-dungeon-btn">Enter Dungeon</button>
+    
+            <div id="dungeon-messages"></div>
+    
+            <div id="entity-cards"></div>
+    
+            <div id="action-btns"></div>    
+        </div>
+    
+    </div>
+    `;
+
+    return view;
+}
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// Required Modules
 const state = __webpack_require__(0);
-const combat = __webpack_require__(7);
+const combat = __webpack_require__(9);
 
+// Export of module object
 module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="dungeon-view">
-        
-            <div id="dv-header">
-                <h2>Dungeon</h2>
-            </div>
-        
-            <div id="rendered-dungeon">
-        
-                <button id="enter-dungeon-btn">Enter Dungeon</button>
-        
-                <div id="dungeon-messages"></div>
-        
-                <div id="entity-cards"></div>
-        
-                <div id="action-btns"></div>    
-            </div>
-        
-        </div>
-        `;
-
-        return view;
-    },
-    dungeonController: {
         // Event Listeners
         loadListeners: function() {
             // load Event Listeners
@@ -343,17 +363,23 @@ module.exports = {
                 this.renderDungeon();
             });
         },
+        // Renders dungeon view
         renderDungeon: function() {
+            // Get states that exists or create new states if non exist
             let player = state.entity.getPlayerState();
             let enemy = state.entity.getSkeletonState();
             let dungeonState = state.dungeon.getDungeonState();
 
+            // Check if enter dungeon button has already been pressed and remove it if so
             if(document.querySelector('#enter-dungeon-btn')) {
                 document.querySelector('#enter-dungeon-btn').remove();
             }
+            // this is where dungeon messages should be displayed
             document.querySelector('#dungeon-messages').innerHTML = `
                 <p>You are now in the dungeon!</p>
             `;
+
+            // Template for entity card views
             document.querySelector('#entity-cards').innerHTML = `
                 <div id="player-card">
                     <ul>
@@ -372,6 +398,8 @@ module.exports = {
                     </ul>    
                 </div>
             `;
+
+            // Template for action buttons
             document.querySelector('#action-btns').innerHTML = `
                 <button id="attack-btn">Attack</button>
                 <button id="defend-btn">Defend</button>
@@ -379,6 +407,7 @@ module.exports = {
                 <button id="item-btn">Use Item</button>
                 <button id="flee-btn">Flee</button>
             `;
+            
             // Action Button Listeners
             document.querySelector('#attack-btn').addEventListener('click', () => {
                 // TODO: Create attack method to handle most of this logic
@@ -395,10 +424,8 @@ module.exports = {
         }
     }
 
-}
-
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -409,67 +436,76 @@ module.exports = {
 }
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="character-view">
-        
-            <div id="cv-header">
-                <h2>Character</h2>
-            </div>
-        
-        </div>
-        `;
-        
-        return view;
-    },
-    viewController: { }
-}
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="shop-view">
-        
-            <div id="sv-header">
-                <h2>Shop</h2>
-            </div>
-        
-        </div>
-        `;
-        
-        return view;
-    },
-    viewController: { }
-}
-
-/***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="inventory-view">
-        
-            <div id="iv-header">
-                <h2>Inventory</h2>
-            </div>
-        
+module.exports = function() {
+    const view = `
+    <div id="character-view">
+    
+        <div id="cv-header">
+            <h2>Character</h2>
         </div>
-        `;
-        
-        return view;
-    },
-    viewController: { }
+    
+    </div>
+    `;
+    
+    return view;
 }
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = { }
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = function() {
+    const view = `
+    <div id="shop-view">
+    
+        <div id="sv-header">
+            <h2>Shop</h2>
+        </div>
+    
+    </div>
+    `;
+    
+    return view;
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = { }
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = function() {
+    const view = `
+    <div id="inventory-view">
+    
+        <div id="iv-header">
+            <h2>Inventory</h2>
+        </div>
+    
+    </div>
+    `;
+    
+    return view;
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = { }
 
 /***/ })
 /******/ ]);

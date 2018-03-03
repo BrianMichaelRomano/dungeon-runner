@@ -4,44 +4,49 @@ const viewEl = require('./viewSelectors');
 const viewRenderer = require('./viewRenderer');
 // Load State Controller
 const stateController = require('../state/stateController');
-// Load all views
-const homeView = require('../components/homeComponent');
-const dungeonView = require('../components/dungeonComponent');
-const characterView = require('../components/characterComponent');
-const shopView = require('../components/shopComponent');
-const inventoryView = require('../components/inventoryComponent');
+// Load all views and controllers
+const homeView = require('../components/home/homeView');
+const homeController = require('../components/home/homeController');
+const dungeonView = require('../components/dungeon/dungeonView');
+const dungeonController = require('../components/dungeon/dungeonController');
+const characterView = require('../components/character/characterView');
+const characterController = require('../components/character/characterController');
+const shopView = require('../components/shop/shopView');
+const shopController = require('../components/shop/shopController');
+const inventoryView = require('../components/inventory/inventoryView');
+const inventoryController = require('../components/inventory/inventoryController');
 
 module.exports = {
     registerListeners: function() {
         // register event listeners that will render selected view and set that view to state
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
-            viewRenderer(homeView.viewTemplate());
+            viewRenderer(homeView());
             stateController.view.setViewState('home');
         });
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
-            viewRenderer(dungeonView.viewTemplate());
-            dungeonView.dungeonController.loadListeners();            
+            viewRenderer(dungeonView());
+            dungeonController.loadListeners();            
             stateController.view.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
-            viewRenderer(characterView.viewTemplate());
+            viewRenderer(characterView());
             stateController.view.setViewState('character');            
         });
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
-            viewRenderer(shopView.viewTemplate());
+            viewRenderer(shopView());
             stateController.view.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
-            viewRenderer(inventoryView.viewTemplate());
+            viewRenderer(inventoryView());
             stateController.view.setViewState('inventory');            
         });
     },
@@ -49,24 +54,24 @@ module.exports = {
     loadCurrentView() {
 
         if(stateController.view.getViewState() === null) {
-            viewRenderer(homeView.viewTemplate());
+            viewRenderer(homeView());
         } else {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
-                    viewRenderer(dungeonView.viewTemplate());
-                    dungeonView.dungeonController.loadListeners();
+                    viewRenderer(dungeonView());
+                    dungeonController.loadListeners();
                     break;
                 case 'character':
-                    viewRenderer(characterView.viewTemplate());
+                    viewRenderer(characterView());
                     break;
                 case 'shop':
-                    viewRenderer(shopView.viewTemplate());
+                    viewRenderer(shopView());
                     break;
                 case 'inventory':
-                    viewRenderer(inventoryView.viewTemplate());
+                    viewRenderer(inventoryView());
                     break;
                 default:
-                    viewRenderer(homeView.viewTemplate());
+                    viewRenderer(homeView());
             }
         }
     }
