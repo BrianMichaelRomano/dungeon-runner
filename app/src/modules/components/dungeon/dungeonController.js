@@ -30,7 +30,7 @@ module.exports = {
         // Renders dungeon view
         renderDungeon: function() {
             
-            // Get all states object of all states in storage
+            // Get all states in storage
             const varStates = storageState.getAllStates();
             
             // Check if enter dungeon button has already been pressed and remove it if so
