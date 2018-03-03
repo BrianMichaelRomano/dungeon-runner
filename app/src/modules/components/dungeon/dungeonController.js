@@ -16,7 +16,6 @@ module.exports = {
             if(storageState.dungeon.getDungeonState().status === 'fresh') {
                 // Render entrance view
                 _.element('#entrance').innerHTML = dungeonViews.entrance();
-
                 // load Event Listener for enter button
                 _.element('#enter-dungeon-btn').addEventListener('click', () => {
                     // Sets dungeon status state to entered
