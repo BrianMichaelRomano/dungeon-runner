@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -111,6 +111,7 @@ module.exports = {
             }
             return newPlayer;
         },
+
         // Creates new skeleton state model and returns it        
         createNewSkeleton() {
             const newSkeleton = {
@@ -122,6 +123,7 @@ module.exports = {
             }
             return newSkeleton;
         },
+
         // Checks for player state in localStorage,
         // if - no player state
         //     creates new player state and returns it
@@ -134,10 +136,12 @@ module.exports = {
                 return JSON.parse(localStorage.getItem('player'));
             }
         },
+
         // Accepts a player object and sets it to player state in local storage
         setPlayerState(player) {
             localStorage.setItem('player', JSON.stringify(player));
         },
+
                 // Checks for skeleton state in localStorage,
         // if - no skeleton state
         //     creates new skeleton state and returns it
@@ -150,6 +154,7 @@ module.exports = {
                 return JSON.parse(localStorage.getItem('skeleton'));
             }
         },
+
         // Accepts a skeleton object and sets it to skeleton state in local storage        
         setSkeletonState(skeleton) {
             localStorage.setItem('skeleton', JSON.stringify(skeleton));
@@ -162,6 +167,7 @@ module.exports = {
         setDungeonState(state) {
             localStorage.setItem('dungeon', JSON.stringify(state));
         },
+        
         // Checks for dungeon state in localStorage,
         // if - dungeon state
         //     returns dungeon state
@@ -199,10 +205,83 @@ module.exports = {
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    mainView: function() {
+        // Main view template string
+        const view = `
+        <div id="dungeon-view">
+        
+            <div id="dv-header">
+                <h2>Dungeon</h2>
+            </div>
+        
+            <div id="rendered-dungeon">
+        
+                <button id="enter-dungeon-btn">Enter Dungeon</button>
+        
+                <div id="dungeon-messages"></div>
+        
+                <div id="entity-cards"></div>
+        
+                <div id="action-btns"></div>    
+            </div>
+        
+        </div>
+        `;
+    
+        // Return Main view template string
+        return view;
+    },
+
+    entityCards: function(states) {
+        // Entity cards view template string
+        const view = `
+            <div id="player-card">
+                <ul>
+                    <li>${states.player.name}</li>
+                    <li>${states.player.HP}</li>
+                    <li>${states.player.AP}</li>
+                    <li>${states.player.MP}</li>
+                </ul>    
+            </div>
+            <div id="enemy-card">
+                <ul>
+                    <li>${states.enemy.name}</li>
+                    <li>${states.enemy.HP}</li>
+                    <li>${states.enemy.AP}</li>
+                    <li>${states.enemy.MP}</li>
+                </ul>    
+            </div>
+        `;
+        
+        // Return Entity cards view template string
+        return view;
+    },
+
+    // Action Buttons view template string
+    actionButtons: function() {
+        const view = `
+            <button id="attack-btn">Attack</button>
+            <button id="defend-btn">Defend</button>
+            <button id="magic-btn">Use Magic</button>
+            <button id="item-btn">Use Item</button>
+            <button id="flee-btn">Flee</button>
+        `;
+
+        // Return Actions Buttons view template string
+        return view;
+    }
+
+}
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load Route Controller
-const viewRouteController = __webpack_require__(3);
+const viewRouteController = __webpack_require__(4);
 // Load State Controller
 const state = __webpack_require__(0);
 // Register event listeners for routes
@@ -225,19 +304,19 @@ document.querySelector('#log-state-btn').addEventListener('click', () => {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load view selectors
 const viewEl = __webpack_require__(1);
 // Load view renderer functions
-const viewRenderer = __webpack_require__(4);
+const viewRenderer = __webpack_require__(5);
 // Load State Controller
 const stateController = __webpack_require__(0);
 // Load all views and controllers
-const homeView = __webpack_require__(5);
-const homeController = __webpack_require__(6);
-const dungeonView = __webpack_require__(7);
+const homeView = __webpack_require__(6);
+const homeController = __webpack_require__(7);
+const dungeonView = __webpack_require__(2);
 const dungeonController = __webpack_require__(8);
 const characterView = __webpack_require__(10);
 const characterController = __webpack_require__(11);
@@ -257,7 +336,7 @@ module.exports = {
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
-            viewRenderer(dungeonView());
+            viewRenderer(dungeonView.mainView());
             dungeonController.loadController();            
             stateController.view.setViewState('dungeon');            
         });
@@ -288,7 +367,7 @@ module.exports = {
         } else {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
-                    viewRenderer(dungeonView());
+                    viewRenderer(dungeonView.mainView());
                     dungeonController.loadController();
                     break;
                 case 'character':
@@ -308,7 +387,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load View Selectors
@@ -321,7 +400,7 @@ module.exports = function(view) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -342,55 +421,25 @@ module.exports = function() {
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports =  { }
-
-/***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = function() {
-    // Dungeon view template string
-    const view = `
-    <div id="dungeon-view">
-    
-        <div id="dv-header">
-            <h2>Dungeon</h2>
-        </div>
-    
-        <div id="rendered-dungeon">
-    
-            <button id="enter-dungeon-btn">Enter Dungeon</button>
-    
-            <div id="dungeon-messages"></div>
-    
-            <div id="entity-cards"></div>
-    
-            <div id="action-btns"></div>    
-        </div>
-    
-    </div>
-    `;
-
-    // Return Dungeon view template string
-    return view;
-}
+module.exports =  { }
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Required Modules
-const state = __webpack_require__(0);
+const storageState = __webpack_require__(0);
 const combat = __webpack_require__(9);
+const dungeonViews = __webpack_require__(2);
 
 // Export of module object
 module.exports = {
         // Loads controller and kicks off view logic
         loadController: function() {
-            const dungeonState = state.dungeon.getDungeonState();
+            const dungeonState = storageState.dungeon.getDungeonState();
             // Checks if dungeon has been entered
             if(dungeonState.status === 'fresh') {
                 // load Event Listener for enter button
@@ -398,7 +447,7 @@ module.exports = {
                     console.log('Dungeon Entered...');
                     // Sets dungeon status state to entered
                     dungeonState.status = 'entered';
-                    state.dungeon.setDungeonState(dungeonState);
+                    storageState.dungeon.setDungeonState(dungeonState);
                     // Render dungeon
                     this.renderDungeon();
                 });
@@ -406,14 +455,16 @@ module.exports = {
                 // Render dungeon                
                 this.renderDungeon();
             }
-
         },
+
         // Renders dungeon view
         renderDungeon: function() {
             // Get states that exists or create new states if non exist
-            let player = state.entity.getPlayerState();
-            let enemy = state.entity.getSkeletonState();
-            let dungeonState = state.dungeon.getDungeonState();
+            let varStates = {
+                player: storageState.entity.getPlayerState(),
+                enemy: storageState.entity.getSkeletonState(),
+                dungeonState: storageState.dungeon.getDungeonState()
+            }
 
             // Check if enter dungeon button has already been pressed and remove it if so
             if(document.querySelector('#enter-dungeon-btn')) {
@@ -425,45 +476,22 @@ module.exports = {
             `;
 
             // Template for entity card views
-            document.querySelector('#entity-cards').innerHTML = `
-                <div id="player-card">
-                    <ul>
-                        <li>${player.name}</li>
-                        <li>${player.HP}</li>
-                        <li>${player.AP}</li>
-                        <li>${player.MP}</li>
-                    </ul>    
-                </div>
-                <div id="enemy-card">
-                    <ul>
-                        <li>${enemy.name}</li>
-                        <li>${enemy.HP}</li>
-                        <li>${enemy.AP}</li>
-                        <li>${enemy.MP}</li>
-                    </ul>    
-                </div>
-            `;
+            document.querySelector('#entity-cards').innerHTML = dungeonViews.entityCards(varStates);
 
             // Template for action buttons
-            document.querySelector('#action-btns').innerHTML = `
-                <button id="attack-btn">Attack</button>
-                <button id="defend-btn">Defend</button>
-                <button id="magic-btn">Use Magic</button>
-                <button id="item-btn">Use Item</button>
-                <button id="flee-btn">Flee</button>
-            `;
+            document.querySelector('#action-btns').innerHTML = dungeonViews.actionButtons();
             
             // Action Button Listeners
             document.querySelector('#attack-btn').addEventListener('click', () => {
                 // TODO: Create attack method to handle most of this logic
-                enemy.HP = combat.attack(player, enemy);
-                state.entity.setPlayerState(player);
-                state.entity.setSkeletonState(enemy);
-                dungeonState.turn += 1;
-                dungeonState.status = 'inCombat';
-                state.dungeon.setDungeonState(dungeonState);
-                console.log('Enemy HP:', enemy.HP);
-                console.log('Dungeon State: ', dungeonState);
+                varStates.enemy.HP = combat.attack(varStates.player, varStates.enemy);
+                storageState.entity.setPlayerState(varStates.player);
+                storageState.entity.setSkeletonState(varStates.enemy);
+                varStates.dungeonState.turn += 1;
+                varStates.dungeonState.status = 'inCombat';
+                storageState.dungeon.setDungeonState(varStates.dungeonState);
+                console.log('Enemy HP:', varStates.enemy.HP);
+                console.log('Dungeon State: ', varStates.dungeonState);
                 this.renderDungeon();
             });
         }
