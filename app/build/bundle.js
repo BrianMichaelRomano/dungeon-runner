@@ -204,20 +204,24 @@ const viewEl = __webpack_require__(1);
 const viewRenderer = __webpack_require__(4);
 // Load State Controller
 const stateController = __webpack_require__(0);
-// Load all views
+// Load all views and controllers
 const homeView = __webpack_require__(5);
-const dungeonView = __webpack_require__(6);
-const dungeonController = __webpack_require__(7);
-const characterView = __webpack_require__(9);
-const shopView = __webpack_require__(10);
-const inventoryView = __webpack_require__(11);
+const homeController = __webpack_require__(6);
+const dungeonView = __webpack_require__(7);
+const dungeonController = __webpack_require__(8);
+const characterView = __webpack_require__(10);
+const characterController = __webpack_require__(11);
+const shopView = __webpack_require__(12);
+const shopController = __webpack_require__(13);
+const inventoryView = __webpack_require__(14);
+const inventoryController = __webpack_require__(15);
 
 module.exports = {
     registerListeners: function() {
         // register event listeners that will render selected view and set that view to state
         // Home Route
         viewEl.homeBtn.addEventListener('click', () => {
-            viewRenderer(homeView.viewTemplate());
+            viewRenderer(homeView());
             stateController.view.setViewState('home');
         });
         
@@ -236,13 +240,13 @@ module.exports = {
         
         // Shop Route
         viewEl.shopBtn.addEventListener('click', () => {
-            viewRenderer(shopView.viewTemplate());
+            viewRenderer(shopView());
             stateController.view.setViewState('shop');
         });
         
         // Inventory Route
         viewEl.inventoryBtn.addEventListener('click', () => {
-            viewRenderer(inventoryView.viewTemplate());
+            viewRenderer(inventoryView());
             stateController.view.setViewState('inventory');            
         });
     },
@@ -250,7 +254,7 @@ module.exports = {
     loadCurrentView() {
 
         if(stateController.view.getViewState() === null) {
-            viewRenderer(homeView.viewTemplate());
+            viewRenderer(homeView());
         } else {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
@@ -261,13 +265,13 @@ module.exports = {
                     viewRenderer(characterView());
                     break;
                 case 'shop':
-                    viewRenderer(shopView.viewTemplate());
+                    viewRenderer(shopView());
                     break;
                 case 'inventory':
-                    viewRenderer(inventoryView.viewTemplate());
+                    viewRenderer(inventoryView());
                     break;
                 default:
-                    viewRenderer(homeView.viewTemplate());
+                    viewRenderer(homeView());
             }
         }
     }
@@ -290,25 +294,29 @@ module.exports = function(view) {
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="home-view">
-        
-            <div id="hv-header">
-                <h2>Home</h2>
-            </div>
-        
+module.exports = function() {
+    const view = `
+    <div id="home-view">
+    
+        <div id="hv-header">
+            <h2>Home</h2>
         </div>
-        `;
+    
+    </div>
+    `;
 
-        return view;
-    },
-    viewController: { }
+    return view;
 }
+
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+module.exports =  { }
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 // View method that returns the view template string 
@@ -338,12 +346,12 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Required Modules
 const state = __webpack_require__(0);
-const combat = __webpack_require__(8);
+const combat = __webpack_require__(9);
 
 // Export of module object
 module.exports = {
@@ -417,7 +425,7 @@ module.exports = {
     }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -428,7 +436,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -446,46 +454,58 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="shop-view">
-        
-            <div id="sv-header">
-                <h2>Shop</h2>
-            </div>
-        
-        </div>
-        `;
-        
-        return view;
-    },
-    viewController: { }
-}
-
-/***/ }),
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="inventory-view">
-        
-            <div id="iv-header">
-                <h2>Inventory</h2>
-            </div>
-        
+module.exports = { }
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = function() {
+    const view = `
+    <div id="shop-view">
+    
+        <div id="sv-header">
+            <h2>Shop</h2>
         </div>
-        `;
-        
-        return view;
-    },
-    viewController: { }
+    
+    </div>
+    `;
+    
+    return view;
 }
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = { }
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = function() {
+    const view = `
+    <div id="inventory-view">
+    
+        <div id="iv-header">
+            <h2>Inventory</h2>
+        </div>
+    
+    </div>
+    `;
+    
+    return view;
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = { }
 
 /***/ })
 /******/ ]);
