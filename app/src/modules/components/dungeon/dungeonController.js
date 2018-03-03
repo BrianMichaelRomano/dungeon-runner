@@ -2,6 +2,7 @@
 const storageState = require('../../state/stateController');
 const combat = require('../../combat/combatcontroller');
 const dungeonViews = require('../dungeon/dungeonView');
+const _ = require('../../libraries/helperFunctions');
 
 // Export of module object
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
             // Checks if dungeon has been entered
             if(dungeonState.status === 'fresh') {
                 // load Event Listener for enter button
-                document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
+                _.element('#enter-dungeon-btn').addEventListener('click', () => {
                     console.log('Dungeon Entered...');
                     // Sets dungeon status state to entered
                     dungeonState.status = 'entered';
@@ -35,22 +36,20 @@ module.exports = {
             }
 
             // Check if enter dungeon button has already been pressed and remove it if so
-            if(document.querySelector('#enter-dungeon-btn')) {
-                document.querySelector('#enter-dungeon-btn').remove();
+            if(_.element('#enter-dungeon-btn')) {
+                _.element('#enter-dungeon-btn').remove();
             }
             // this is where dungeon messages should be displayed
-            document.querySelector('#dungeon-messages').innerHTML = `
-                <p>Dungeon has been entered!</p>
-            `;
+            _.element('#dungeon-messages').innerHTML = dungeonViews.dungeonMessages('Running dungeon!');
 
             // Template for entity card views
-            document.querySelector('#entity-cards').innerHTML = dungeonViews.entityCards(varStates);
+            _.element('#entity-cards').innerHTML = dungeonViews.entityCards(varStates);
 
             // Template for action buttons
-            document.querySelector('#action-btns').innerHTML = dungeonViews.actionButtons();
+            _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
             
             // Action Button Listeners
-            document.querySelector('#attack-btn').addEventListener('click', () => {
+            _.element('#attack-btn').addEventListener('click', () => {
                 // TODO: Create attack method to handle most of this logic
                 varStates.enemy.HP = combat.attack(varStates.player, varStates.enemy);
                 storageState.entity.setPlayerState(varStates.player);

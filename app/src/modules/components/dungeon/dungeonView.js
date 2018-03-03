@@ -63,6 +63,13 @@ module.exports = {
 
         // Return Actions Buttons view template string
         return view;
-    }
+    },
 
+    // Display dungeon messages
+    dungeonMessages: function(message) {
+        const view = `<p>${message}</p>`;
+
+        // Return message template string
+        return view;
+    }
 }

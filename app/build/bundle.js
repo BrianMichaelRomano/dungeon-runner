@@ -272,8 +272,15 @@ module.exports = {
 
         // Return Actions Buttons view template string
         return view;
-    }
+    },
 
+    // Display dungeon messages
+    dungeonMessages: function(message) {
+        const view = `<p>${message}</p>`;
+
+        // Return message template string
+        return view;
+    }
 }
 
 /***/ }),
@@ -318,12 +325,12 @@ const homeView = __webpack_require__(6);
 const homeController = __webpack_require__(7);
 const dungeonView = __webpack_require__(2);
 const dungeonController = __webpack_require__(8);
-const characterView = __webpack_require__(10);
-const characterController = __webpack_require__(11);
-const shopView = __webpack_require__(12);
-const shopController = __webpack_require__(13);
-const inventoryView = __webpack_require__(14);
-const inventoryController = __webpack_require__(15);
+const characterView = __webpack_require__(11);
+const characterController = __webpack_require__(12);
+const shopView = __webpack_require__(13);
+const shopController = __webpack_require__(14);
+const inventoryView = __webpack_require__(15);
+const inventoryController = __webpack_require__(16);
 
 module.exports = {
     registerListeners: function() {
@@ -434,6 +441,7 @@ module.exports =  { }
 const storageState = __webpack_require__(0);
 const combat = __webpack_require__(9);
 const dungeonViews = __webpack_require__(2);
+const _ = __webpack_require__(10);
 
 // Export of module object
 module.exports = {
@@ -443,7 +451,7 @@ module.exports = {
             // Checks if dungeon has been entered
             if(dungeonState.status === 'fresh') {
                 // load Event Listener for enter button
-                document.querySelector('#enter-dungeon-btn').addEventListener('click', () => {
+                _.element('#enter-dungeon-btn').addEventListener('click', () => {
                     console.log('Dungeon Entered...');
                     // Sets dungeon status state to entered
                     dungeonState.status = 'entered';
@@ -467,22 +475,20 @@ module.exports = {
             }
 
             // Check if enter dungeon button has already been pressed and remove it if so
-            if(document.querySelector('#enter-dungeon-btn')) {
-                document.querySelector('#enter-dungeon-btn').remove();
+            if(_.element('#enter-dungeon-btn')) {
+                _.element('#enter-dungeon-btn').remove();
             }
             // this is where dungeon messages should be displayed
-            document.querySelector('#dungeon-messages').innerHTML = `
-                <p>Dungeon has been entered!</p>
-            `;
+            _.element('#dungeon-messages').innerHTML = dungeonViews.dungeonMessages('Running dungeon!');
 
             // Template for entity card views
-            document.querySelector('#entity-cards').innerHTML = dungeonViews.entityCards(varStates);
+            _.element('#entity-cards').innerHTML = dungeonViews.entityCards(varStates);
 
             // Template for action buttons
-            document.querySelector('#action-btns').innerHTML = dungeonViews.actionButtons();
+            _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
             
             // Action Button Listeners
-            document.querySelector('#attack-btn').addEventListener('click', () => {
+            _.element('#attack-btn').addEventListener('click', () => {
                 // TODO: Create attack method to handle most of this logic
                 varStates.enemy.HP = combat.attack(varStates.player, varStates.enemy);
                 storageState.entity.setPlayerState(varStates.player);
@@ -515,6 +521,17 @@ module.exports = {
 /* 10 */
 /***/ (function(module, exports) {
 
+module.exports = {
+    // element selector
+    element(el) {
+        return document.querySelector(el);
+    }
+}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
 module.exports = function() {
     // Character view template string
     const view = `
@@ -532,13 +549,13 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = { }
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -558,13 +575,13 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = { }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -584,7 +601,7 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = { }
