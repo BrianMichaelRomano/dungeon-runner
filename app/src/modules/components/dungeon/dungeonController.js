@@ -22,9 +22,8 @@ module.exports = {
                 // Render dungeon                
                 this.renderDungeon();
             }
-
         },
-        
+
         // Renders dungeon view
         renderDungeon: function() {
             // Get states that exists or create new states if non exist
