@@ -97,6 +97,17 @@ module.exports = {
             return JSON.parse(localStorage.getItem('view'));
         }
     },
+    // Returns all states
+    getAllStates: function() {
+        const states = {
+            view: this.view.getViewState(),
+            dungeon: this.dungeon.getDungeonState(),
+            player: this.entity.getPlayerState(),
+            enemy: this.entity.getSkeletonState()
+        }
+
+        return states;
+    },
 
     // Methods controlling the entity states    
     entity: {
@@ -166,6 +177,13 @@ module.exports = {
         // Accepts a string and sets it to dungeon state in local storage                
         setDungeonState(state) {
             localStorage.setItem('dungeon', JSON.stringify(state));
+        },
+
+        // Sets entered property of dungeon state to value
+        setDungeonStateProperty(property, value) {
+            const state = this.getDungeonState();
+            state[property] = value;
+            this.setDungeonState(state);
         },
         
         // Checks for dungeon state in localStorage,
@@ -344,7 +362,7 @@ module.exports = {
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
             viewRenderer(dungeonView.mainView());
-            dungeonController.controller();            
+            dungeonController.controller.renderDungeonEntrance();            
             stateController.view.setViewState('dungeon');            
         });
         
@@ -375,7 +393,7 @@ module.exports = {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
                     viewRenderer(dungeonView.mainView());
-                    dungeonController.controller();
+                    dungeonController.controller.renderDungeonEntrance();
                     break;
                 case 'character':
                     viewRenderer(characterView());
@@ -445,17 +463,20 @@ const _ = __webpack_require__(10);
 
 // Export of module object
 module.exports = {
-        // Loads controller and kicks off view logic
-        controller: function() {
-            const dungeonState = storageState.dungeon.getDungeonState();
+    
+    // Dungeon Controller Object
+    controller: {
+
+        // Render dungeon entrance
+        renderDungeonEntrance: function() {
+
             // Checks if dungeon has been entered
-            if(dungeonState.status === 'fresh') {
+            if(storageState.dungeon.getDungeonState().status === 'fresh') {
                 // load Event Listener for enter button
                 _.element('#enter-dungeon-btn').addEventListener('click', () => {
-                    console.log('Dungeon Entered...');
                     // Sets dungeon status state to entered
-                    dungeonState.status = 'entered';
-                    storageState.dungeon.setDungeonState(dungeonState);
+
+                    storageState.dungeon.setDungeonStateProperty('status', 'entered');
                     // Render dungeon
                     this.renderDungeon();
                 });
@@ -464,58 +485,72 @@ module.exports = {
                 this.renderDungeon();
             }
         },
-
         // Renders dungeon view
         renderDungeon: function() {
-            // Get states that exists or create new states if non exist
-            let varStates = {
-                player: storageState.entity.getPlayerState(),
-                enemy: storageState.entity.getSkeletonState(),
-                dungeonState: storageState.dungeon.getDungeonState()
-            }
-
+            
+            // Get all states object of all states in storage
+            const varStates = storageState.getAllStates();
+            
             // Check if enter dungeon button has already been pressed and remove it if so
             if(_.element('#enter-dungeon-btn')) {
                 _.element('#enter-dungeon-btn').remove();
             }
             // this is where dungeon messages should be displayed
             _.element('#dungeon-messages').innerHTML = dungeonViews.dungeonMessages('Running dungeon!');
-
+            
             // Template for entity card views
             _.element('#entity-cards').innerHTML = dungeonViews.entityCards(varStates);
-
+            
             // Template for action buttons
             _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
             
             // Action Button Listeners
             _.element('#attack-btn').addEventListener('click', () => {
-                // TODO: Create attack method to handle most of this logic
-                varStates.enemy.HP = combat.attack(varStates.player, varStates.enemy);
-                storageState.entity.setPlayerState(varStates.player);
-                storageState.entity.setSkeletonState(varStates.enemy);
-                varStates.dungeonState.turn += 1;
-                varStates.dungeonState.status = 'inCombat';
-                storageState.dungeon.setDungeonState(varStates.dungeonState);
-                console.log('Enemy HP:', varStates.enemy.HP);
-                console.log('Dungeon State: ', varStates.dungeonState);
-                this.renderDungeon();
+                this.attackBtnPressed();
             });
-        }
+        },
+        // Attack Button Pressed
+        attackBtnPressed : function() {
+            const varStates = storageState.getAllStates();
+            combat.attack(varStates);
+        }, 
     }
+}
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
+
+
 module.exports = {
     // Performs an attack based on attacker vs defender
-    attack: function(attacker, defender) {
-        console.log(`${attacker.name} does ${attacker.ATT} damage to ${defender.name}`);
+    attack: function(varStates) {
+
+        console.log('Attacking...');
+        // console.log(`${attacker.name} does ${attacker.ATT} damage to ${defender.name}`);
         
-        // Return result new Hit Point value after attack
-        return defender.HP - attacker.ATT;
+        // // Return result new Hit Point value after attack
+        // return defender.HP - attacker.ATT;
     }
 }
+
+// let varStates = {
+//     player: storageState.entity.getPlayerState(),
+//     enemy: storageState.entity.getSkeletonState(),
+//     dungeonState: storageState.dungeon.getDungeonState()
+// }
+
+// // TODO: Create attack method to handle most of this logic
+// varStates.enemy.HP = combat.attack(varStates.player, varStates.enemy);
+// storageState.entity.setPlayerState(varStates.player);
+// storageState.entity.setSkeletonState(varStates.enemy);
+// varStates.dungeonState.turn += 1;
+// varStates.dungeonState.status = 'inCombat';
+// storageState.dungeon.setDungeonState(varStates.dungeonState);
+// console.log('Enemy HP:', varStates.enemy.HP);
+// console.log('Dungeon State: ', varStates.dungeonState);
+// this.renderDungeon();
 
 /***/ }),
 /* 10 */
