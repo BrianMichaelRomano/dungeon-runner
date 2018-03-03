@@ -207,9 +207,10 @@ const stateController = __webpack_require__(0);
 // Load all views
 const homeView = __webpack_require__(5);
 const dungeonView = __webpack_require__(6);
-const characterView = __webpack_require__(8);
-const shopView = __webpack_require__(9);
-const inventoryView = __webpack_require__(10);
+const dungeonController = __webpack_require__(7);
+const characterView = __webpack_require__(9);
+const shopView = __webpack_require__(10);
+const inventoryView = __webpack_require__(11);
 
 module.exports = {
     registerListeners: function() {
@@ -222,14 +223,14 @@ module.exports = {
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
-            viewRenderer(dungeonView.viewTemplate());
-            dungeonView.dungeonController.loadListeners();            
+            viewRenderer(dungeonView());
+            dungeonController.loadListeners();            
             stateController.view.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
-            viewRenderer(characterView.viewTemplate());
+            viewRenderer(characterView());
             stateController.view.setViewState('character');            
         });
         
@@ -253,11 +254,11 @@ module.exports = {
         } else {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
-                    viewRenderer(dungeonView.viewTemplate());
-                    dungeonView.dungeonController.loadListeners();
+                    viewRenderer(dungeonView());
+                    dungeonController.loadListeners();
                     break;
                 case 'character':
-                    viewRenderer(characterView.viewTemplate());
+                    viewRenderer(characterView());
                     break;
                 case 'shop':
                     viewRenderer(shopView.viewTemplate());
@@ -308,41 +309,44 @@ module.exports = {
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+// View method that returns the view template string 
+module.exports = function() {
+    const view = `
+    <div id="dungeon-view">
+    
+        <div id="dv-header">
+            <h2>Dungeon</h2>
+        </div>
+    
+        <div id="rendered-dungeon">
+    
+            <button id="enter-dungeon-btn">Enter Dungeon</button>
+    
+            <div id="dungeon-messages"></div>
+    
+            <div id="entity-cards"></div>
+    
+            <div id="action-btns"></div>    
+        </div>
+    
+    </div>
+    `;
+
+    return view;
+}
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Required Modules
 const state = __webpack_require__(0);
-const combat = __webpack_require__(7);
+const combat = __webpack_require__(8);
 
 // Export of module object
 module.exports = {
-    // View method that returns the view template string 
-    viewTemplate: function() {
-        const view = `
-        <div id="dungeon-view">
-        
-            <div id="dv-header">
-                <h2>Dungeon</h2>
-            </div>
-        
-            <div id="rendered-dungeon">
-        
-                <button id="enter-dungeon-btn">Enter Dungeon</button>
-        
-                <div id="dungeon-messages"></div>
-        
-                <div id="entity-cards"></div>
-        
-                <div id="action-btns"></div>    
-            </div>
-        
-        </div>
-        `;
-
-        return view;
-    },
-    // Controller for the logic of dungeon view and view rendering
-    dungeonController: {
         // Event Listeners
         loadListeners: function() {
             // load Event Listeners
@@ -412,10 +416,8 @@ module.exports = {
         }
     }
 
-}
-
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -426,28 +428,25 @@ module.exports = {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
-module.exports = {
-    viewTemplate: function() {
-        const view = `
-        <div id="character-view">
-        
-            <div id="cv-header">
-                <h2>Character</h2>
-            </div>
-        
+module.exports = function() {
+    const view = `
+    <div id="character-view">
+    
+        <div id="cv-header">
+            <h2>Character</h2>
         </div>
-        `;
-        
-        return view;
-    },
-    viewController: { }
+    
+    </div>
+    `;
+    
+    return view;
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -468,7 +467,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = {

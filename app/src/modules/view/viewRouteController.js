@@ -6,8 +6,9 @@ const viewRenderer = require('./viewRenderer');
 const stateController = require('../state/stateController');
 // Load all views
 const homeView = require('../components/homeComponent');
-const dungeonView = require('../components/dungeonComponent');
-const characterView = require('../components/characterComponent');
+const dungeonView = require('../components/dungeon/dungeonView');
+const dungeonController = require('../components/dungeon/dungeonController');
+const characterView = require('../components/character/characterView');
 const shopView = require('../components/shopComponent');
 const inventoryView = require('../components/inventoryComponent');
 
@@ -22,14 +23,14 @@ module.exports = {
         
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
-            viewRenderer(dungeonView.viewTemplate());
-            dungeonView.dungeonController.loadListeners();            
+            viewRenderer(dungeonView());
+            dungeonController.loadListeners();            
             stateController.view.setViewState('dungeon');            
         });
         
         // Character Route
         viewEl.characterBtn.addEventListener('click', () => {
-            viewRenderer(characterView.viewTemplate());
+            viewRenderer(characterView());
             stateController.view.setViewState('character');            
         });
         
@@ -53,11 +54,11 @@ module.exports = {
         } else {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
-                    viewRenderer(dungeonView.viewTemplate());
-                    dungeonView.dungeonController.loadListeners();
+                    viewRenderer(dungeonView());
+                    dungeonController.loadListeners();
                     break;
                 case 'character':
-                    viewRenderer(characterView.viewTemplate());
+                    viewRenderer(characterView());
                     break;
                 case 'shop':
                     viewRenderer(shopView.viewTemplate());
