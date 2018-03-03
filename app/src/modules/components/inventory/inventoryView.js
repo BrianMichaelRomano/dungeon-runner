@@ -1,4 +1,5 @@
 module.exports = function() {
+    // Inventory view template string
     const view = `
     <div id="inventory-view">
     
@@ -9,5 +10,6 @@ module.exports = function() {
     </div>
     `;
     
+    //Return inventory view template string
     return view;
 }

@@ -1,5 +1,5 @@
-// View method that returns the view template string 
 module.exports = function() {
+    // Dungeon view template string
     const view = `
     <div id="dungeon-view">
     
@@ -21,5 +21,6 @@ module.exports = function() {
     </div>
     `;
 
+    // Return Dungeon view template string
     return view;
 }

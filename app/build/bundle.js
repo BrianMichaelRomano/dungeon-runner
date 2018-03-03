@@ -295,6 +295,7 @@ module.exports = function(view) {
 /***/ (function(module, exports) {
 
 module.exports = function() {
+    // Home view template string
     const view = `
     <div id="home-view">
     
@@ -305,6 +306,7 @@ module.exports = function() {
     </div>
     `;
 
+    // Return home view template string
     return view;
 }
 
@@ -319,8 +321,8 @@ module.exports =  { }
 /* 7 */
 /***/ (function(module, exports) {
 
-// View method that returns the view template string 
 module.exports = function() {
+    // Dungeon view template string
     const view = `
     <div id="dungeon-view">
     
@@ -342,6 +344,7 @@ module.exports = function() {
     </div>
     `;
 
+    // Return Dungeon view template string
     return view;
 }
 
@@ -443,6 +446,7 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = function() {
+    // Character view template string
     const view = `
     <div id="character-view">
     
@@ -452,7 +456,8 @@ module.exports = function() {
     
     </div>
     `;
-    
+
+    // Return character view template string    
     return view;
 }
 
@@ -467,6 +472,7 @@ module.exports = { }
 /***/ (function(module, exports) {
 
 module.exports = function() {
+    // Shop view template string
     const view = `
     <div id="shop-view">
     
@@ -476,7 +482,8 @@ module.exports = function() {
     
     </div>
     `;
-    
+        
+    // Return shop view template string
     return view;
 }
 
@@ -491,6 +498,7 @@ module.exports = { }
 /***/ (function(module, exports) {
 
 module.exports = function() {
+    // Inventory view template string
     const view = `
     <div id="inventory-view">
     
@@ -501,6 +509,7 @@ module.exports = function() {
     </div>
     `;
     
+    //Return inventory view template string
     return view;
 }
 

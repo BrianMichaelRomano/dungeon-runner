@@ -1,4 +1,5 @@
 module.exports = function() {
+    // Character view template string
     const view = `
     <div id="character-view">
     
@@ -8,6 +9,7 @@ module.exports = function() {
     
     </div>
     `;
-    
+
+    // Return character view template string    
     return view;
 }

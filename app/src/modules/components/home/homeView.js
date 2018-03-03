@@ -1,4 +1,5 @@
 module.exports = function() {
+    // Home view template string
     const view = `
     <div id="home-view">
     
@@ -9,5 +10,6 @@ module.exports = function() {
     </div>
     `;
 
+    // Return home view template string
     return view;
 }
