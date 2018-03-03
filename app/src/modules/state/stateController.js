@@ -6,6 +6,12 @@ module.exports = {
         localStorage.removeItem('dungeon');   
         console.log('State reset!')     
     },
+    logState: function() {
+        console.log('Dungeon State: ', this.dungeon.getDungeonState());
+        console.log('View State: ', this.view.getViewState());
+        console.log('Player State: ', this.entity.getPlayerState());
+        console.log('Skeleton State: ', this.entity.getSkeletonState());
+    },
     view: {
         // Set view state
         setViewState(view) {
@@ -68,7 +74,7 @@ module.exports = {
             } else {
                 const newState = {
                     turn: 0,
-                    status: 'entered'
+                    status: 'fresh'
                 };
                 localStorage.setItem('dungeon', JSON.stringify(newState));
     

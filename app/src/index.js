@@ -11,3 +11,8 @@ document.querySelector('#reset-state-btn').addEventListener('click', () => {
     state.clearState();
     viewRouteController.loadCurrentView();
 });
+// Register Event Listener for Log State button
+document.querySelector('#log-state-btn').addEventListener('click', () => {
+    state.logState();
+    viewRouteController.loadCurrentView();
+});
