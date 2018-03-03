@@ -179,6 +179,8 @@ const state = __webpack_require__(0);
 viewRouteController.registerListeners();
 // Load view saved in state if exists or load home view on browser refresh
 viewRouteController.loadCurrentView();
+
+// DEVBUTTONS ------------------------------------------------------
 // Register Event Listener for Reset State button
 document.querySelector('#reset-state-btn').addEventListener('click', () => {
     state.clearState();
@@ -189,6 +191,8 @@ document.querySelector('#log-state-btn').addEventListener('click', () => {
     state.logState();
     viewRouteController.loadCurrentView();
 });
+// DEVBUTTONS ------------------------------------------------------
+
 
 /***/ }),
 /* 3 */
@@ -306,10 +310,13 @@ module.exports = {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// Required Modules
 const state = __webpack_require__(0);
 const combat = __webpack_require__(7);
 
+// Export of module object
 module.exports = {
+    // View method that returns the view template string 
     viewTemplate: function() {
         const view = `
         <div id="dungeon-view">
@@ -334,6 +341,7 @@ module.exports = {
 
         return view;
     },
+    // Controller for the logic of dungeon view and view rendering
     dungeonController: {
         // Event Listeners
         loadListeners: function() {
@@ -343,17 +351,23 @@ module.exports = {
                 this.renderDungeon();
             });
         },
+        // Renders dungeon view
         renderDungeon: function() {
+            // Get states that exists or create new states if non exist
             let player = state.entity.getPlayerState();
             let enemy = state.entity.getSkeletonState();
             let dungeonState = state.dungeon.getDungeonState();
 
+            // Check if enter dungeon button has already been pressed and remove it if so
             if(document.querySelector('#enter-dungeon-btn')) {
                 document.querySelector('#enter-dungeon-btn').remove();
             }
+            // this is where dungeon messages should be displayed
             document.querySelector('#dungeon-messages').innerHTML = `
                 <p>You are now in the dungeon!</p>
             `;
+
+            // Template for entity card views
             document.querySelector('#entity-cards').innerHTML = `
                 <div id="player-card">
                     <ul>
@@ -372,6 +386,8 @@ module.exports = {
                     </ul>    
                 </div>
             `;
+
+            // Template for action buttons
             document.querySelector('#action-btns').innerHTML = `
                 <button id="attack-btn">Attack</button>
                 <button id="defend-btn">Defend</button>
@@ -379,6 +395,7 @@ module.exports = {
                 <button id="item-btn">Use Item</button>
                 <button id="flee-btn">Flee</button>
             `;
+            
             // Action Button Listeners
             document.querySelector('#attack-btn').addEventListener('click', () => {
                 // TODO: Create attack method to handle most of this logic
