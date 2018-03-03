@@ -237,7 +237,7 @@ module.exports = {
         
             <div id="rendered-dungeon">
         
-                <button id="enter-dungeon-btn">Enter Dungeon</button>
+                <div id="entrance"></div>
         
                 <div id="dungeon-messages"></div>
         
@@ -297,6 +297,16 @@ module.exports = {
         const view = `<p>${message}</p>`;
 
         // Return message template string
+        return view;
+    },
+
+    // Entrance view template string
+    entrance: function() {
+        const view = `
+            <button id="enter-dungeon-btn">Enter Dungeon</button>
+        `;
+
+        // Return entrance view template string
         return view;
     }
 }
@@ -362,7 +372,7 @@ module.exports = {
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
             viewRenderer(dungeonView.mainView());
-            dungeonController.controller.renderDungeonEntrance();            
+            dungeonController.controller.renderEntrance();            
             stateController.view.setViewState('dungeon');            
         });
         
@@ -393,7 +403,7 @@ module.exports = {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
                     viewRenderer(dungeonView.mainView());
-                    dungeonController.controller.renderDungeonEntrance();
+                    dungeonController.controller.renderEntrance();
                     break;
                 case 'character':
                     viewRenderer(characterView());
@@ -468,14 +478,17 @@ module.exports = {
     controller: {
 
         // Render dungeon entrance
-        renderDungeonEntrance: function() {
+        renderEntrance: function() {
 
             // Checks if dungeon has been entered
             if(storageState.dungeon.getDungeonState().status === 'fresh') {
+
+                // Render entrance view
+                _.element('#entrance').innerHTML = dungeonViews.entrance();
+
                 // load Event Listener for enter button
                 _.element('#enter-dungeon-btn').addEventListener('click', () => {
                     // Sets dungeon status state to entered
-
                     storageState.dungeon.setDungeonStateProperty('status', 'entered');
                     // Render dungeon
                     this.renderDungeon();
@@ -488,13 +501,9 @@ module.exports = {
         // Renders dungeon view
         renderDungeon: function() {
             
-            // Get all states object of all states in storage
+            // Get all states in storage
             const varStates = storageState.getAllStates();
             
-            // Check if enter dungeon button has already been pressed and remove it if so
-            if(_.element('#enter-dungeon-btn')) {
-                _.element('#enter-dungeon-btn').remove();
-            }
             // this is where dungeon messages should be displayed
             _.element('#dungeon-messages').innerHTML = dungeonViews.dungeonMessages('Running dungeon!');
             
@@ -513,7 +522,7 @@ module.exports = {
         attackBtnPressed : function() {
             const varStates = storageState.getAllStates();
             combat.attack(varStates);
-        }, 
+        }
     }
 }
 

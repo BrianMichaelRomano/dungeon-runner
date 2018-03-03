@@ -10,7 +10,7 @@ module.exports = {
         
             <div id="rendered-dungeon">
         
-                <button id="enter-dungeon-btn">Enter Dungeon</button>
+                <div id="entrance"></div>
         
                 <div id="dungeon-messages"></div>
         
@@ -70,6 +70,16 @@ module.exports = {
         const view = `<p>${message}</p>`;
 
         // Return message template string
+        return view;
+    },
+
+    // Entrance view template string
+    entrance: function() {
+        const view = `
+            <button id="enter-dungeon-btn">Enter Dungeon</button>
+        `;
+
+        // Return entrance view template string
         return view;
     }
 }

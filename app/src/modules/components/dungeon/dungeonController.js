@@ -11,10 +11,14 @@ module.exports = {
     controller: {
 
         // Render dungeon entrance
-        renderDungeonEntrance: function() {
+        renderEntrance: function() {
 
             // Checks if dungeon has been entered
             if(storageState.dungeon.getDungeonState().status === 'fresh') {
+
+                // Render entrance view
+                _.element('#entrance').innerHTML = dungeonViews.entrance();
+
                 // load Event Listener for enter button
                 _.element('#enter-dungeon-btn').addEventListener('click', () => {
                     // Sets dungeon status state to entered
@@ -33,10 +37,6 @@ module.exports = {
             // Get all states in storage
             const varStates = storageState.getAllStates();
             
-            // Check if enter dungeon button has already been pressed and remove it if so
-            if(_.element('#enter-dungeon-btn')) {
-                _.element('#enter-dungeon-btn').remove();
-            }
             // this is where dungeon messages should be displayed
             _.element('#dungeon-messages').innerHTML = dungeonViews.dungeonMessages('Running dungeon!');
             
