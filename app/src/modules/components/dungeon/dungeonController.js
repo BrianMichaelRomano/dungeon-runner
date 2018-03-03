@@ -20,11 +20,15 @@ module.exports = {
                 _.element('#enter-dungeon-btn').addEventListener('click', () => {
                     // Sets dungeon status state to entered
                     storageState.dungeon.setDungeonStateProperty('status', 'entered');
+                    // Clear entrance view
+                    _.element('#entrance').innerHTML = '';
                     // Render dungeon
                     this.renderDungeon();
                 });
             } else {
-                // Render dungeon                
+                // Clear entrance view
+                _.element('#entrance').innerHTML = '';
+                // Render dungeon         
                 this.renderDungeon();
             }
         },
