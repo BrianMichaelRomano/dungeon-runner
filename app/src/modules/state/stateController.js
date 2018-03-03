@@ -28,6 +28,17 @@ module.exports = {
             return JSON.parse(localStorage.getItem('view'));
         }
     },
+    // Returns all states
+    getAllStates: function() {
+        const states = {
+            view: this.view.getViewState(),
+            dungeon: this.dungeon.getDungeonState(),
+            player: this.entity.getPlayerState(),
+            enemy: this.entity.getSkeletonState()
+        }
+
+        return states;
+    },
 
     // Methods controlling the entity states    
     entity: {
@@ -97,6 +108,13 @@ module.exports = {
         // Accepts a string and sets it to dungeon state in local storage                
         setDungeonState(state) {
             localStorage.setItem('dungeon', JSON.stringify(state));
+        },
+
+        // Sets entered property of dungeon state to value
+        setDungeonStateProperty(property, value) {
+            const state = this.getDungeonState();
+            state[property] = value;
+            this.setDungeonState(state);
         },
         
         // Checks for dungeon state in localStorage,
