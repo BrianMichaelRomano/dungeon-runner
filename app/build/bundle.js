@@ -344,7 +344,7 @@ module.exports = {
         // Dungeon Route
         viewEl.dungeonBtn.addEventListener('click', () => {
             viewRenderer(dungeonView.mainView());
-            dungeonController.loadController();            
+            dungeonController.controller();            
             stateController.view.setViewState('dungeon');            
         });
         
@@ -375,7 +375,7 @@ module.exports = {
             switch(stateController.view.getViewState()) {
                 case 'dungeon':
                     viewRenderer(dungeonView.mainView());
-                    dungeonController.loadController();
+                    dungeonController.controller();
                     break;
                 case 'character':
                     viewRenderer(characterView());
@@ -446,7 +446,7 @@ const _ = __webpack_require__(10);
 // Export of module object
 module.exports = {
         // Loads controller and kicks off view logic
-        loadController: function() {
+        controller: function() {
             const dungeonState = storageState.dungeon.getDungeonState();
             // Checks if dungeon has been entered
             if(dungeonState.status === 'fresh') {

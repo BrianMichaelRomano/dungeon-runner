@@ -7,7 +7,7 @@ const _ = require('../../libraries/helperFunctions');
 // Export of module object
 module.exports = {
         // Loads controller and kicks off view logic
-        loadController: function() {
+        controller: function() {
             const dungeonState = storageState.dungeon.getDungeonState();
             // Checks if dungeon has been entered
             if(dungeonState.status === 'fresh') {
