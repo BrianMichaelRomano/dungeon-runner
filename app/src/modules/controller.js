@@ -1,12 +1,15 @@
+// View Module
 import { loadNavListener, loadCurrentView } from './view.js';
-
+// Model Module
 import { setCurrentView, getCurrentView } from './model.js';
+
 
 // Load Navigation Listeners
 const navListenersInit = function() {
     // Call view to load Navigation listeners
     loadNavListener();
 }
+
 
 // Initialize View
 const viewInit = function() {
@@ -16,11 +19,13 @@ const viewInit = function() {
     loadCurrentView(currentRoute);
 }
 
+
 // View Selected
 const viewSelected = function(activeView) {
     // Set current view to model
     setCurrentView(activeView);
 }
+
 
 export {
     viewInit,
