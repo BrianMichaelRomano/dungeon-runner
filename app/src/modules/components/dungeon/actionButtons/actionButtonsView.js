@@ -2,6 +2,7 @@ module.exports = {
     attackView: function() {
         const view = `
             <h4>Attack Menu</h4>
+            <button id="basic-attack-btn">Basic Strike</button>
         `;
 
         return view;
