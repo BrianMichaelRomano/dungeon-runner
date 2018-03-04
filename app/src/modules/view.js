@@ -1,13 +1,13 @@
+import { viewSelected } from '../index.js';
+import { parseSelectedRoute } from './utils.js';
+
 // Sets the active view element to flex
-    // Takes one argument which is the ID of button pressed
-    // Parses that ID into a corasponding view ID
-    // Example: #home-btn will be parsed to #home-view
-    // Then sets that view element display to flex
-    // Then returns selectedView 
+// Returns ID value of selected view
 const showActiveView = function(routeClicked) {
-    let selectedView = routeClicked.split('-');
-    selectedView = `${selectedView[0]}-view`;
+    let selectedView = parseSelectedRoute(routeClicked);
     document.querySelector(`#${selectedView}`).style.display = 'flex';
+
+    viewSelected(selectedView);
 
     return selectedView;
 }
