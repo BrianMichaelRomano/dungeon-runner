@@ -15,6 +15,7 @@ const getCurrentView = function() {
     }
 }
 
+
 export {
     setCurrentView,
     getCurrentView
