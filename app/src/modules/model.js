@@ -1,9 +1,13 @@
 const setCurrentView = function(activeView) {
-    console.log(`${activeView} saved...`);
+    localStorage.setItem('view', JSON.stringify(activeView));
 }
 
 const getCurrentView = function() {
-    console.log(`Getting View model...`);
+    if(localStorage.getItem('view')) {
+        return JSON.parse(localStorage.getItem('view'));
+    } else {
+        return 'home-view';
+    }
 }
 
 export {

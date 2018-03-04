@@ -1,4 +1,4 @@
-import { loadNavListener } from './view.js';
+import { loadNavListener, loadCurrentView } from './view.js';
 
 import { setCurrentView, getCurrentView } from './model.js';
 
@@ -10,7 +10,8 @@ const navListenersInit = function() {
 // View Init
 const viewInit = function() {
     const currentRoute = getCurrentView();
-    console.log('Init view...')
+    console.log(currentRoute);
+    loadCurrentView(currentRoute);
 }
 
 // View Selected
