@@ -1,0 +1,11 @@
+/* Header */
+header {
+    display: flex;
+    justify-content: center;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-around;
+}
