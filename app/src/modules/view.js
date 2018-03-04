@@ -12,6 +12,11 @@ const showActiveView = function(routeClicked) {
     return selectedView;
 }
 
+const loadCurrentView = function(route) {
+    const activeView = showActiveView(route);
+    hideInactiveViews(activeView);
+}
+
 // Sets all inactive views to none
 const hideInactiveViews = function(activeView) {
     const routes = [
@@ -42,5 +47,6 @@ const loadNavListener = function() {
 
 // Exports ===================================
 export {
-    loadNavListener
+    loadNavListener,
+    loadCurrentView
 };
