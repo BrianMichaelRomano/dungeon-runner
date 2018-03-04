@@ -1,4 +1,4 @@
-import { viewSelected } from '../index.js';
+import { viewSelected } from './controller.js';
 import { parseSelectedRoute } from './utils.js';
 
 // Sets the active view element to flex
