@@ -555,11 +555,11 @@ module.exports = {
                 console.log('Defend Menu');
                 break;
                 case 'magic-btn':
-                _.element('#action-menu').innerHTML = actionButtonsView.attackView();                
+                _.element('#action-menu').innerHTML = actionButtonsView.magicView();                
                 console.log('Magic Menu');
                 break;
                 case 'item-btn':
-                _.element('#action-menu').innerHTML = actionButtonsView.magicView();                
+                _.element('#action-menu').innerHTML = actionButtonsView.itemView();                
                 console.log('Item Menu');
                 break;
                 case 'flee-btn':
@@ -581,6 +581,7 @@ module.exports = {
     attackView: function() {
         const view = `
             <h4>Attack Menu</h4>
+            <button id="basic-attack-btn">Basic Strike</button>
         `;
 
         return view;
