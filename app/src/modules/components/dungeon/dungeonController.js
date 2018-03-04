@@ -1,7 +1,7 @@
 // Required Modules
 const storageState = require('../../state/stateController');
 const dungeonViews = require('../dungeon/dungeonView');
-const actionMenu = require('./actionButtons/actionMenuController');
+const actionMenu = require('./menus/actionMenuController');
 const _ = require('../../libraries/helperFunctions');
 
 // Export of module object

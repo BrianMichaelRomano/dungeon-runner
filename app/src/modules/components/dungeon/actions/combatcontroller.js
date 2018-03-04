@@ -1,8 +1,8 @@
-const storageState = require('../../state/stateController');
+const storageState = require('../../../state/stateController');
 
 module.exports = {
     // Performs an attack 
-    attack: function() {
+    basicAttack: function() {
 
         // State variables
         const state = storageState.getAllStates();
@@ -19,6 +19,6 @@ module.exports = {
         // ensure dungeon status is inCombat
         state.dungeon.status = 'inCombat';
         // Save dungeon state to storage
-        storageState.dungeon.setDungeonState(dungeon);
+        storageState.dungeon.setDungeonState(dungeon);    
     }
 }

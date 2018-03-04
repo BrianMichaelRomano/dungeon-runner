@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -315,6 +315,63 @@ module.exports = {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Required Modules
+const storageState = __webpack_require__(0);
+const dungeonViews = __webpack_require__(2);
+const actionMenu = __webpack_require__(10);
+const _ = __webpack_require__(4);
+
+// Export of module object
+module.exports = {
+    
+    // Dungeon Controller Object
+    controller: {
+
+        // Render dungeon entrance
+        renderEntrance: function() {
+            // Checks if dungeon has been entered
+            if(storageState.dungeon.getDungeonState().status === 'fresh') {
+                // Render entrance view
+                _.element('#entrance').innerHTML = dungeonViews.entrance();
+                // load Event Listener for enter button
+                _.element('#enter-dungeon-btn').addEventListener('click', () => {
+                    // Sets dungeon status state to entered
+                    storageState.dungeon.setDungeonStateProperty('status', 'entered');
+                    // Clear entrance view
+                    _.element('#entrance').innerHTML = '';
+                    // Render dungeon
+                    this.renderDungeon();
+                });
+            } else {
+                // Clear entrance view
+                _.element('#entrance').innerHTML = '';
+                // Render dungeon         
+                this.renderDungeon();
+            }
+        },
+
+        // Renders dungeon view
+        renderDungeon: function() {
+            // Get all states in storage
+            const varStates = storageState.getAllStates();
+            // this is where dungeon messages should be displayed
+            _.element('#dungeon-messages').innerHTML = dungeonViews.dungeonMessages('Running dungeon!');
+            // Template for entity card views
+            _.element('#entity-cards').innerHTML = dungeonViews.entityCards(varStates);
+            // Template for action buttons
+            _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
+            // Action Button Listeners
+            _.element('#action-btns').addEventListener('click', (e) => {
+                actionMenu.renderMenu(e);
+            });
+        }
+    }
+}
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -325,11 +382,11 @@ module.exports = {
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load Route Controller
-const viewRouteController = __webpack_require__(5);
+const viewRouteController = __webpack_require__(6);
 
 // Load State Controller
 const state = __webpack_require__(0);
@@ -355,26 +412,26 @@ document.querySelector('#log-state-btn').addEventListener('click', () => {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load view selectors
 const viewEl = __webpack_require__(1);
 // Load view renderer functions
-const viewRenderer = __webpack_require__(6);
+const viewRenderer = __webpack_require__(7);
 // Load State Controller
 const stateController = __webpack_require__(0);
 // Load all views and controllers
-const homeView = __webpack_require__(7);
-const homeController = __webpack_require__(8);
+const homeView = __webpack_require__(8);
+const homeController = __webpack_require__(9);
 const dungeonView = __webpack_require__(2);
-const dungeonController = __webpack_require__(9);
-const characterView = __webpack_require__(12);
-const characterController = __webpack_require__(13);
-const shopView = __webpack_require__(14);
-const shopController = __webpack_require__(15);
-const inventoryView = __webpack_require__(16);
-const inventoryController = __webpack_require__(17);
+const dungeonController = __webpack_require__(3);
+const characterView = __webpack_require__(13);
+const characterController = __webpack_require__(14);
+const shopView = __webpack_require__(15);
+const shopController = __webpack_require__(16);
+const inventoryView = __webpack_require__(17);
+const inventoryController = __webpack_require__(18);
 
 module.exports = {
     registerListeners: function() {
@@ -438,7 +495,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load View Selectors
@@ -451,7 +508,7 @@ module.exports = function(view) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -472,74 +529,19 @@ module.exports = function() {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports =  { }
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Required Modules
-const storageState = __webpack_require__(0);
-const dungeonViews = __webpack_require__(2);
-const actionMenu = __webpack_require__(10);
-const _ = __webpack_require__(3);
-
-// Export of module object
-module.exports = {
-    
-    // Dungeon Controller Object
-    controller: {
-
-        // Render dungeon entrance
-        renderEntrance: function() {
-            // Checks if dungeon has been entered
-            if(storageState.dungeon.getDungeonState().status === 'fresh') {
-                // Render entrance view
-                _.element('#entrance').innerHTML = dungeonViews.entrance();
-                // load Event Listener for enter button
-                _.element('#enter-dungeon-btn').addEventListener('click', () => {
-                    // Sets dungeon status state to entered
-                    storageState.dungeon.setDungeonStateProperty('status', 'entered');
-                    // Clear entrance view
-                    _.element('#entrance').innerHTML = '';
-                    // Render dungeon
-                    this.renderDungeon();
-                });
-            } else {
-                // Clear entrance view
-                _.element('#entrance').innerHTML = '';
-                // Render dungeon         
-                this.renderDungeon();
-            }
-        },
-
-        // Renders dungeon view
-        renderDungeon: function() {
-            // Get all states in storage
-            const varStates = storageState.getAllStates();
-            // this is where dungeon messages should be displayed
-            _.element('#dungeon-messages').innerHTML = dungeonViews.dungeonMessages('Running dungeon!');
-            // Template for entity card views
-            _.element('#entity-cards').innerHTML = dungeonViews.entityCards(varStates);
-            // Template for action buttons
-            _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
-            // Action Button Listeners
-            _.element('#action-btns').addEventListener('click', (e) => {
-                actionMenu.renderMenu(e);
-            });
-        }
-    }
-}
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const actionButtonsView = __webpack_require__(11);
-const _ = __webpack_require__(3);
+const attacks = __webpack_require__(12);
+const _ = __webpack_require__(4);
+const dungeonController = __webpack_require__(3).controller.renderDungeon;
 
 module.exports = {
     renderMenu: function(e) {
@@ -549,7 +551,10 @@ module.exports = {
             case 'attack-btn':
                 _.element('#action-menu').innerHTML = actionButtonsView.attackView();
                 _.element('#basic-attack-btn').addEventListener('click', () => {
+                    attacks.basicAttack();
                     console.log('Basic Attack....');
+                    // Render Dungeon
+                    console.log(dungeonController);  
                 });
                 console.log('Attack Menu');
                 break;
@@ -626,6 +631,35 @@ module.exports = {
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const storageState = __webpack_require__(0);
+
+module.exports = {
+    // Performs an attack 
+    basicAttack: function() {
+
+        // State variables
+        const state = storageState.getAllStates();
+        const enemy = state.enemy;
+        const player = state.player;
+        const dungeon = state.dungeon;
+        
+        // Resovle attack
+        enemy.HP = enemy.HP - player.ATT;
+        // Save results in storage
+        storageState.entity.setSkeletonState(enemy);
+        // increment turn
+        state.dungeon.turn += 1;
+        // ensure dungeon status is inCombat
+        state.dungeon.status = 'inCombat';
+        // Save dungeon state to storage
+        storageState.dungeon.setDungeonState(dungeon);    
+    }
+}
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -645,13 +679,13 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = { }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -671,13 +705,13 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = { }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -697,7 +731,7 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = { }

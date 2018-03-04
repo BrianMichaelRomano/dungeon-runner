@@ -1,4 +1,5 @@
-const actionButtonsView = require('./actionButtonsView');
+const actionButtonsView = require('./actionMenuViews');
+const attacks = require('../actions/combatcontroller');
 const _ = require('../../../libraries/helperFunctions');
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
             case 'attack-btn':
                 _.element('#action-menu').innerHTML = actionButtonsView.attackView();
                 _.element('#basic-attack-btn').addEventListener('click', () => {
+                    attacks.basicAttack();
                     console.log('Basic Attack....');
                 });
                 console.log('Attack Menu');
