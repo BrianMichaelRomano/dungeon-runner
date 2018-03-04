@@ -1,8 +1,8 @@
 // Controller Module
-import { viewInit, navListenersInit } from './modules/controller.js';
+import { viewInit, navListenerInit } from './modules/controller.js';
 
 // Load Navigation listener
-navListenersInit();
+navListenerInit();
 
 // Load current view
 viewInit();

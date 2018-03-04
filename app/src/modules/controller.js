@@ -5,7 +5,7 @@ import { setCurrentView, getCurrentView } from './model.js';
 
 
 // Load Navigation Listeners
-const navListenersInit = function() {
+const navListenerInit = function() {
     // Call view to load Navigation listeners
     loadNavListener();
 }
@@ -30,5 +30,5 @@ const viewSelected = function(activeView) {
 export {
     viewInit,
     viewSelected,
-    navListenersInit
+    navListenerInit
 }
