@@ -44,16 +44,14 @@ module.exports = {
             // Template for action buttons
             _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
             // Action Button Listeners
-            _.element('#attack-btn').addEventListener('click', () => {
-                this.attackBtnPressed();
+            _.element('#action-btns').addEventListener('click', (e) => {
+                this.actionBtnPressed(e);
             });
         },
 
-        // Attack Button Pressed
-        attackBtnPressed : function() {
-            // Perform attack on enemy
-            combat.attack();
-            this.renderDungeon();
+        // Action Button Pressed
+        actionBtnPressed : function(e) {
+            console.log(e.target);
         }
     }
 }
