@@ -14,7 +14,7 @@ nav {
 
 /* HOME */
 #home-view {
-    min-height: 200px;
+    min-height: 400px;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -23,16 +23,49 @@ nav {
 
 /* DUNGEON */
 #dungeon-view {
-    min-height: 200px;
+    min-height: 400px;
     display: none;
     flex-direction: column;
     align-items: center;
 }
 
+#entered {
+    width: 75%;
+}
+
+#entity-cards {
+    display: flex;
+    justify-content: space-between;
+    /* border: solid; */
+}
+
+#entity-cards ul {
+    list-style: none;
+    padding: 0;
+}
+
+#player-card {
+    background-color: lightgray;
+    flex-grow: 1;
+    margin: 10px;
+    padding: 10px;
+}
+
+#enemy-card {
+    background-color: lightgray;
+    flex-grow: 1;
+    margin: 10px;
+    padding: 10px;
+}
+
+#action-btns {
+    display: flex;
+    justify-content: space-around;
+}
 
 /* CHARACTER */
 #character-view {
-    min-height: 200px;
+    min-height: 400px;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -41,7 +74,7 @@ nav {
 
 /* SHOP */
 #shop-view {
-    min-height: 200px;
+    min-height: 400px;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -50,7 +83,7 @@ nav {
 
 /* INVENTORY */
 #inventory-view {
-    min-height: 200px;
+    min-height: 400px;
     display: none;
     flex-direction: column;
     align-items: center;
