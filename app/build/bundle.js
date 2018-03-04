@@ -317,10 +317,13 @@ module.exports = {
 
 // Load Route Controller
 const viewRouteController = __webpack_require__(4);
+
 // Load State Controller
 const state = __webpack_require__(0);
+
 // Register event listeners for routes
 viewRouteController.registerListeners();
+
 // Load view saved in state if exists or load home view on browser refresh
 viewRouteController.loadCurrentView();
 

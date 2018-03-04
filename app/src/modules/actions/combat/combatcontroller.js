@@ -1,4 +1,4 @@
-const storageState = require('../state/stateController');
+const storageState = require('../../state/stateController');
 
 module.exports = {
     // Performs an attack 

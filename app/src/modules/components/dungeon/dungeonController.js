@@ -1,6 +1,6 @@
 // Required Modules
 const storageState = require('../../state/stateController');
-const combat = require('../../combat/combatcontroller');
+const combat = require('../../actions/combat/combatcontroller');
 const dungeonViews = require('../dungeon/dungeonView');
 const _ = require('../../libraries/helperFunctions');
 
