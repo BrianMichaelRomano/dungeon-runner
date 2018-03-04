@@ -1,4 +1,9 @@
-// Shows view passed in as argument
+// Sets the active view element to flex
+    // Takes one argument which is the ID of button pressed
+    // Parses that ID into a corasponding view ID
+    // Example: #home-btn will be parsed to #home-view
+    // Then sets that view element display to flex
+    // Then returns selectedView 
 const showActiveView = function(routeClicked) {
     let selectedView = routeClicked.split('-');
     selectedView = `${selectedView[0]}-view`;
@@ -7,6 +12,7 @@ const showActiveView = function(routeClicked) {
     return selectedView;
 }
 
+// Sets all inactive views to none
 const hideInactiveViews = function(activeView) {
     const routes = [
         'home-view',
