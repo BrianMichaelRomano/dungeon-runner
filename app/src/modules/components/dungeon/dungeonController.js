@@ -1,7 +1,7 @@
 // Required Modules
 const storageState = require('../../state/stateController');
-const combat = require('../../actions/combat/combatcontroller');
 const dungeonViews = require('../dungeon/dungeonView');
+const actionBtns = require('./actionButtons/actionButtonsController');
 const _ = require('../../libraries/helperFunctions');
 
 // Export of module object
@@ -45,13 +45,8 @@ module.exports = {
             _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
             // Action Button Listeners
             _.element('#action-btns').addEventListener('click', (e) => {
-                this.actionBtnPressed(e);
+                actionBtns.renderMenu(e);
             });
-        },
-
-        // Action Button Pressed
-        actionBtnPressed : function(e) {
-            console.log(e.target);
         }
     }
 }

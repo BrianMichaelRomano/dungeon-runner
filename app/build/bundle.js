@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -244,6 +244,8 @@ module.exports = {
                 <div id="entity-cards"></div>
         
                 <div id="action-btns"></div>    
+
+                <div id="action-menu"></div>
             </div>
         
         </div>
@@ -313,10 +315,21 @@ module.exports = {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    // element selector
+    element(el) {
+        return document.querySelector(el);
+    }
+}
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load Route Controller
-const viewRouteController = __webpack_require__(4);
+const viewRouteController = __webpack_require__(5);
 
 // Load State Controller
 const state = __webpack_require__(0);
@@ -342,26 +355,26 @@ document.querySelector('#log-state-btn').addEventListener('click', () => {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load view selectors
 const viewEl = __webpack_require__(1);
 // Load view renderer functions
-const viewRenderer = __webpack_require__(5);
+const viewRenderer = __webpack_require__(6);
 // Load State Controller
 const stateController = __webpack_require__(0);
 // Load all views and controllers
-const homeView = __webpack_require__(6);
-const homeController = __webpack_require__(7);
+const homeView = __webpack_require__(7);
+const homeController = __webpack_require__(8);
 const dungeonView = __webpack_require__(2);
-const dungeonController = __webpack_require__(8);
-const characterView = __webpack_require__(11);
-const characterController = __webpack_require__(12);
-const shopView = __webpack_require__(13);
-const shopController = __webpack_require__(14);
-const inventoryView = __webpack_require__(15);
-const inventoryController = __webpack_require__(16);
+const dungeonController = __webpack_require__(9);
+const characterView = __webpack_require__(12);
+const characterController = __webpack_require__(13);
+const shopView = __webpack_require__(14);
+const shopController = __webpack_require__(15);
+const inventoryView = __webpack_require__(16);
+const inventoryController = __webpack_require__(17);
 
 module.exports = {
     registerListeners: function() {
@@ -425,7 +438,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load View Selectors
@@ -438,7 +451,7 @@ module.exports = function(view) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -459,20 +472,20 @@ module.exports = function() {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports =  { }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Required Modules
 const storageState = __webpack_require__(0);
-const combat = __webpack_require__(9);
 const dungeonViews = __webpack_require__(2);
-const _ = __webpack_require__(10);
+const actionBtns = __webpack_require__(10);
+const _ = __webpack_require__(3);
 
 // Export of module object
 module.exports = {
@@ -515,59 +528,99 @@ module.exports = {
             _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
             // Action Button Listeners
             _.element('#action-btns').addEventListener('click', (e) => {
-                this.actionBtnPressed(e);
+                actionBtns.renderMenu(e);
             });
-        },
-
-        // Action Button Pressed
-        actionBtnPressed : function(e) {
-            console.log(e.target);
         }
     }
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const storageState = __webpack_require__(0);
+const actionButtonsView = __webpack_require__(11);
+const _ = __webpack_require__(3);
 
 module.exports = {
-    // Performs an attack 
-    attack: function() {
+    renderMenu: function(e) {
+        const buttonPressed = e.target.id;
 
-        // State variables
-        const state = storageState.getAllStates();
-        const enemy = state.enemy;
-        const player = state.player;
-        const dungeon = state.dungeon;
+        switch (buttonPressed) {
+            case 'attack-btn':
+                _.element('#action-menu').innerHTML = actionButtonsView.attackView();
+                console.log('Attack Menu');
+                break;
+                case 'defend-btn':
+                _.element('#action-menu').innerHTML = actionButtonsView.defendView();                
+                console.log('Defend Menu');
+                break;
+                case 'magic-btn':
+                _.element('#action-menu').innerHTML = actionButtonsView.attackView();                
+                console.log('Magic Menu');
+                break;
+                case 'item-btn':
+                _.element('#action-menu').innerHTML = actionButtonsView.magicView();                
+                console.log('Item Menu');
+                break;
+                case 'flee-btn':
+                _.element('#action-menu').innerHTML = actionButtonsView.fleeView();                
+                console.log('Flee Menu');
+                break;
         
-        // Resovle attack
-        enemy.HP = enemy.HP - player.ATT;
-        // Save results in storage
-        storageState.entity.setSkeletonState(enemy);
-        // increment turn
-        state.dungeon.turn += 1;
-        // ensure dungeon status is inCombat
-        state.dungeon.status = 'inCombat';
-        // Save dungeon state to storage
-        storageState.dungeon.setDungeonState(dungeon);
-    }
-}
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = {
-    // element selector
-    element(el) {
-        return document.querySelector(el);
+            default:
+                break;
+        }
     }
 }
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    attackView: function() {
+        const view = `
+            <h4>Attack Menu</h4>
+        `;
+
+        return view;
+    },
+
+    defendView: function() {
+        const view = `
+            <h4>Defend Menu</h4>
+        `;
+
+        return view;
+    },
+
+    magicView: function() {
+        const view = `
+            <h4>Magic Menu</h4>
+        `;
+
+        return view;
+    },
+
+    itemView: function() {
+        const view = `
+            <h4>Item Menu</h4>
+        `;
+
+        return view;
+    },
+
+    fleeView: function() {
+        const view = `
+            <h4>Flee Menu</h4>
+        `;
+
+        return view;
+    }
+}
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -587,13 +640,13 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = { }
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -613,13 +666,13 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = { }
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -639,7 +692,7 @@ module.exports = function() {
 }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = { }

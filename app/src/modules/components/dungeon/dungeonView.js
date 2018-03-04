@@ -17,6 +17,8 @@ module.exports = {
                 <div id="entity-cards"></div>
         
                 <div id="action-btns"></div>    
+
+                <div id="action-menu"></div>
             </div>
         
         </div>
