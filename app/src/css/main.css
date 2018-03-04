@@ -12,6 +12,7 @@ nav {
 
 /* Views */
 
+/* HOME */
 #home-view {
     min-height: 200px;
     display: none;
@@ -19,6 +20,8 @@ nav {
     align-items: center;
 }
 
+
+/* DUNGEON */
 #dungeon-view {
     min-height: 200px;
     display: none;
@@ -26,6 +29,8 @@ nav {
     align-items: center;
 }
 
+
+/* CHARACTER */
 #character-view {
     min-height: 200px;
     display: none;
@@ -33,6 +38,8 @@ nav {
     align-items: center;
 }
 
+
+/* SHOP */
 #shop-view {
     min-height: 200px;
     display: none;
@@ -40,6 +47,8 @@ nav {
     align-items: center;
 }
 
+
+/* INVENTORY */
 #inventory-view {
     min-height: 200px;
     display: none;
