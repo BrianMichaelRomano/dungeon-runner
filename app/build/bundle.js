@@ -484,7 +484,7 @@ module.exports =  { }
 // Required Modules
 const storageState = __webpack_require__(0);
 const dungeonViews = __webpack_require__(2);
-const actionBtns = __webpack_require__(10);
+const actionMenu = __webpack_require__(10);
 const _ = __webpack_require__(3);
 
 // Export of module object
@@ -528,7 +528,7 @@ module.exports = {
             _.element('#action-btns').innerHTML = dungeonViews.actionButtons();
             // Action Button Listeners
             _.element('#action-btns').addEventListener('click', (e) => {
-                actionBtns.renderMenu(e);
+                actionMenu.renderMenu(e);
             });
         }
     }
