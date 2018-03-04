@@ -9,3 +9,25 @@ nav {
     display: flex;
     justify-content: space-around;
 }
+
+/* Views */
+
+#home-view {
+    display: none;
+}
+
+#dungeon-view {
+    display: none;
+}
+
+#character-view {
+    display: none;
+}
+
+#shop-view {
+    display: none;
+}
+
+#inventory-view {
+    display: none;
+}
