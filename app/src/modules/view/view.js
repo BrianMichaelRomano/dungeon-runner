@@ -39,6 +39,8 @@ const loadNavListener = function() {
         hideInactiveViews(activeView);
     });
 }
+
+// Exports ===================================
 export {
     loadNavListener
 };
