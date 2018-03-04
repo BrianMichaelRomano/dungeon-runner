@@ -27,8 +27,25 @@ const viewSelected = function(activeView) {
 }
 
 
+// Load Dungeon Listeners
+const dungeonListenerInit = function() {
+    console.log('Dungeon Listeners initialized...');
+}
+
+
+// Render Dungeon
+const renderDungeon = function() {
+    // Get state
+
+    // Render view
+
+    console.log('Dungeon Rendered...');
+}
+
 export {
     viewInit,
     viewSelected,
-    navListenerInit
+    navListenerInit,
+    renderDungeon,
+    dungeonListenerInit
 }
