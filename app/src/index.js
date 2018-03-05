@@ -9,12 +9,12 @@ import {
 } from './modules/controller.js';
 
 
-// Load Development listeners
-devListenerInit();
-
-
 // Initialize State Object if none exists
 stateObjectInit();
+
+
+// Load Development listeners
+devListenerInit();
 
 
 // Load Navigation listener
