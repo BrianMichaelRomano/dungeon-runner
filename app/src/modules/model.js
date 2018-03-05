@@ -44,6 +44,8 @@ const getCurrentView = function() {
 // Clear state object
 const clearStateObject = function() {
     localStorage.removeItem('dungeonRunnerState');
+    const stateObject = createStateObject();
+    setStateObject(stateObject);
 }
 
 
