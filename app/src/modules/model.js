@@ -49,7 +49,7 @@ const clearStateObject = function() {
 
 // Log State Object
 const logStateObject = function() {
-    console.log(getStateObject());
+    console.table(getStateObject());
 }
 
 
