@@ -9,7 +9,9 @@ import {
 import { 
     setCurrentView,
     getCurrentView,
-    initializeStateObject
+    initializeStateObject,
+    clearStateObject,
+    logStateObject
 } from './model.js';
 
 // Initialize State Object if none exists
@@ -72,6 +74,18 @@ const renderDungeon = function() {
     console.log('Rendering Dungeon...');
 }
 
+// Log state to console
+const logStateBtnPressed = function() {
+    logStateObject();
+}
+
+
+// Clear state Object
+const clearStateBtnPressed = function() {
+    clearStateObject();
+}
+
+
 export {
     viewInit,
     viewSelected,
@@ -79,5 +93,7 @@ export {
     renderDungeon,
     dungeonListenerInit,
     stateObjectInit,
-    devListenerInit
+    devListenerInit,
+    logStateBtnPressed,
+    clearStateBtnPressed
 }
