@@ -1,6 +1,15 @@
-// Imports
-import { viewSelected } from './controller.js';
-import { parseSelectedRoute } from './utils.js';
+// Controller Module
+import {
+    viewSelected,
+    logStateBtnPressed,
+    clearStateBtnPressed
+} from './controller.js';
+
+// Utils Module
+import {
+    parseSelectedRoute 
+} from './utils.js';
+
 
 // Render view to screen
 const showActiveView = function(btnClickedID) {
@@ -43,6 +52,18 @@ const hideInactiveViews = function(activeView) {
 }
 
 
+// Load Development Listeners
+const loadDevListeners = function() {
+    document.querySelector('#logState-btn').addEventListener('click', () => {
+        logStateBtnPressed();
+    });
+
+    document.querySelector('#clearState-btn').addEventListener('click', () => {
+        clearStateBtnPressed();
+    });
+}
+
+
 // Sets Navigation listeners 
 const loadNavListener = function() {
     // Nav menu listener
@@ -58,5 +79,6 @@ const loadNavListener = function() {
 // Exports ===================================
 export {
     loadNavListener,
-    loadCurrentView
+    loadCurrentView,
+    loadDevListeners
 };
