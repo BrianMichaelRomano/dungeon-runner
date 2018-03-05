@@ -11,6 +11,11 @@ const stateObjectInit = function() {
 }
 
 
+const devListenerInit = function() {
+    console.log('Initializing development Listeners...')        
+}
+
+
 // Load Navigation Listeners
 const navListenerInit = function() {
     // Dev Log...    
@@ -63,5 +68,6 @@ export {
     navListenerInit,
     renderDungeon,
     dungeonListenerInit,
-    stateObjectInit
+    stateObjectInit,
+    devListenerInit
 }
