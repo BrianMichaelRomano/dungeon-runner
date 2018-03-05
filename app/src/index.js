@@ -4,8 +4,14 @@ import {
     navListenerInit, 
     renderDungeon,
     dungeonListenerInit,
-    stateObjectInit 
+    stateObjectInit,
+    devListenerInit
 } from './modules/controller.js';
+
+
+// Load Development listeners
+devListenerInit();
+
 
 // Initialize State Object if none exists
 stateObjectInit();
