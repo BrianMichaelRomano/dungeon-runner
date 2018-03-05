@@ -14,7 +14,7 @@ const parseSelectedRoute = function(activatedRoute) {
 const createStateObject = function() {
     const state = {
         dungeon: {},
-        view: {},
+        view: 'home-view',
         shop: {},
         inventory: {},
         character: {},

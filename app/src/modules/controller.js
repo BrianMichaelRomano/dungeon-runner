@@ -23,6 +23,7 @@ const viewInit = function() {
     console.log('Initializing current route...')        
     // Get current route from model
     const currentRoute = getCurrentView();
+    console.log(currentRoute);
     // Call view to load current view
     loadCurrentView(currentRoute);
 }
@@ -30,6 +31,7 @@ const viewInit = function() {
 
 // View Selected
 const viewSelected = function(activeView) {
+    console.log(`${activeView} view selected and saved`)
     // Set current view to model
     setCurrentView(activeView);
 }

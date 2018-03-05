@@ -10,25 +10,30 @@ const initializeStateObject = function() {
 
 // Set State Object
 const setStateObject = function(stateObject) {
-    localStorage.setItem('state', JSON.stringify(stateObject));    
+    localStorage.setItem('dungeonRunnerState', JSON.stringify(stateObject));    
+}
+
+
+// Get State Object
+const getStateObject = function() {
+    return JSON.parse(localStorage.getItem('dungeonRunnerState'));    
 }
 
 
 // Set current view to Local Storage
 const setCurrentView = function(activeView) {
-    localStorage.setItem('view', JSON.stringify(activeView));
+    const stateObject = getStateObject();
+    stateObject.view = activeView;
+    setStateObject(stateObject);
 }
 
 
 // Get current view saved in Local Storage
 const getCurrentView = function() {
-    // Check for saved value in local storage and return it
-    if(localStorage.getItem('view')) {
-        return JSON.parse(localStorage.getItem('view'));
-    } else {
-        // else return home view
-        return 'home-view';
-    }
+    // Get State Object
+    const stateObject = JSON.parse(localStorage.getItem('dungeonRunnerState'));
+    // Return current view
+    return stateObject.view;
 }
 
 
