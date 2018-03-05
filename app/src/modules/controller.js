@@ -83,6 +83,7 @@ const logStateBtnPressed = function() {
 // Clear state Object
 const clearStateBtnPressed = function() {
     clearStateObject();
+    location.reload();
 }
 
 
