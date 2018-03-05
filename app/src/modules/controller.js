@@ -1,18 +1,26 @@
 // View Module
 import { loadNavListener, loadCurrentView } from './view.js';
 // Model Module
-import { setCurrentView, getCurrentView } from './model.js';
+import { setCurrentView, getCurrentView, initializeStateObject } from './model.js';
+
+// Initialize State Object if none exists
+const stateObjectInit = function() {
+    console.log('Initializing State Object...');
+    initializeStateObject();
+}
 
 
 // Load Navigation Listeners
 const navListenerInit = function() {
     // Call view to load Navigation listeners
+    console.log('Initializing navigation Listeners...')    
     loadNavListener();
 }
 
 
 // Initialize View
 const viewInit = function() {
+    console.log('Initializing current route...')        
     // Get current route from model
     const currentRoute = getCurrentView();
     // Call view to load current view
@@ -29,7 +37,7 @@ const viewSelected = function(activeView) {
 
 // Load Dungeon Listeners
 const dungeonListenerInit = function() {
-    console.log('Dungeon Listeners initialized...');
+    console.log('Initializing dungeon listeners...');
 }
 
 
@@ -39,7 +47,7 @@ const renderDungeon = function() {
 
     // Render view
 
-    console.log('Dungeon Rendered...');
+    console.log('Rendering Dungeon...');
 }
 
 export {
@@ -47,5 +55,6 @@ export {
     viewSelected,
     navListenerInit,
     renderDungeon,
-    dungeonListenerInit
+    dungeonListenerInit,
+    stateObjectInit
 }
