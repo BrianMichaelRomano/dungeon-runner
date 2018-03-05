@@ -10,6 +10,23 @@ const parseSelectedRoute = function(activatedRoute) {
 }
 
 
+// Create State Object
+const createStateObject = function() {
+    const state = {
+        dungeon: {},
+        view: {},
+        shop: {},
+        inventory: {},
+        character: {},
+        enemy: {},
+        home: {}
+    }   
+
+    return state;
+}
+
+
 export {
-    parseSelectedRoute
+    parseSelectedRoute,
+    createStateObject
 }
