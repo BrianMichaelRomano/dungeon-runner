@@ -1,7 +1,16 @@
 // View Module
-import { loadNavListener, loadCurrentView } from './view.js';
+import {
+    loadNavListener, 
+    loadDevListeners,
+    loadCurrentView 
+} from './view.js';
+
 // Model Module
-import { setCurrentView, getCurrentView, initializeStateObject } from './model.js';
+import { 
+    setCurrentView,
+    getCurrentView,
+    initializeStateObject
+} from './model.js';
 
 // Initialize State Object if none exists
 const stateObjectInit = function() {
@@ -12,7 +21,8 @@ const stateObjectInit = function() {
 
 
 const devListenerInit = function() {
-    console.log('Initializing development Listeners...')        
+    console.log('Initializing development Listeners...');
+    loadDevListeners();
 }
 
 
