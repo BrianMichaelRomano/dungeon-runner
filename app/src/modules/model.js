@@ -1,3 +1,19 @@
+import { createStateObject } from './utils.js';
+
+// Initialize State
+const initializeStateObject = function() {
+    if(localStorage.getItem('dungeonRunnerState') === null) {
+        const stateObject = createStateObject();
+        setStateObject(stateObject);
+    }
+}
+
+// Set State Object
+const setStateObject = function(stateObject) {
+    localStorage.setItem('state', JSON.stringify(stateObject));    
+}
+
+
 // Set current view to Local Storage
 const setCurrentView = function(activeView) {
     localStorage.setItem('view', JSON.stringify(activeView));
@@ -18,5 +34,6 @@ const getCurrentView = function() {
 
 export {
     setCurrentView,
-    getCurrentView
+    getCurrentView,
+    initializeStateObject
 }
