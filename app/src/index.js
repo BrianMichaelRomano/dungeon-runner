@@ -10,14 +10,18 @@ import {
 // Initialize State Object if none exists
 stateObjectInit();
 
+
 // Load Navigation listener
 navListenerInit();
+
 
 // Load Dungeon Listeners
 dungeonListenerInit();
 
+
 // Load current route view
 viewInit();
+
 
 // Render Dungeon
 renderDungeon();
