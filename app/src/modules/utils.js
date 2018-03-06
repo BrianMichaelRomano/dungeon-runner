@@ -72,5 +72,7 @@ const createStateObject = function() {
 
 export {
     parseSelectedRoute,
-    createStateObject
+    createStateObject,
+    getPropertyValue,
+    setPropertyValue
 }
