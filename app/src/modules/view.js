@@ -2,7 +2,13 @@
 import {
     viewSelected,
     logStateBtnPressed,
-    clearStateBtnPressed
+    clearStateBtnPressed,
+    runDungeonBtnClick,
+    attackBtnClick,
+    defenseBtnClick,
+    magicBtnClick,
+    itemBtnClick,
+    fleeBtnClick
 } from './controller.js';
 
 // Utils Module
@@ -88,22 +94,22 @@ const loadDungeonListeners = function() {
     document.querySelector('#dungeon-view').addEventListener('click', (e) => {
         switch (e.target.id) {
             case 'run-dungeon-btn':
-                console.log('Run Dungeon Button pressed...');
+                runDungeonBtnClick();
                 break;
             case 'attack-btn':
-                console.log('Attack Button pressed...');
+                attackBtnClick();
                 break;
             case 'defense-btn':
-                console.log('Defense Button pressed...');
+                defenseBtnClick();
                 break;
             case 'magic-btn':
-                console.log('Magic Button pressed...');
+                magicBtnClick();
                 break;
             case 'item-btn':
-                console.log('Item Button pressed...');
+                itemBtnClick();
                 break;
             case 'flee-btn':
-                console.log('Flee Button pressed...');
+                fleeBtnClick();
                 break;
 
         }
