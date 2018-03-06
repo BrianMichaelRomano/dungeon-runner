@@ -13,12 +13,22 @@ const parseSelectedRoute = function(activatedRoute) {
 // Create State Object
 const createStateObject = function() {
     const state = {
-        dungeon: {},
+        dungeon: 'entrance',
         view: 'home-view',
         shop: {},
         inventory: {},
-        character: {},
-        enemy: {},
+        character: {
+            name: 'Firecore',
+            HP: 100,
+            AP: 80,
+            MP: 60
+        },
+        enemy: {
+            name: 'Skeleton',
+            HP: 100,
+            AP: 80,
+            MP: 60
+        },
         home: {}
     }   
 
