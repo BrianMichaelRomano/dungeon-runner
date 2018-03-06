@@ -78,6 +78,7 @@ const renderDungeon = function() {
     renderDungeonView();
 }
 
+
 // Log state to console
 const logStateBtnPressed = function() {
     logStateObject();
