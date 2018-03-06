@@ -12,6 +12,12 @@ const initializeStateObject = function() {
 }
 
 
+// Set State Object Property
+const setStateObjectProperty = function(value, property1, property2, property3) {
+    setStateObject(setPropertyValue(getStateObject(), value, property1, property2, property3));
+}
+
+
 // Set State Object
 const setStateObject = function(stateObject) {
     localStorage.setItem('dungeonRunnerState', JSON.stringify(stateObject));    
@@ -58,5 +64,6 @@ export {
     getCurrentView,
     initializeStateObject,
     clearStateObject,
-    logStateObject
+    logStateObject,
+    setStateObjectProperty
 }
