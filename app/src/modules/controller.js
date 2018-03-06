@@ -3,7 +3,8 @@ import {
     loadNavListener, 
     loadDevListeners,
     loadCurrentView,
-    loadDungeonListeners
+    loadDungeonListeners,
+    renderDungeonView
 } from './view.js';
 
 // Model Module
@@ -69,12 +70,12 @@ const viewSelected = function(activeView) {
 
 // Render Dungeon
 const renderDungeon = function() {
+    // Dev Log...
+    console.log('Rendering Dungeon...');
     // Get state
 
     // Render view
-    
-    // Dev Log...
-    console.log('Rendering Dungeon...');
+    renderDungeonView();
 }
 
 // Log state to console
