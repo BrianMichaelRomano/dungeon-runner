@@ -1,4 +1,8 @@
-import { createStateObject } from './utils.js';
+import { 
+    createStateObject,
+    getPropertyValue,
+    setPropertyValue 
+} from './utils.js';
 
 // Initialize State
 const initializeStateObject = function() {
