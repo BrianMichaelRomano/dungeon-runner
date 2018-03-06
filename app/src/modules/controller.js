@@ -13,7 +13,8 @@ import {
     getCurrentView,
     initializeStateObject,
     clearStateObject,
-    logStateObject
+    logStateObject,
+    setStateObjectProperty
 } from './model.js';
 
 
@@ -22,7 +23,7 @@ const runDungeonBtnClick = function() {
     console.log('Run Dungeon Button click...');
     
     // Set dungeon status to entered
-
+setStateObjectProperty('entered', 'dungeon', 'status');
     // Call rendering of dungeon
 }
 
