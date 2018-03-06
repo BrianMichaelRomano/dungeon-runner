@@ -2,7 +2,8 @@
 import {
     loadNavListener, 
     loadDevListeners,
-    loadCurrentView 
+    loadCurrentView,
+    loadDungeonListeners
 } from './view.js';
 
 // Model Module
@@ -22,6 +23,7 @@ const stateObjectInit = function() {
 }
 
 
+// Load Developement Listeners
 const devListenerInit = function() {
     console.log('Initializing development Listeners...');
     loadDevListeners();
@@ -34,6 +36,14 @@ const navListenerInit = function() {
     console.log('Initializing navigation Listeners...')    
     // Call view to load Navigation listeners
     loadNavListener();
+}
+
+
+// Load Dungeon Listeners
+const dungeonListenerInit = function() {
+    // Dev Log...  
+    console.log('Initializing dungeon listeners...');
+    loadDungeonListeners();
 }
 
 
@@ -54,13 +64,6 @@ const viewSelected = function(activeView) {
     console.log(`${activeView} selected and saved...`)
     // Set current view to model
     setCurrentView(activeView);
-}
-
-
-// Load Dungeon Listeners
-const dungeonListenerInit = function() {
-    // Dev Log...  
-    console.log('Initializing dungeon listeners...');
 }
 
 
