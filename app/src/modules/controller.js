@@ -25,7 +25,7 @@ const runDungeonBtnClick = function() {
     // Set dungeon status to entered
     setStateObjectProperty('entered', 'dungeon', 'status');
     // Call rendering of dungeon
-    renderDungeonView();
+    renderDungeon();
 }
 
 
