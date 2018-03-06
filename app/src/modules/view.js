@@ -76,6 +76,12 @@ const loadNavListener = function() {
 }
 
 
+// Render Dungeon Dynamic content
+const renderDungeonView = function() {
+    console.log('Rendering dungeon view...');
+}
+
+
 // Loads Dungeon listeners
 const loadDungeonListeners = function() {
     // Dungeon buttons listeners
@@ -111,5 +117,6 @@ export {
     loadNavListener,
     loadCurrentView,
     loadDevListeners,
-    loadDungeonListeners
+    loadDungeonListeners,
+    renderDungeonView
 };
