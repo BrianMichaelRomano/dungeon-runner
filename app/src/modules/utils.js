@@ -11,9 +11,7 @@ const parseSelectedRoute = function(activatedRoute) {
 
 
 // Get a property from an object
-const getObjectPropertyValue = function(object, ...args) {
-    
-    const arguments = args;
+const getPropertyValue = function(object, ...args) {
 
     if(args[2]) {
         return object[args[0]][args[1]][args[2]];
@@ -23,6 +21,25 @@ const getObjectPropertyValue = function(object, ...args) {
         return object[args[0]];
     }
 }
+
+
+// Set a property from an object
+const setPropertyValue = function(object, value, ...args) {
+
+    const newObj = object;
+
+    if(args[2]) {
+        newObj[args[0]][args[1]][args[2]] = value;
+        return newObj;
+    } else if(args[1]) {
+        newObj[args[0]][args[1]] = value;
+        return newObj;
+    } else {
+        newObj[args[0]] = value;
+        return newObj;
+    }
+}
+
 
 // Create State Object
 const createStateObject = function() {
