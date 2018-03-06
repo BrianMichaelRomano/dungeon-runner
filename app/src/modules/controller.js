@@ -16,6 +16,44 @@ import {
     logStateObject
 } from './model.js';
 
+
+// Run Dungeon button clicked
+const runDungeonBtnClick = function() {
+    console.log('Run Dungeon Button click...');
+}
+
+
+// Attack button clicked
+const attackBtnClick = function() {
+    console.log('Attack Button click...');
+    
+}
+
+
+// Defense button clicked
+const defenseBtnClick = function() {
+    console.log('Defense Button click...');    
+}
+
+
+// Magic button clicked
+const magicBtnClick = function() {
+    console.log('Magic Button click...');    
+}
+
+
+// Item button clicked
+const itemBtnClick = function() {
+    console.log('Item Button click...');    
+}
+
+
+// Flee button clicked
+const fleeBtnClick = function() {
+    console.log('Flee Button click...');    
+}
+
+
 // Initialize State Object if none exists
 const stateObjectInit = function() {
     // Dev Log...
@@ -101,5 +139,11 @@ export {
     stateObjectInit,
     devListenerInit,
     logStateBtnPressed,
-    clearStateBtnPressed
+    clearStateBtnPressed,
+    runDungeonBtnClick,
+    attackBtnClick,
+    defenseBtnClick,
+    magicBtnClick,
+    itemBtnClick,
+    fleeBtnClick
 }
