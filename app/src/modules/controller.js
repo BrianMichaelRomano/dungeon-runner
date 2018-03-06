@@ -20,6 +20,10 @@ import {
 // Run Dungeon button clicked
 const runDungeonBtnClick = function() {
     console.log('Run Dungeon Button click...');
+    
+    // Set dungeon status to entered
+
+    // Call rendering of dungeon
 }
 
 
