@@ -14,18 +14,21 @@ const initializeStateObject = function() {
 
 // Set State Object Property
 const setStateObjectProperty = function(value, property1, property2, property3) {
+    console.log(`Dungeon property set to ${value}`);    
     setStateObject(setPropertyValue(getStateObject(), value, property1, property2, property3));
 }
 
 
 // Set State Object
 const setStateObject = function(stateObject) {
+
     localStorage.setItem('dungeonRunnerState', JSON.stringify(stateObject));    
 }
 
 
 // Get State Object
 const getStateObject = function() {
+    
     return JSON.parse(localStorage.getItem('dungeonRunnerState'));    
 }
 
