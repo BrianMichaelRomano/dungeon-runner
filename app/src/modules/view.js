@@ -43,7 +43,7 @@ const hideInactiveViews = function(activeView) {
         'inventory-view',
         'character-view'
     ];
-    // loop through routes and set inactive route diplay to none
+    // loop through routes and set inactive route display to none
     routes.forEach((view) => {
         if(view !== activeView) {
             document.querySelector(`#${view}`).style.display = 'none';    
@@ -79,8 +79,29 @@ const loadNavListener = function() {
 // Loads Dungeon listeners
 const loadDungeonListeners = function() {
     // Dungeon buttons listeners
-    document.querySelector('#dungeon-view').addEventListener('click', () => {
-        console.log('Dungeon view click!');
+    document.querySelector('#dungeon-view').addEventListener('click', (e) => {
+        switch (e.target.id) {
+            case 'run-dungeon-btn':
+                console.log('Run Dungeon Button pressed...');
+                break;
+            case 'attack-btn':
+                console.log('Attack Button pressed...');
+                break;
+            case 'defense-btn':
+                console.log('Defense Button pressed...');
+                break;
+            case 'magic-btn':
+                console.log('Magic Button pressed...');
+                break;
+            case 'item-btn':
+                console.log('Item Button pressed...');
+                break;
+            case 'flee-btn':
+                console.log('Flee Button pressed...');
+                break;
+
+        }
+        // console.log(e);
     });
 }
 
