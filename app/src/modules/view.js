@@ -64,7 +64,7 @@ const loadDevListeners = function() {
 }
 
 
-// Sets Navigation listeners 
+// Loads Navigation listeners 
 const loadNavListener = function() {
     // Nav menu listener
     document.querySelector('nav').addEventListener('click', (e) => {
@@ -76,9 +76,19 @@ const loadNavListener = function() {
 }
 
 
+// Loads Dungeon listeners
+const loadDungeonListeners = function() {
+    // Dungeon buttons listeners
+    document.querySelector('#dungeon-view').addEventListener('click', () => {
+        console.log('Dungeon view click!');
+    });
+}
+
+
 // Exports ===================================
 export {
     loadNavListener,
     loadCurrentView,
-    loadDevListeners
+    loadDevListeners,
+    loadDungeonListeners
 };
