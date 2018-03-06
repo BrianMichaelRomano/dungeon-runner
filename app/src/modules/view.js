@@ -83,7 +83,7 @@ const loadNavListener = function() {
 
 
 // Render Dungeon Dynamic content
-const renderDungeonView = function() {
+const renderDungeonView = function(currentStateObject) {
     console.log('Rendering dungeon view...');
 }
 

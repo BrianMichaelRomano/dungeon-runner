@@ -117,9 +117,9 @@ const renderDungeon = function() {
     // Dev Log...
     console.log('Rendering Dungeon...');
     // Get state
-
+    const currentStateObject = getStateObject()
     // Render view
-    renderDungeonView();
+    renderDungeonView(currentStateObject);
 }
 
 
