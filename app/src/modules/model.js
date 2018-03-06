@@ -7,8 +7,7 @@ import {
 // Initialize State
 const initializeStateObject = function() {
     if(localStorage.getItem('dungeonRunnerState') === null) {
-        const stateObject = createStateObject();
-        setStateObject(stateObject);
+        setStateObject(createStateObject());
     }
 }
 
@@ -35,18 +34,16 @@ const setCurrentView = function(activeView) {
 
 // Get current view saved in Local Storage
 const getCurrentView = function() {
-    // Get State Object
-    const stateObject = getStateObject();
+
     // Return current view
-    return stateObject.view;
+    return getPropertyValue(getStateObject(), 'view')
 }
 
 
 // Clear state object
 const clearStateObject = function() {
     localStorage.removeItem('dungeonRunnerState');
-    const stateObject = createStateObject();
-    setStateObject(stateObject);
+    setStateObject(createStateObject());
 }
 
 
