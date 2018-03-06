@@ -10,10 +10,24 @@ const parseSelectedRoute = function(activatedRoute) {
 }
 
 
+// Get a property from an object
+const getObjectPropertyValue = function(object, property1, property2) {
+
+    if(property2) {
+        return object[property1][property2];
+    } else {
+        return object[property1];
+    }
+}
+
+
 // Create State Object
 const createStateObject = function() {
     const state = {
-        dungeon: 'entrance',
+        dungeon: {
+            turn: 0,
+            status: 'entrance'
+        },
         view: 'home-view',
         shop: {},
         inventory: {},
