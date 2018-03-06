@@ -27,12 +27,9 @@ const getStateObject = function() {
 
 // Set current view to Local Storage
 const setCurrentView = function(activeView) {
-    // Get State Object    
-    const stateObject = getStateObject();
+
     // Set view property to active view
-    stateObject.view = activeView;
-    // Save stateObject
-    setStateObject(stateObject);
+    setStateObject(setPropertyValue(getStateObject(), activeView, 'view'));
 }
 
 
