@@ -14,7 +14,8 @@ import {
     initializeStateObject,
     clearStateObject,
     logStateObject,
-    setStateObjectProperty
+    setStateObjectProperty,
+    getStateObject
 } from './model.js';
 
 

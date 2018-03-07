@@ -68,5 +68,6 @@ export {
     initializeStateObject,
     clearStateObject,
     logStateObject,
-    setStateObjectProperty
+    setStateObjectProperty,
+    getStateObject
 }
