@@ -63,6 +63,19 @@ nav {
     justify-content: space-around;
 }
 
+#action-menu-btns { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#action-menu-btns button {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+}
+
 /* CHARACTER */
 #character-view {
     min-height: 400px;
