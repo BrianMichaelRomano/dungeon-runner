@@ -59,9 +59,9 @@ const createStateObject = function() {
         },
         enemy: {
             name: 'Skeleton',
-            HP: 100,
-            AP: 80,
-            MP: 60
+            HP: 80,
+            AP: 60,
+            MP: 40
         },
         home: {}
     }   
