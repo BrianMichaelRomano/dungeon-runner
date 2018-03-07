@@ -29,8 +29,17 @@ nav {
     align-items: center;
 }
 
-#entered {
+#entrance-view {
+    display: none;
+}
+
+#entered-view {
     width: 75%;
+    display: none;
+}
+
+#exit-view {
+    display: none;
 }
 
 #entity-cards {
@@ -63,14 +72,14 @@ nav {
     justify-content: space-around;
 }
 
-#action-menu-btns { 
-    display: flex;
+#action-menu { 
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
-#action-menu-btns button {
+#action-menu button {
     width: 80px;
     height: 80px;
     margin: 5px;
