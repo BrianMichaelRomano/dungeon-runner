@@ -82,39 +82,58 @@ const loadNavListener = function() {
 }
 
 
-// Render Dungeon Dynamic content
-const renderDungeonView = function(currentStateObject) {
-    console.log('Rendering dungeon view...');
-}
-
-
 // Loads Dungeon listeners
 const loadDungeonListeners = function() {
     // Dungeon buttons listeners
     document.querySelector('#dungeon-view').addEventListener('click', (e) => {
         switch (e.target.id) {
             case 'run-dungeon-btn':
-                runDungeonBtnClick();
-                break;
+            runDungeonBtnClick();
+            break;
             case 'attack-btn':
-                attackBtnClick();
-                break;
+            attackBtnClick();
+            break;
             case 'defense-btn':
-                defenseBtnClick();
-                break;
+            defenseBtnClick();
+            break;
             case 'magic-btn':
-                magicBtnClick();
-                break;
+            magicBtnClick();
+            break;
             case 'item-btn':
-                itemBtnClick();
-                break;
+            itemBtnClick();
+            break;
             case 'flee-btn':
-                fleeBtnClick();
-                break;
-
+            fleeBtnClick();
+            break;   
         }
-        // console.log(e);
     });
+}
+
+
+// Render Dungeon Dynamic content
+const renderDungeonView = function(currentStateObject) {
+    console.log('Rendering dungeon view...');
+
+    const state = currentStateObject;
+
+    document.querySelector('#player-card').innerHTML = `
+        <h3>${state.character.name}</h3>
+        <ul>
+            <li>HP: ${state.character.HP}</li>
+            <li>HP: ${state.character.AP}</li>
+            <li>HP: ${state.character.MP}</li>
+        </ul>
+    `;
+
+    document.querySelector('#enemy-card').innerHTML = `
+    <h3>${state.enemy.name}</h3>
+    <ul>
+        <li>HP: ${state.enemy.HP}</li>
+        <li>HP: ${state.enemy.AP}</li>
+        <li>HP: ${state.enemy.MP}</li>
+    </ul>
+`;
+
 }
 
 
