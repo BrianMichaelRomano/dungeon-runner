@@ -137,6 +137,15 @@ const renderDungeonView = function(currentStateObject) {
 }
 
 
+// Toggles active views to flex, toggles inactive views to none
+const toggleViews = function(state) {
+    // get active view IDs
+    // get inactive view IDs
+    // toggle active views to flex
+    // toggle inactive view to none
+}
+
+
 // Exports ===================================
 export {
     loadNavListener,
