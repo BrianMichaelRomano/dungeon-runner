@@ -13,34 +13,34 @@ nav {
 /* Views */
 
 /* HOME */
-#home-view {
+#home {
     min-height: 400px;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 
 /* DUNGEON */
-#dungeon-view {
+#dungeon {
     min-height: 400px;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #entrance-view {
-    display: none;
+    display: flex;
 }
 
 #entered-view {
     width: 75%;
-    display: none;
+    display: flex;
     flex-direction: column;
 }
 
 #exit-view {
-    display: none;
+    display: flex;
 }
 
 #entity-cards {
@@ -50,7 +50,7 @@ nav {
 }
 
 #entity-cards ul {
-    list-style: none;
+    list-style: flex;
     padding: 0;
 }
 
@@ -74,7 +74,7 @@ nav {
 }
 
 #action-menu { 
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -87,27 +87,27 @@ nav {
 }
 
 /* CHARACTER */
-#character-view {
+#character {
     min-height: 400px;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 
 /* SHOP */
-#shop-view {
+#shop {
     min-height: 400px;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 
 /* INVENTORY */
-#inventory-view {
+#inventory {
     min-height: 400px;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
