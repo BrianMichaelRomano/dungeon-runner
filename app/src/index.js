@@ -29,6 +29,13 @@ const navigate = function() {
     });
 }
 
+// If no hashRoute is provided,
+if(!location.hash) {
+    
+    // default to #home.
+    location.hash = "#home";
+}
+
 navigate();
 
 window.addEventListener('hashchange', navigate);
