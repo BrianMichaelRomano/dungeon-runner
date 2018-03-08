@@ -46,7 +46,7 @@ const createStateObject = function() {
     const state = {
         dungeon: {
             turn: 0,
-            status: 'entrance'
+            view: 'entrance-view'
         },
         view: 'home-view',
         shop: {},
@@ -71,7 +71,7 @@ const createStateObject = function() {
 
 
 // Will toggle the one ID to flex and rest to none
-const toggleActiveElemet = function(array, Id) {
+const toggleActiveElement = function(array, Id) {
 
     document.querySelector(`#${Id}`).style.display = 'flex';
 
@@ -89,5 +89,5 @@ export {
     createStateObject,
     getPropertyValue,
     setPropertyValue,
-    toggleActiveElemet
+    toggleActiveElement
 }
