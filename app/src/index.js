@@ -5,7 +5,8 @@ import {
     renderDungeon,
     dungeonListenerInit,
     stateObjectInit,
-    devListenerInit
+    devListenerInit,
+    menuListenerInit
 } from './modules/controller.js';
 
 
@@ -24,10 +25,11 @@ navListenerInit();
 // Load Dungeon Listeners
 dungeonListenerInit();
 
+// Load Dungeon Listeners
+menuListenerInit();
 
 // Load current route view
 viewInit();
-
 
 // Render Dungeon
 renderDungeon();

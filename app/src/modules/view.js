@@ -14,7 +14,7 @@ import {
 // Utils Module
 import {
     parseSelectedRoute,
-    toggleActiveElemet
+    toggleActiveElement
 } from './utils.js';
 
 
@@ -32,9 +32,29 @@ const showActiveView = function(btnClickedID) {
     // Parse button ID clicked to corrasponding view ID
     let selectedView = parseSelectedRoute(btnClickedID);
     // Select view and set display to flex 
-    toggleActiveElemet(routes, selectedView)
+    toggleActiveElement(routes, selectedView)
     // Tell controller which view has been selected
     viewSelected(selectedView);
+}
+
+
+// Render view to screen
+const showActiveMenu = function(btnClickedID) {
+    
+    const menus = [
+        'attack-menu',
+        'defense-menu',
+        'magic-menu',
+        'item-menu',
+        'flee-menu'
+    ];
+
+    // Parse button ID clicked to corrasponding view ID
+    let selectedMenu = parseSelectedRoute(btnClickedID);
+    // Select view and set display to flex 
+    toggleActiveElement(menus, selectedMenu)
+    // Tell controller which view has been selected
+    menuSelected(selectedVMenu);
 }
 
 
@@ -61,8 +81,19 @@ const loadDevListeners = function() {
 const loadNavListener = function() {
     // Nav menu listener
     document.querySelector('nav').addEventListener('click', (e) => {
-        // Set active view id returned after rendering view 
-        const activeViewID = showActiveView(e.target.id);
+        // Show active view
+        showActiveView(e.target.id);
+    });
+}
+
+
+// Loads Menu listeners 
+const loadMenuListener = function() {
+    // Menu listener
+    document.querySelector('#view').addEventListener('click', (e) => {
+        // Show active menu
+        console.log('View click')
+        showActiveMenu(e.target.id);
     });
 }
 
@@ -95,11 +126,32 @@ const loadDungeonListeners = function() {
 }
 
 
+// Load Dungeon View IE entrance-view, entered-view, exit-view
+const loadDungeonView = function(status) {
+
+    const statusViews = [
+        'entrance-view',
+        'entered-view',
+        'exit-view'
+    ];
+
+    document.querySelector(`#${status}`).style.display = 'flex';
+
+    statusViews.forEach((el) => {
+        if(el !== status) {
+    document.querySelector(`#${el}`).style.display = 'none';    
+        }
+    });
+}
+
+
 // Render Dungeon Dynamic content
 const renderDungeonView = function(currentStateObject) {
     console.log('Rendering dungeon view...');
 
     const state = currentStateObject;
+    
+    loadDungeonView(state.dungeon.view);
 
     document.querySelector('#player-card').innerHTML = `
         <h3>${state.character.name}</h3>
@@ -127,6 +179,7 @@ export {
     loadNavListener,
     loadCurrentView,
     loadDevListeners,
+    loadMenuListener,
     loadDungeonListeners,
     renderDungeonView
 };

@@ -4,7 +4,8 @@ import {
     loadDevListeners,
     loadCurrentView,
     loadDungeonListeners,
-    renderDungeonView
+    renderDungeonView,
+    loadMenuListener
 } from './view.js';
 
 // Model Module
@@ -80,8 +81,17 @@ const devListenerInit = function() {
 const navListenerInit = function() {
     // Dev Log...    
     console.log('Initializing navigation Listeners...')    
-    // Call view to load Navigation listeners
+    // Call to view to load Navigation listeners
     loadNavListener();
+}
+
+
+// Load Menu Listener
+const menuListenerInit = function() {
+    // Dev Log... 
+    console.log('Initializing menu listeners...');    
+    // Call to view to load Menus listener    
+    loadMenuListener();
 }
 
 
@@ -99,7 +109,7 @@ const viewInit = function() {
     const currentRoute = getCurrentView();
     // Dev Log...
     console.log(`Initializing current route ${currentRoute}...`);        
-    // Call view to load current view
+    // Call to view to load current view
     loadCurrentView(currentRoute);
 }
 
@@ -145,6 +155,7 @@ export {
     dungeonListenerInit,
     stateObjectInit,
     devListenerInit,
+    menuListenerInit,
     logStateBtnPressed,
     clearStateBtnPressed,
     runDungeonBtnClick,
