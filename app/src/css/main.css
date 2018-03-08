@@ -36,6 +36,7 @@ nav {
 #entered-view {
     width: 75%;
     display: none;
+    flex-direction: column;
 }
 
 #exit-view {

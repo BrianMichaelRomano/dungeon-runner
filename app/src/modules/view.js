@@ -92,7 +92,6 @@ const loadMenuListener = function() {
     // Menu listener
     document.querySelector('#view').addEventListener('click', (e) => {
         // Show active menu
-        console.log('View click')
         showActiveMenu(e.target.id);
     });
 }
