@@ -70,9 +70,24 @@ const createStateObject = function() {
 }
 
 
+// Will toggle the one ID to flex and rest to none
+const toggleActiveElemet = function(array, Id) {
+
+    document.querySelector(`#${Id}`).style.display = 'flex';
+
+    array.forEach((el) => {
+        
+        if(el !== Id) {
+            document.querySelector(`#${el}`).style.display = 'none';        
+        }
+    });
+}
+
+
 export {
     parseSelectedRoute,
     createStateObject,
     getPropertyValue,
-    setPropertyValue
+    setPropertyValue,
+    toggleActiveElemet
 }
