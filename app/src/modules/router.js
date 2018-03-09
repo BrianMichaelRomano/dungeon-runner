@@ -48,7 +48,6 @@ function navigate(route){
 
     // Get a reference to the "view-output" section.
     const view = document.getElementById("view-output");
-
     // Set the "view-output" div innerHTML based on the route.
     getContent(route, function (content) {
         // Set innerHTML
@@ -60,7 +59,6 @@ function navigate(route){
 
 // Initialize router
 function routerInit() {
-
     // Get last route saved to state
     const savedRoute = getRoute();
     // Navigate to route last saved to state
