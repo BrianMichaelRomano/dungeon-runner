@@ -1,7 +1,7 @@
-const shopInit = function() {
+const shopRender = function() {
     console.log('Initialize Shop Component...');
 }
 
 export { 
-    shopInit
+    shopRender
 }

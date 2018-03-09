@@ -1,17 +1,17 @@
 import {
-    homeInit
+    homeRender
 } from '../components/home-component/home-component.js';
 import {
-    dungeonInit
+    dungeonRender
 } from '../components/dungeon-component/dungeon-component.js';
 import {
-    shopInit
+    shopRender
 } from '../components/shop-component/shop-component.js';
 import {
-    characterInit
+    characterRender
 } from '../components/character-component/character-component.js';
 import {
-    inventoryInit
+    inventoryRender
 } from '../components/inventory-component/inventory-component.js';
 import {
     setRoute,
@@ -42,7 +42,7 @@ function navigate(route){
     // Set the "view-output" div innerHTML based on the route.
     getContent(route, function (content) {
         view.innerHTML = content;
-        eval(route + 'Init')();
+        eval(route + 'Render')();
     });
 }
 

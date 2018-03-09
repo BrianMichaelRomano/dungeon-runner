@@ -1,7 +1,7 @@
-const inventoryInit = function() {
+const inventoryRender = function() {
     console.log('Initialize Inventory Component...');
 }
 
 export { 
-    inventoryInit
+    inventoryRender
 }

@@ -1,7 +1,7 @@
-const homeInit = function() {
+const homeRender = function() {
     console.log('Initialize Home Component...');
 }
 
 export { 
-    homeInit
+    homeRender
 }
