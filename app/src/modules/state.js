@@ -42,6 +42,16 @@ function setState(state) {
     localStorage.setItem('DRstate', JSON.stringify(state));
 }
 
+// Logs state to console
+function logState() {
+    console.table(getState());
+}
+
+// Clears saved state object from localStorage 
+function clearState() {
+    localStorage.removeItem('DRstate');
+}
+
 // Exports
 export {
     setRoute,
