@@ -23,19 +23,14 @@ const view = document.getElementById("view-output");
 
 function getContent(route, callback){
     
-    // Create a new AJAX request for fetching the partial HTML file.
-    var request = new XMLHttpRequest();
-
-    // Call the callback with the content loaded from the file.
-    request.onload = function () {
-    callback(request.responseText);
-    };
-
-    // Fetch the partial HTML file for the given fragment id.
-    request.open("GET",`./components/${route}-component/${route}-component.html`);
-    request.send(null);
+    fetch(`./components/${route}-component/${route}-component.html`)
+    .then(function(response) {
+      return response.text();
+    })
+    .then(function(text) {
+      callback(text);
+    });
 }
-
     
 function navigate(route){
 
