@@ -74,7 +74,7 @@ nav {
 }
 
 #action-menu { 
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -84,6 +84,26 @@ nav {
     width: 80px;
     height: 80px;
     margin: 5px;
+}
+
+#attack-menu {
+    display: none;
+}
+
+#defense-menu {
+    display: none;
+}
+
+#magic-menu {
+    display: none;
+}
+
+#item-menu {
+    display: none;
+}
+
+#flee-menu {
+    display: none;
 }
 
 /* CHARACTER */

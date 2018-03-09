@@ -2,7 +2,15 @@
 const defaultState = {
     // Last Saved Route
     route: 'home',
-    dungeonStatus: 'entrance'
+    dungeonStatus: 'entrance',
+    player: {
+        name: 'Firecore',
+        HP: 100
+    },
+    enemy: {
+        name: 'Skeleton',
+        HP: 100
+    }
 }
 
 // Accepts a route and saves it to state

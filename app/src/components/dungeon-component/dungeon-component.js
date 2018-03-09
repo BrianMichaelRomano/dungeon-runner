@@ -6,6 +6,29 @@ import {
 // Render Component
 function dungeonRender() {
     console.log('Initialize Dungeon Component...');
+    
+    // Run dungeon button listener
+    document.querySelector('#run-dungeon-btn').addEventListener('click', enterDungeon);
+
+    // Action menu listeners
+    document.querySelector('#action-btns').addEventListener('click', (e) => {
+        const menuActions = [
+            'attack',
+            'defense',
+            'magic',
+            'item',
+            'flee'
+        ];
+
+        const btnSelected = e.target.id;
+        const menuSelected = btnSelected.split('-');
+        document.getElementById(`${menuSelected[0]}-menu`).style.display = 'flex';
+        menuActions.forEach((menu) => {
+            if(menu !== menuSelected[0]) {
+                document.getElementById(`${menu}-menu`).style.display = 'none';        
+            }
+        });
+    });
 
     const state = getState();
 
@@ -21,11 +44,15 @@ function dungeonRender() {
     }
 
     // Render Entity names
-    document.querySelector('#player-card').innerHTML = 'Firecore';
-    document.querySelector('#enemy-card').innerHTML = 'Skeleton';
+    document.querySelector('#player-card').innerHTML = `
+        <h4>${state.player.name}</h4>
+        HP: ${state.player.HP}
+    `;
+    document.querySelector('#enemy-card').innerHTML = `
+        <h4>${state.enemy.name}</h4>
+        HP: ${state.enemy.HP}
+    `;
 
-    // Run dungeon button listener
-    document.querySelector('#run-dungeon-btn').addEventListener('click', enterDungeon);
 }
 
 // Enter Dungeon
