@@ -55,5 +55,7 @@ function clearState() {
 // Exports
 export {
     setRoute,
-    getRoute
+    getRoute,
+    logState,
+    clearState
 }
