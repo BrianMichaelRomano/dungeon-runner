@@ -51,6 +51,7 @@ function logState() {
 // Clears saved state object from localStorage 
 function clearState() {
     localStorage.removeItem('DRstate');
+    location.reload();
 }
 
 // Exports
@@ -58,5 +59,7 @@ export {
     setRoute,
     getRoute,
     logState,
-    clearState
+    clearState,
+    getState,
+    setState
 }
