@@ -1,19 +1,31 @@
+// Imports
 import {
+    // Home
     homeRender
 } from '../components/home-component/home-component.js';
+
 import {
+    // Dungeon
     dungeonRender
 } from '../components/dungeon-component/dungeon-component.js';
+
 import {
+    // Shop
     shopRender
 } from '../components/shop-component/shop-component.js';
+
 import {
+    // Character
     characterRender
 } from '../components/character-component/character-component.js';
+
 import {
+    // Inventory
     inventoryRender
 } from '../components/inventory-component/inventory-component.js';
+
 import {
+    // State
     setRoute,
     getRoute
 } from './state.js';
