@@ -1,8 +1,10 @@
 import {
-    homeInit
+    homeInit,
+    characterInit,
+    dungeonInit,
+    shopInit,
+    inventoryInit,
 } from './components/home-component/home-component.js';
-
-const route = 'home';
 
 // Get a reference to the "content" div.
 const view = document.getElementById("view-output");
@@ -24,7 +26,7 @@ function getContent(route, callback){
 }
 
     
-function navigate(){
+function navigate(route){
     
     // Set the "view-output" div innerHTML based on the route.
     getContent(route, function (content) {
@@ -34,4 +36,4 @@ function navigate(){
     
 }
 
-navigate();
+navigate('home');
