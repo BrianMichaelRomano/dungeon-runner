@@ -1,7 +1,8 @@
 // Default State Object
 const defaultState = {
     // Last Saved Route
-    route: 'home'
+    route: 'home',
+    dungeonStatus: 'entrance'
 }
 
 // Accepts a route and saves it to state
