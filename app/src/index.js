@@ -1,6 +1,5 @@
 import { 
-    routerInit,
-    navigate
+    routerInit
 } from './modules/router.js';
 
 routerInit();
