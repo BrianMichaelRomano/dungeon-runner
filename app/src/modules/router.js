@@ -13,6 +13,10 @@ import {
 import {
     inventoryInit
 } from '../components/inventory-component/inventory-component.js';
+import {
+    setRoute,
+    getRoute
+} from './state.js';
 
 // Get a reference to the "view-output" section.
 const view = document.getElementById("view-output");
@@ -44,13 +48,14 @@ function navigate(route){
 
 function routerInit() {
 
-    location.hash = '#home';
-    navigate('home');
+    const savedRoute = getRoute();
+    navigate(savedRoute);
 
     document.querySelector('nav').addEventListener('click', (e) => {
 
         const route = e.target.hash.substr(1);
-
+        // debugger;
+        setRoute(route);
         navigate(route);
     });
 }
