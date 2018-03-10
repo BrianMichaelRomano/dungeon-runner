@@ -1,6 +1,13 @@
-import {
-    renderComponent
-} from '../../services/render-service.js';
+// Renderer
+import { renderComponent } from '../../services/render-service.js';
+
+// Page Components
+import { HomeComponent } from '../home-component/home-component.js';
+import { DungeonComponent } from '../dungeon-component/dungeon-component.js';
+import { ShopComponent } from '../shop-component/shop-component.js';
+import { CharacterComponent } from '../character-component/character-component.js';
+import { InventoryComponent } from '../inventory-component/inventory-component.js';
+
 
 
 class NavbarComponent {
@@ -16,7 +23,27 @@ class NavbarComponent {
         document.querySelector('nav').addEventListener('click', (e) => {
             const parsedNav = e.target.id.substr(1).split('-')[0];
 
-            console.log(parsedNav);
+            // Render selected route
+            switch (parsedNav) {
+                case 'home':
+                    HomeComponent.render('page');
+                    break;
+                case 'dungeon':
+                    DungeonComponent.render('page');
+                    break;
+                case 'shop':
+                    ShopComponent.render('page');
+                    break;
+                case 'character':
+                    CharacterComponent.render('page');
+                    break;                
+                case 'inventory':
+                    InventoryComponent.render('page');
+                    break;
+                default:
+                    HomeComponent.render('page');                
+                    break;
+            }
         });
     }
 }
