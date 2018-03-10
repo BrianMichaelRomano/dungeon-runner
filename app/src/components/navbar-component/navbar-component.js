@@ -6,9 +6,9 @@ import {
 class NavbarComponent {
     constructor() { }
 
-    render(component, elementID) {
+    render(elementID) {
         // Render Navigation Bar
-        renderComponent(component, elementID);
+        renderComponent('./components/navbar-component/', 'navbar-component', elementID);
     }
 }
 

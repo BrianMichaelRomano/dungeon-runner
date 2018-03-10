@@ -1,7 +1,7 @@
-function renderComponent(component, elementID) {
+function renderComponent(folder, component, elementID) {
     console.log(`Rendering ${component}...`);
 
-    fetch(`./components/${component}-component/${component}-component.html`)
+    fetch(`./${folder}${component}.html`)
     .then((res) => {
         return res.text()
     })

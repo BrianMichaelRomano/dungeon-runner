@@ -4,7 +4,7 @@ import {
 } from '../navbar-component/navbar-component.js';
 
 function runApp() {
-    navbarComponent.render('navbar', 'view-output');
+    navbarComponent.render('view-output');
 }
 
 export {
