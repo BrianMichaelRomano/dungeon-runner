@@ -1,6 +1,6 @@
 // Component Imports
 import {
-    navbarComponent
-} from './components/navbar-component/navbar-component.js';
+    runApp
+} from './components/app-component/app-component.js';
 
-navbarComponent.render('navbar', 'view-output');
+runApp();
