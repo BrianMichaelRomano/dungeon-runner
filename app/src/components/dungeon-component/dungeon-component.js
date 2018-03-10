@@ -5,16 +5,41 @@ import {
 
 // Render Component
 function dungeonRender() {
-    console.log('Initialize Dungeon Component...');
-    
+
+    // Log that dungeon rendering started
+    console.log('Rendering dungeon...')
+
+    // Get Current State
+    const state = getState();
+
+    // Show dungeon status view
+    dungeonStatusView(state); 
+
     // Run dungeon button listener
     document.querySelector('#run-dungeon-btn').addEventListener('click', enterDungeon);
 
     // Initialize Action Menu
     actionMenuInit();
 
-    const state = getState();
+    // Render dynamic view content
+    renderDynamicContent(state);
+}
 
+
+function renderDynamicContent(state) {
+    // Render Entity names
+    document.querySelector('#player-card').innerHTML = `
+        <h4>${state.player.name}</h4>
+        HP: ${state.player.HP}
+    `;
+    document.querySelector('#enemy-card').innerHTML = `
+        <h4>${state.enemy.name}</h4>
+        HP: ${state.enemy.HP}
+    `;
+}
+
+// Show dungeon status view
+function dungeonStatusView(state) {
     // Show view by status
     if(state.dungeonStatus === 'entrance') {
         console.log('You are at the entrance!');
@@ -25,17 +50,6 @@ function dungeonRender() {
     } else {
         console.log('You at the dungeon exit!');        
     }
-
-    // Render Entity names
-    document.querySelector('#player-card').innerHTML = `
-        <h4>${state.player.name}</h4>
-        HP: ${state.player.HP}
-    `;
-    document.querySelector('#enemy-card').innerHTML = `
-        <h4>${state.enemy.name}</h4>
-        HP: ${state.enemy.HP}
-    `;
-
 }
 
 // Initialize Action Menu
