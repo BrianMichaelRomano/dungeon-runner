@@ -6,10 +6,21 @@ import {
 class NavbarComponent {
     constructor() { }
 
-    render(elementID) {
+    static render(elementID) {
         // Render Navigation Bar
-        renderComponent('./components/navbar-component/', 'navbar-component', elementID);
+        renderComponent('./components/navbar-component/', 'navbar-component', elementID, this.initAfterViewRender);
+    }
+
+    static initAfterViewRender() {
+        // Nav Listener
+        document.querySelector('nav').addEventListener('click', (e) => {
+            const parsedNav = e.target.id.substr(1).split('-')[0];
+
+            console.log(parsedNav);
+        });
     }
 }
 
-export let navbarComponent = new NavbarComponent();
+export {
+    NavbarComponent
+};

@@ -1,10 +1,10 @@
 // Component Imports
 import {
-    navbarComponent
+    NavbarComponent
 } from '../navbar-component/navbar-component.js';
 
 function runApp() {
-    navbarComponent.render('view-output');
+    NavbarComponent.render('navbar');
 }
 
 export {

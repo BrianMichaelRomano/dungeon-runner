@@ -1,4 +1,4 @@
-function renderComponent(folder, component, elementID) {
+function renderComponent(folder, component, elementID, callback) {
     console.log(`Rendering ${component}...`);
 
     fetch(`./${folder}${component}.html`)
@@ -7,6 +7,7 @@ function renderComponent(folder, component, elementID) {
     })
     .then((text) => {
         document.getElementById(elementID).innerHTML = text;
+        callback();
     });
 }
 
