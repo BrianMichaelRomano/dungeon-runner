@@ -1,6 +1,5 @@
 // Component Imports
-import {
-    runApp
-} from './components/app-component/app-component.js';
+import { NavbarComponent } from './components/navbar-component/navbar-component.js';
 
-runApp();
+// Renders Navbar component which is entry to app
+NavbarComponent.render('navbar');
