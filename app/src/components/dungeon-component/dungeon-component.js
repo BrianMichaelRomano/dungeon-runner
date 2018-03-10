@@ -10,7 +10,7 @@ function dungeonRender() {
     // Run dungeon button listener
     document.querySelector('#run-dungeon-btn').addEventListener('click', enterDungeon);
 
-    // Action menu listeners
+    // Action menu listener
     document.querySelector('#action-btns').addEventListener('click', (e) => {
         const menuActions = [
             'attack',
