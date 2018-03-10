@@ -1,5 +1,5 @@
 // Component Imports
-import { NavbarComponent } from './components/navbar-component/navbar-component.js';
+import { NewgameComponent } from './components/newgame-component/newgame-component.js';
 
-// Renders Navbar component which is entry to app
-NavbarComponent.render('navbar');
+// Renders New Game component if no state exists
+NewgameComponent.render('page');

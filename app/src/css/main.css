@@ -20,6 +20,13 @@ nav {
     align-items: center;
 }
 
+/* NEWGAME */
+#newgame {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* DUNGEON */
 #dungeon {
