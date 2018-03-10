@@ -4,7 +4,7 @@ class DungeonComponent {
     constructor() { }
 
     static render(elementID) {
-        // Render Navigation Bar
+        // Render Dungeon Page
         renderComponent('./components/dungeon-component/', 'dungeon-component', elementID, this.initAfterViewRender);
     }
 

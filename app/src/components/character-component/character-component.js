@@ -4,7 +4,7 @@ class CharacterComponent {
     constructor() { }
 
     static render(elementID) {
-        // Render Navigation Bar
+        // Render Character Page
         renderComponent('./components/character-component/', 'character-component', elementID, this.initAfterViewRender);
     }
 
