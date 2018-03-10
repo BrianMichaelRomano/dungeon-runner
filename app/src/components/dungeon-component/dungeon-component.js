@@ -10,25 +10,8 @@ function dungeonRender() {
     // Run dungeon button listener
     document.querySelector('#run-dungeon-btn').addEventListener('click', enterDungeon);
 
-    // Action menu listener
-    document.querySelector('#action-btns').addEventListener('click', (e) => {
-        const menuActions = [
-            'attack',
-            'defense',
-            'magic',
-            'item',
-            'flee'
-        ];
-
-        const btnSelected = e.target.id;
-        const menuSelected = btnSelected.split('-');
-        document.getElementById(`${menuSelected[0]}-menu`).style.display = 'flex';
-        menuActions.forEach((menu) => {
-            if(menu !== menuSelected[0]) {
-                document.getElementById(`${menu}-menu`).style.display = 'none';        
-            }
-        });
-    });
+    // Initialize Action Menu
+    actionMenuInit();
 
     const state = getState();
 
@@ -53,6 +36,29 @@ function dungeonRender() {
         HP: ${state.enemy.HP}
     `;
 
+}
+
+// Initialize Action Menu
+function actionMenuInit() {
+    // Action menu listener
+    document.querySelector('#action-btns').addEventListener('click', (e) => {
+        const menuActions = [
+            'attack',
+            'defense',
+            'magic',
+            'item',
+            'flee'
+        ];
+
+        const btnSelected = e.target.id;
+        const menuSelected = btnSelected.split('-');
+        document.getElementById(`${menuSelected[0]}-menu`).style.display = 'flex';
+        menuActions.forEach((menu) => {
+            if(menu !== menuSelected[0]) {
+                document.getElementById(`${menu}-menu`).style.display = 'none';        
+            }
+        });
+    });
 }
 
 // Enter Dungeon
