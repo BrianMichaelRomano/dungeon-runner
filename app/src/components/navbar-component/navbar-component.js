@@ -19,6 +19,10 @@ class NavbarComponent {
     }
 
     static initAfterViewRender() {
+
+        // Default page load
+        HomeComponent.render('page');
+
         // Nav Listener
         document.querySelector('nav').addEventListener('click', (e) => {
             const parsedNav = e.target.id.substr(1).split('-')[0];
