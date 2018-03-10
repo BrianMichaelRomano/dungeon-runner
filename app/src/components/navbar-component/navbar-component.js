@@ -20,7 +20,7 @@ class NavbarComponent {
 
     static initAfterViewRender() {
 
-        // Default page load
+        // Default page load to Home Page
         HomeComponent.render('page');
 
         // Nav Listener
