@@ -7,4 +7,6 @@ function runApp() {
     navbarComponent.render('navbar', 'view-output');
 }
 
-export {runApp};
+export {
+    runApp
+};
