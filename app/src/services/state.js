@@ -3,6 +3,9 @@ class State {
         this.newState = {
             character: {
                 name: ''
+            },
+            dungeon: {
+                view: 'exit'
             }
         };
     }
