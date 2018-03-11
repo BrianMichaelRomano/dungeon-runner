@@ -4,6 +4,9 @@ import { renderComponent } from '../../services/render-service.js';
 import { state } from '../../services/state.js';
 // Import Components
 import { DungeonComponent } from '../dungeon-component/dungeon-component.js';
+import { CharacterComponent } from '../character-component/character-component.js';
+import { ShopComponent } from '../shop-component/shop-component.js';
+import { InventoryComponent } from '../inventory-component/inventory-component.js';
 
 
 class InnComponent {
@@ -20,10 +23,23 @@ class InnComponent {
         // Render page header wish dynamic player name
         document.querySelector('#inn h2').innerHTML = `${state.getState().character.name}'s Lodging`;
 
-        // Button and Menu listeners
-        document.getElementById('find-dungeon-btn').addEventListener('click', () => {
-            console.log('Finding dungeon...');
-            DungeonComponent.render('page');
+        // Button and Menu listener
+        document.getElementById('page').addEventListener('click', (e) => {
+
+            switch (e.target.id) {
+                case 'dungeon-btn':
+                    DungeonComponent.render('page');
+                    break;
+                case 'character-btn':
+                    CharacterComponent.render('page');
+                    break;
+                case 'shop-btn':
+                    ShopComponent.render('page');
+                    break;
+                case 'inventory-btn':
+                    InventoryComponent.render('page');
+                    break;
+            }
         });
     }
 }
