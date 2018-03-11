@@ -16,13 +16,6 @@ class NewgameComponent {
     static initAfterViewRender() {
         console.log('Newgame component initialized...');
 
-        // Check if state already exists
-            // If state already exists render Inn Component
-        if(state.getState()) {
-            console.log('Render Inn Component');
-            InnComponent.render('page');
-        }
-
         // select input and buttons
         const charNameInput = document.getElementById('character-name-input');
         const charNameSubmit = document.getElementById('character-name-submit');
