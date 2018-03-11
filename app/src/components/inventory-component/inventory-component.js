@@ -1,4 +1,7 @@
+// Import Renderer
 import { renderComponent } from '../../services/render-service.js';
+// Import Components
+import { InnComponent } from '../inn-component/inn-component.js';
 
 class InventoryComponent {
     constructor() { }
@@ -10,6 +13,11 @@ class InventoryComponent {
 
     static initAfterViewRender() {
         console.log('Inventory component initialized...');
+
+        // Back button
+        document.getElementById('back').addEventListener('click', () => {
+            InnComponent.render('page');
+        });
     }
 }
 

@@ -24,8 +24,8 @@ class InnComponent {
         document.querySelector('#inn h2').innerHTML = `${state.getState().character.name}'s Lodging`;
 
         // Button and Menu listener
-        document.getElementById('page').addEventListener('click', (e) => {
-
+        document.getElementById('inn-menu').addEventListener('click', (e) => {
+            // Navigation 
             switch (e.target.id) {
                 case 'dungeon-btn':
                     DungeonComponent.render('page');
