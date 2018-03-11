@@ -5,7 +5,7 @@ class State {
                 name: ''
             },
             dungeon: {
-                view: 'exit'
+                view: 'entrance'
             }
         };
     }
