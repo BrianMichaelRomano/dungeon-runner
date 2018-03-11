@@ -15,8 +15,8 @@ class State {
         return JSON.parse(localStorage.getItem('DRstate'));
     }
 
-    setState() {
-
+    setState(state) {
+        localStorage.setItem('DRstate', JSON.stringify(state));
     }
 }
 
