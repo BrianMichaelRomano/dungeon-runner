@@ -2,6 +2,8 @@
 import { renderComponent } from '../../services/render-service.js';
 // Import Components
 import { InnComponent } from '../inn-component/inn-component.js';
+// Import State
+import { state } from '../../services/state.js';
 
 class CharacterComponent {
     constructor() { }
@@ -18,6 +20,9 @@ class CharacterComponent {
         document.getElementById('back').addEventListener('click', () => {
             InnComponent.render('page');
         });
+
+        // Render page header wish dynamic player name
+        document.querySelector('#character-name').innerHTML = `${state.getState().character.name}`;
     }
 }
 
