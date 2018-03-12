@@ -36,6 +36,12 @@ nav {
     align-items: center;
 }
 
+#dungeon-entrance {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 
 /* CHARACTER */
 #character {
