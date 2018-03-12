@@ -45,6 +45,35 @@ nav {
     align-items: center;
 }
 
+#gear-slots {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+#gear-first-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+#gear-second-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+#gear-third-row {
+    display: flex;
+    justify-content: space-around;    
+}
+
+.gear {
+    text-align:  center;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    background-color: lightgray; 
+}
+
 
 /* SHOP */
 #shop {
