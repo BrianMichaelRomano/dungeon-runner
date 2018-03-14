@@ -1,19 +1,26 @@
-// Import Renderer
-import { renderComponent } from '../../services/render-service.js';
 // Import State
 import { state } from '../../services/state.js';
 // Import Components
+import { Component } from '../../services/component.js';
 import { InnComponent } from '../inn-component/inn-component.js';
 
-export class NewgameComponent {
+export class NewgameComponent extends Component {
     constructor() { }
 
     static render(elementID) {
-        // Render Character Page
-        renderComponent('./components/newgame-component/', 'newgame-component', elementID, this.initAfterViewRender);
+        
+        // Configuration Object
+        const config = {
+            view: './components/newgame-component/newgame-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
+        // Render Newgame Page
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Newgame component initialized...');
 
         // select input and buttons
@@ -29,6 +36,5 @@ export class NewgameComponent {
             // render Inn Component on submit of character name
             InnComponent.render('page');
         });
-
     }
 }

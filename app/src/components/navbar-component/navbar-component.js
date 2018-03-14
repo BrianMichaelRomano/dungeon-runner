@@ -1,7 +1,5 @@
-// Renderer
-import { renderComponent } from '../../services/render-service.js';
-
 // Page Components
+import { Component } from '../../services/component.js';
 import { HomeComponent } from '../home-component/home-component.js';
 import { DungeonComponent } from '../dungeon-component/dungeon-component.js';
 import { ShopComponent } from '../shop-component/shop-component.js';
@@ -14,11 +12,19 @@ export class NavbarComponent {
     constructor() { }
 
     static render(elementID) {
-        // Render Navigation Bar
-        renderComponent('./components/navbar-component/', 'navbar-component', elementID, this.initAfterViewRender);
+        
+        // Configuration Object
+        const config = {
+            view: './components/character-component/character-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
+        // Render Navbar
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
 
         // Default page load to Home Page
         HomeComponent.render('page');

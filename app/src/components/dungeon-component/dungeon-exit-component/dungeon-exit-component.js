@@ -1,15 +1,23 @@
 // Import renderer
-import { renderComponent } from '../../../services/render-service.js';
+import { Component } from '../../../services/component.js';
 
-export class DungeonExitComponent {
+export class DungeonExitComponent extends Component {
     constructor() { }
 
     static render(elementID) {
-        // Render Dungeon Exit Sub Page
-        renderComponent('./components/dungeon-component/dungeon-exit-component/', 'dungeon-exit-component', elementID, this.initAfterViewRender);
+        
+        // Configuration Object
+        const config = {
+            view: './components/dungeon-component/dungeon-exit-component/dungeon-exit-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
+        // Render Character Page
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Dungeon exit component initialized...');
     }
 }

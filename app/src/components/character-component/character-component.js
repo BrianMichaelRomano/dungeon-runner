@@ -1,19 +1,26 @@
-// Import Renderer
-import { renderComponent } from '../../services/render-service.js';
 // Import Components
+import { Component } from '../../services/component.js';
 import { InnComponent } from '../inn-component/inn-component.js';
 // Import State
 import { state } from '../../services/state.js';
 
-export class CharacterComponent {
+export class CharacterComponent extends Component {
     constructor() { }
 
     static render(elementID) {
+
+        // Configuration Object
+        const config = {
+            view: './components/character-component/character-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
         // Render Character Page
-        renderComponent('./components/character-component/', 'character-component', elementID, this.initAfterViewRender);
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Character component initialized...');
 
         // Back button

@@ -1,17 +1,24 @@
-// Import renderer
-import { renderComponent } from '../../../services/render-service.js';
 // Import Components
+import { Component } from '../../../services/component.js';
 import { InnComponent } from '../../inn-component/inn-component.js';
 
-export class DungeonEntranceComponent {
+export class DungeonEntranceComponent extends Component{
     constructor() { }
 
     static render(elementID) {
-        // Render Dungeon Entrance Sub Page
-        renderComponent('./components/dungeon-component/dungeon-entrance-component/', 'dungeon-entrance-component', elementID, this.initAfterViewRender);
+        
+        // Configuration Object
+        const config = {
+            view: './components/dungeon-component/dungeon-entrance-component/dungeon-entrance-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
+        // Render Character Page
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Dungeon entrance component initialized...');
 
         // Back button

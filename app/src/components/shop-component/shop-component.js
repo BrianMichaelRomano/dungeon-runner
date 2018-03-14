@@ -1,17 +1,24 @@
-// Import Renderer
-import { renderComponent } from '../../services/render-service.js';
 // Import Components
+import { Component } from '../../services/component.js';
 import { InnComponent } from '../inn-component/inn-component.js';
 
-export class ShopComponent {
+export class ShopComponent extends Component {
     constructor() { }
 
     static render(elementID) {
+        
+        // Configuration Object
+        const config = {
+            view: './components/shop-component/shop-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
         // Render Shop Page
-        renderComponent('./components/shop-component/', 'shop-component', elementID, this.initAfterViewRender);
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Shop component initialized...');
 
         // Back button

@@ -1,21 +1,28 @@
-// Import Renderer
-import { renderComponent } from '../../services/render-service.js';
 // Import State
 import { state } from '../../services/state.js';
-// Import dungeon sub components
+// Import Components
+import { Component } from '../../services/component.js';
 import { DungeonEntranceComponent } from './dungeon-entrance-component/dungeon-entrance-component.js';
 import { DungeonCombatComponent } from './dungeon-combat-component/dungeon-combat-component.js';
 import { DungeonExitComponent } from './dungeon-exit-component/dungeon-exit-component.js';
 
-export class DungeonComponent {
+export class DungeonComponent extends Component{
     constructor() { }
 
     static render(elementID) {
+        
+        // Configuration Object
+        const config = {
+            view: './components/dungeon-component/dungeon-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
         // Render Dungeon Page
-        renderComponent('./components/dungeon-component/', 'dungeon-component', elementID, this.initAfterViewRender);
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Dungeon component initialized...');
 
         // Get last saved dungeonView

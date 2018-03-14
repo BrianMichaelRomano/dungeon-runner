@@ -1,23 +1,30 @@
-// Import Renderer
-import { renderComponent } from '../../services/render-service.js';
 // Import State
 import { state } from '../../services/state.js';
 // Import Components
+import { Component } from '../../services/component.js';
 import { DungeonComponent } from '../dungeon-component/dungeon-component.js';
 import { CharacterComponent } from '../character-component/character-component.js';
 import { ShopComponent } from '../shop-component/shop-component.js';
 import { InventoryComponent } from '../inventory-component/inventory-component.js';
 
 
-export class InnComponent {
+export class InnComponent extends Component {
     constructor() { }
 
     static render(elementID) {
+        
+        // Configuration Object
+        const config = {
+            view: './components/inn-component/inn-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
         // Render Inn Page
-        renderComponent('./components/inn-component/', 'inn-component', elementID, this.initAfterViewRender);
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Inn component initialized...');
 
         // Render page header wish dynamic player name

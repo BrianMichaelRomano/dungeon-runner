@@ -1,15 +1,23 @@
-// Import renderer
-import { renderComponent } from '../../../services/render-service.js';
+// Import Components
+import { Component } from '../../../services/component.js';
 
-export class DungeonCombatComponent {
+export class DungeonCombatComponent extends Component {
     constructor() { }
 
     static render(elementID) {
-        // Render Dungeon Combat Sub Page
-        renderComponent('./components/dungeon-component/dungeon-combat-component/', 'dungeon-combat-component', elementID, this.initAfterViewRender);
+        
+        // Configuration Object
+        const config = {
+            view: './components/dungeon-component/dungeon-combat-component/dungeon-combat-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
+        // Render Dungeon Combat View
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Dungeon combat component initialized...');
     }
 }

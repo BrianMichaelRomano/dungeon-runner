@@ -1,17 +1,24 @@
-// Import Renderer
-import { renderComponent } from '../../services/render-service.js';
 // Import Components
+import { Component } from '../../services/component.js';
 import { InnComponent } from '../inn-component/inn-component.js';
 
-export class InventoryComponent {
+export class InventoryComponent extends Component {
     constructor() { }
 
     static render(elementID) {
+        
+        // Configuration Object
+        const config = {
+            view: './components/inventory-component/inventory-component.html',
+            element: elementID,
+            callback: this.controller
+        }
+
         // Render Inventory Page
-        renderComponent('./components/inventory-component/', 'inventory-component', elementID, this.initAfterViewRender);
+        super.render(config);
     }
 
-    static initAfterViewRender() {
+    static controller() {
         console.log('Inventory component initialized...');
 
         // Back button
