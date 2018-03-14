@@ -17,7 +17,10 @@ export class InnComponent extends Component {
         const config = {
             view: './components/inn-component/inn-component.html',
             element: elementID,
-            callback: this.controller
+            callback: this.controller,
+            data: {
+                name: state.getState().character.name
+            }
         }
 
         // Render Inn Page
@@ -26,9 +29,6 @@ export class InnComponent extends Component {
 
     static controller() {
         console.log('Inn component initialized...');
-
-        // Render page header wish dynamic player name
-        document.querySelector('#inn h2').innerHTML = `${state.getState().character.name}'s Lodging`;
 
         // Button and Menu listener
         document.getElementById('inn-menu').addEventListener('click', (e) => {

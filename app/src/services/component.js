@@ -1,3 +1,6 @@
+// Import Utils
+import { Templater } from './templater.js';
+
 export class Component {
     constructor() {}
 
@@ -8,7 +11,8 @@ export class Component {
             return res.text()
         })
         .then((text) => {
-            document.getElementById(config.element).innerHTML = text;
+            let template = Templater.render(text);
+            document.getElementById(config.element).innerHTML = template(config.data);
             config.callback();
         });
     }
