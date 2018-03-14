@@ -9,7 +9,7 @@ import { ShopComponent } from '../shop-component/shop-component.js';
 import { InventoryComponent } from '../inventory-component/inventory-component.js';
 
 
-class InnComponent {
+export class InnComponent {
     constructor() { }
 
     static render(elementID) {
@@ -43,5 +43,3 @@ class InnComponent {
         });
     }
 }
-
-export { InnComponent };

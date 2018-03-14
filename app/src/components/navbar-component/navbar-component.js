@@ -10,7 +10,7 @@ import { InventoryComponent } from '../inventory-component/inventory-component.j
 
 
 
-class NavbarComponent {
+export class NavbarComponent {
     constructor() { }
 
     static render(elementID) {
@@ -51,7 +51,3 @@ class NavbarComponent {
         });
     }
 }
-
-export {
-    NavbarComponent
-};

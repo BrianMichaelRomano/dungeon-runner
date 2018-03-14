@@ -1,7 +1,7 @@
 // Import renderer
 import { renderComponent } from '../../../services/render-service.js';
 
-class DungeonExitComponent {
+export class DungeonExitComponent {
     constructor() { }
 
     static render(elementID) {
@@ -13,5 +13,3 @@ class DungeonExitComponent {
         console.log('Dungeon exit component initialized...');
     }
 }
-
-export { DungeonExitComponent };

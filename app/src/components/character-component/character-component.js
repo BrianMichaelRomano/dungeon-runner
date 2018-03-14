@@ -5,7 +5,7 @@ import { InnComponent } from '../inn-component/inn-component.js';
 // Import State
 import { state } from '../../services/state.js';
 
-class CharacterComponent {
+export class CharacterComponent {
     constructor() { }
 
     static render(elementID) {
@@ -25,5 +25,3 @@ class CharacterComponent {
         document.querySelector('#character-name').innerHTML = `${state.getState().character.name}`;
     }
 }
-
-export { CharacterComponent };

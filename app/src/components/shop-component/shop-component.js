@@ -3,7 +3,7 @@ import { renderComponent } from '../../services/render-service.js';
 // Import Components
 import { InnComponent } from '../inn-component/inn-component.js';
 
-class ShopComponent {
+export class ShopComponent {
     constructor() { }
 
     static render(elementID) {
@@ -20,5 +20,3 @@ class ShopComponent {
         });
     }
 }
-
-export { ShopComponent };

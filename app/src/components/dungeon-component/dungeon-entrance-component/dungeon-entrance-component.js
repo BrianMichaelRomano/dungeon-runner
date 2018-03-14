@@ -3,7 +3,7 @@ import { renderComponent } from '../../../services/render-service.js';
 // Import Components
 import { InnComponent } from '../../inn-component/inn-component.js';
 
-class DungeonEntranceComponent {
+export class DungeonEntranceComponent {
     constructor() { }
 
     static render(elementID) {
@@ -20,5 +20,3 @@ class DungeonEntranceComponent {
         });
     }
 }
-
-export { DungeonEntranceComponent };

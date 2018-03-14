@@ -7,7 +7,7 @@ import { DungeonEntranceComponent } from './dungeon-entrance-component/dungeon-e
 import { DungeonCombatComponent } from './dungeon-combat-component/dungeon-combat-component.js';
 import { DungeonExitComponent } from './dungeon-exit-component/dungeon-exit-component.js';
 
-class DungeonComponent {
+export class DungeonComponent {
     constructor() { }
 
     static render(elementID) {
@@ -31,5 +31,3 @@ class DungeonComponent {
         };
     }
 }
-
-export { DungeonComponent };

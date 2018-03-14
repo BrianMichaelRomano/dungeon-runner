@@ -5,7 +5,7 @@ import { state } from '../../services/state.js';
 // Import Components
 import { InnComponent } from '../inn-component/inn-component.js';
 
-class NewgameComponent {
+export class NewgameComponent {
     constructor() { }
 
     static render(elementID) {
@@ -32,5 +32,3 @@ class NewgameComponent {
 
     }
 }
-
-export { NewgameComponent };
