@@ -1,5 +1,5 @@
 // Import Utils
-import { Templater } from './templater.js';
+import { TemplateEngine } from './templateEngine.js';
 
 export class Component {
     constructor() {}
@@ -11,8 +11,8 @@ export class Component {
             return res.text()
         })
         .then((text) => {
-            let template = Templater.render(text);
-            document.getElementById(config.element).innerHTML = template(config.data);
+            let template = TemplateEngine.renderTemplate(text, config.data);
+            document.getElementById(config.element).innerHTML = template;
             config.callback();
         });
     }

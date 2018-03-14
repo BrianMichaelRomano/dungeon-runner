@@ -19,7 +19,7 @@ export class InnComponent extends Component {
             element: elementID,
             callback: this.controller,
             data: {
-                name: state.getState().character.name
+                state: state.getState()
             }
         }
 
