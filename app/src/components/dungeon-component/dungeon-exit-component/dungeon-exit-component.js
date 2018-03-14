@@ -14,7 +14,7 @@ export class DungeonExitComponent extends Component {
         }
 
         // Render Character Page
-        super.render(config);
+        super.renderer(config);
     }
 
     static controller() {

@@ -19,7 +19,7 @@ export class DungeonComponent extends Component{
         }
 
         // Render Dungeon Page
-        super.render(config);
+        super.renderer(config);
     }
 
     static controller() {

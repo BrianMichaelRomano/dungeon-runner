@@ -17,7 +17,7 @@ export class NewgameComponent extends Component {
         }
 
         // Render Newgame Page
-        super.render(config);
+        super.renderer(config);
     }
 
     static controller() {

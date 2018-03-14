@@ -15,7 +15,7 @@ export class ShopComponent extends Component {
         }
 
         // Render Shop Page
-        super.render(config);
+        super.renderer(config);
     }
 
     static controller() {

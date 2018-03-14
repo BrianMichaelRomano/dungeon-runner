@@ -14,7 +14,7 @@ export class DungeonCombatComponent extends Component {
         }
 
         // Render Dungeon Combat View
-        super.render(config);
+        super.renderer(config);
     }
 
     static controller() {

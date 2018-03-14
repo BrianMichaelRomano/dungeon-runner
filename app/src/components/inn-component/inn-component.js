@@ -21,7 +21,7 @@ export class InnComponent extends Component {
         }
 
         // Render Inn Page
-        super.render(config);
+        super.renderer(config);
     }
 
     static controller() {

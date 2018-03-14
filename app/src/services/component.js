@@ -1,7 +1,7 @@
 export class Component {
     constructor() {}
 
-    static render(config) {
+    static renderer(config) {
     
         fetch(config.view)
         .then((res) => {

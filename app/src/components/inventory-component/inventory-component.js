@@ -15,7 +15,7 @@ export class InventoryComponent extends Component {
         }
 
         // Render Inventory Page
-        super.render(config);
+        super.renderer(config);
     }
 
     static controller() {
