@@ -26,6 +26,12 @@ class State {
     setState(state) {
         localStorage.setItem('DRstate', JSON.stringify(state));
     }
+
+    setDungeonView(view) {
+        let state = this.getState();
+        state.dungeon.view = view;
+        this.setState(state);
+    }
 }
 
 export let state = new State();

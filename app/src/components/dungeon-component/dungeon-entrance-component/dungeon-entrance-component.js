@@ -1,6 +1,9 @@
+// Import State
+import { state } from '../../../services/state.js';
 // Import Components
 import { Component } from '../../../services/component.js';
 import { InnComponent } from '../../inn-component/inn-component.js';
+import { DungeonCombatComponent } from  '../dungeon-combat-component/dungeon-combat-component.js';
 
 export class DungeonEntranceComponent extends Component{
     constructor() { }
@@ -20,6 +23,12 @@ export class DungeonEntranceComponent extends Component{
 
     static controller() {
         console.log('Dungeon entrance component initialized...');
+
+        // Enter button
+        document.getElementById('enter').addEventListener('click', () => {
+            DungeonCombatComponent.render('dungeon-view');
+            state.setDungeonView('combat');
+        });
 
         // Back button
         document.getElementById('back').addEventListener('click', () => {

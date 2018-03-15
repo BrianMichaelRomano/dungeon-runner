@@ -1,5 +1,8 @@
+// Import State
+import { state } from '../../../services/state.js';
 // Import Components
 import { Component } from '../../../services/component.js';
+import { DungeonExitComponent } from  '../dungeon-exit-component/dungeon-exit-component.js';
 
 export class DungeonCombatComponent extends Component {
     constructor() { }
@@ -19,5 +22,11 @@ export class DungeonCombatComponent extends Component {
 
     static controller() {
         console.log('Dungeon combat component initialized...');
+
+                // Enter button
+                document.getElementById('fight').addEventListener('click', () => {
+                    DungeonExitComponent.render('dungeon-view');
+                    state.setDungeonView('exit');
+                });
     }
 }
