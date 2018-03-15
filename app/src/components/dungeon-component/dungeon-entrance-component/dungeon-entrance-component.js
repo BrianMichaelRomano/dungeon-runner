@@ -1,5 +1,7 @@
 // Import State
 import { state } from '../../../services/state.js';
+// Import Utils
+import { Utils } from '../../../services/utils.js';
 // Import Components
 import { Component } from '../../../services/component.js';
 import { InnComponent } from '../../inn-component/inn-component.js';
@@ -24,14 +26,15 @@ export class DungeonEntranceComponent extends Component{
     static controller() {
         console.log('Dungeon entrance component initialized...');
 
-        // Enter button
-        document.getElementById('enter').addEventListener('click', () => {
+        // Enter Button
+        Utils.event('#enter', 'click', () => {
             DungeonCombatComponent.render('dungeon-view');
             state.setDungeonView('combat');
         });
 
-        // Back button
-        document.getElementById('back').addEventListener('click', () => {
+        // Back Button
+        Utils.event('#back', 'click', () => {
+            DungeonCombatComponent.render('dungeon-view');
             InnComponent.render('page');
         });
     }
