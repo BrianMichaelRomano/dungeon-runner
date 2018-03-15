@@ -18,9 +18,7 @@ export class InnComponent extends Component {
             view: './components/inn-component/inn-component.html',
             element: elementID,
             callback: this.controller,
-            data: {
-                state: state.getState()
-            }
+            data: state.getState()
         }
 
         // Render Inn Page

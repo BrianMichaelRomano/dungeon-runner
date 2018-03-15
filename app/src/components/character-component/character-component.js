@@ -13,7 +13,8 @@ export class CharacterComponent extends Component {
         const config = {
             view: './components/character-component/character-component.html',
             element: elementID,
-            callback: this.controller
+            callback: this.controller,
+            data: state.getState()
         }
 
         // Render Character Page
@@ -27,8 +28,5 @@ export class CharacterComponent extends Component {
         document.getElementById('back').addEventListener('click', () => {
             InnComponent.render('page');
         });
-
-        // Render page header wish dynamic player name
-        document.querySelector('#character-name').innerHTML = `${state.getState().character.name}`;
     }
 }
