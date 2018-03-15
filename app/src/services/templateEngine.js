@@ -1,3 +1,7 @@
+// This wizardry was found here
+// http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line
+
+
 export class TemplateEngine {
     static renderTemplate(html, options) {
         var re = /<%([^%>]+)?%>/g, reExp = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, code = 'var r=[];\n', cursor = 0, match;
