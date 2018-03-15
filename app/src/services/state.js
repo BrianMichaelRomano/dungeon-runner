@@ -2,7 +2,12 @@ class State {
     constructor() {
         this.newState = {
             character: {
-                name: ''
+                name: '',
+                HP: 100,
+                AP: 80,
+                MP: 60,
+                attack: 10,
+                armor: 10,
             },
             dungeon: {
                 view: 'entrance'
