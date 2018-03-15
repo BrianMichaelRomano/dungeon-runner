@@ -1,4 +1,9 @@
 # Dungeon Runner
+
+## Description
+It's time for adventuer, gold and chests full of gear! Adventure into the dungeons and try to survive while bringing back the plunder. Well....right now all you can do is pick your character name and navigate the pages......but goblins are working behind the scenes on the game logic so ...... game play coming soon lol
+
+## Goals
 Goal of this project is to build a fairly complex web application/game using only basic HTML, CSS, Javascript. No frameworks or libraries other than the helper functions written by myself or if needed I will pull code from a library or functions written by others. Only the code necessary to solve the problem will be included. 
 
 Dungeon Runner is my first serious attempt at a non-tutorial based project. This project will be using native ES6 modules. Each view will be rendered by its corresponding component. A component will consist of a componentname-component.HTML file which holds the template to be rendered by ["Templeting Engine"](http://krasimirtsonev.com/blog/article/Javascript-template-engine-in-just-20-line) and a componentname-component.js file which will consist of a ES6 class object to control component logic and rendering of view. 
