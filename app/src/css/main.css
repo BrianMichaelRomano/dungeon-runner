@@ -37,10 +37,6 @@ nav {
     text-align: center;
 }
 
-#dungeon-view {
-    width: 100%;
-}
-
 #dungeon-entrance {
     display: flex;
     flex-direction: column;
