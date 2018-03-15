@@ -1,4 +1,4 @@
-// Import Utils
+// Import TemplateEngine
 import { TemplateEngine } from './templateEngine.js';
 
 export class Component {
