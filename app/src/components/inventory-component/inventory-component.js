@@ -1,3 +1,5 @@
+// Import Utils
+import { Utils as $ } from '../../services/utils.js';
 // Import Components
 import { Component } from '../../services/component.js';
 import { InnComponent } from '../inn-component/inn-component.js';
@@ -22,7 +24,7 @@ export class InventoryComponent extends Component {
         console.log('Inventory component initialized...');
 
         // Back button
-        document.getElementById('back').addEventListener('click', () => {
+        $.event('#back', 'click', () => {
             InnComponent.render('page');
         });
     }

@@ -1,5 +1,7 @@
 // Import State
 import { state } from '../../../services/state.js';
+// Import Utils
+import { Utils as $ } from '../../../services/utils.js';
 // Import renderer
 import { Component } from '../../../services/component.js';
 import { InnComponent } from '../../inn-component/inn-component.js';
@@ -24,7 +26,7 @@ export class DungeonExitComponent extends Component {
         console.log('Dungeon exit component initialized...');
 
         // Continue button
-        document.getElementById('continue').addEventListener('click', () => {
+        $.event('#continue', 'click', () => {
             InnComponent.render('dungeon-view');
             state.setDungeonView('entrance');
         });

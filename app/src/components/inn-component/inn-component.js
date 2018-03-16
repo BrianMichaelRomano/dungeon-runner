@@ -1,5 +1,7 @@
 // Import State
 import { state } from '../../services/state.js';
+// Import Utils
+import { Utils as $ } from '../../services/utils.js';
 // Import Components
 import { Component } from '../../services/component.js';
 import { DungeonComponent } from '../dungeon-component/dungeon-component.js';
@@ -28,8 +30,8 @@ export class InnComponent extends Component {
     static controller() {
         console.log('Inn component initialized...');
 
-        // Button and Menu listener
-        document.getElementById('inn-menu').addEventListener('click', (e) => {
+        // Navigation Buttons
+        $.event('#inn-menu', 'click', (e) => {
             // Navigation 
             switch (e.target.id) {
                 case 'dungeon-btn':

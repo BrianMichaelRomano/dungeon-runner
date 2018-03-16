@@ -1,5 +1,7 @@
 // Import State
 import { state } from '../../services/state.js';
+// Import Utils
+import { Utils as $ } from '../../services/utils.js';
 // Import Components
 import { Component } from '../../services/component.js';
 import { InnComponent } from '../inn-component/inn-component.js';
@@ -23,15 +25,11 @@ export class NewgameComponent extends Component {
     static controller() {
         console.log('Newgame component initialized...');
 
-        // select input and buttons
-        const charNameInput = document.getElementById('character-name-input');
-        const charNameSubmit = document.getElementById('character-name-submit');
-
         // add listener on button to save entered name to state
-        charNameSubmit.addEventListener('click', () => {
+        $.event('#character-name-submit', 'click', () => {
             // Set submitted name to state
             let stateUpdate = state.createState();
-            stateUpdate.character.name = charNameInput.value;
+            stateUpdate.character.name = $.select('#character-name-input').value;
             state.setState(stateUpdate);
             // render Inn Component on submit of character name
             InnComponent.render('page');

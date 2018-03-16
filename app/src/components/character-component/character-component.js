@@ -1,8 +1,10 @@
+// Import State
+import { state } from '../../services/state.js';
+// Import Utils
+import { Utils as $ } from '../../services/utils.js';
 // Import Components
 import { Component } from '../../services/component.js';
 import { InnComponent } from '../inn-component/inn-component.js';
-// Import State
-import { state } from '../../services/state.js';
 
 export class CharacterComponent extends Component {
     constructor() { }
@@ -25,7 +27,7 @@ export class CharacterComponent extends Component {
         console.log('Character component initialized...');
 
         // Back button
-        document.getElementById('back').addEventListener('click', () => {
+        $.event('#back', 'click', () => {
             InnComponent.render('page');
         });
     }
