@@ -18,7 +18,7 @@ export class DungeonEncounterComponent extends Component {
             callback: this.controller
         }
 
-        // Render Dungeon Combat View
+        // Render Dungeon Encounter View
         super.renderer(config);
     }
 
