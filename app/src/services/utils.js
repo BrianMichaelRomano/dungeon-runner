@@ -4,4 +4,8 @@ export class Utils {
     static event(selector, event, callback) {
         document.querySelector(selector).addEventListener(event, callback);
     }
+
+    static select(selector) {
+        return document.querySelector(selector);
+    }
 }
