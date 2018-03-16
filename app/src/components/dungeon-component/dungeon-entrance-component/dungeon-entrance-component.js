@@ -5,7 +5,7 @@ import { Utils as $ } from '../../../services/utils.js';
 // Import Components
 import { Component } from '../../../services/component.js';
 import { InnComponent } from '../../inn-component/inn-component.js';
-import { DungeonCombatComponent } from  '../dungeon-combat-component/dungeon-combat-component.js';
+import { DungeonEncounterComponent } from  '../dungeon-encounter-component/dungeon-encounter-component.js';
 
 export class DungeonEntranceComponent extends Component{
     constructor() { }
@@ -28,13 +28,12 @@ export class DungeonEntranceComponent extends Component{
 
         // Enter Button
         $.event('#enter', 'click', () => {
-            DungeonCombatComponent.render('dungeon-view');
-            state.setDungeonView('combat');
+            DungeonEncounterComponent.render('dungeon-view');
+            state.setDungeonView('encounter');
         });
 
         // Back Button
         $.event('#back', 'click', () => {
-            DungeonCombatComponent.render('dungeon-view');
             InnComponent.render('page');
         });
     }

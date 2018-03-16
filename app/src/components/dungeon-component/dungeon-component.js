@@ -3,7 +3,7 @@ import { state } from '../../services/state.js';
 // Import Components
 import { Component } from '../../services/component.js';
 import { DungeonEntranceComponent } from './dungeon-entrance-component/dungeon-entrance-component.js';
-import { DungeonCombatComponent } from './dungeon-combat-component/dungeon-combat-component.js';
+import { DungeonEncounterComponent } from './dungeon-encounter-component/dungeon-encounter-component.js';
 import { DungeonExitComponent } from './dungeon-exit-component/dungeon-exit-component.js';
 
 export class DungeonComponent extends Component{
@@ -31,8 +31,8 @@ export class DungeonComponent extends Component{
         // Render dungeon sub view conditionally
         if(dungeonView === 'entrance') {
             DungeonEntranceComponent.render('dungeon-view');
-        } else if(dungeonView === 'combat') {
-            DungeonCombatComponent.render('dungeon-view');
+        } else if(dungeonView === 'encounter') {
+            DungeonEncounterComponent.render('dungeon-view');
         } else if(dungeonView === 'exit') {
             DungeonExitComponent.render('dungeon-view');         
         };

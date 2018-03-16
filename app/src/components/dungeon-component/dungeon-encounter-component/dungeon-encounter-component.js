@@ -6,14 +6,14 @@ import { Utils as $ } from '../../../services/utils.js';
 import { Component } from '../../../services/component.js';
 import { DungeonExitComponent } from  '../dungeon-exit-component/dungeon-exit-component.js';
 
-export class DungeonCombatComponent extends Component {
+export class DungeonEncounterComponent extends Component {
     constructor() { }
 
     static render(elementID) {
         
         // Configuration Object
         const config = {
-            view: './components/dungeon-component/dungeon-combat-component/dungeon-combat-component.html',
+            view: './components/dungeon-component/dungeon-encounter-component/dungeon-encounter-component.html',
             element: elementID,
             callback: this.controller
         }
