@@ -15,8 +15,17 @@ class State {
         };
     }
 
+    logState() {
+        console.table(this.getState());
+    }
+
     createState() {
         return this.newState;
+    }
+
+    clearState() {
+        localStorage.removeItem('DRstate');
+        location.reload();
     }
 
     getState() {
