@@ -1,5 +1,5 @@
 // Import State
-import { state } from '../../../services/state.js';
+import { State } from '../../../services/state.js';
 // Import Utils
 import { Utils as $ } from '../../../services/utils.js';
 // Import EnemyGenerator
@@ -31,8 +31,8 @@ export class DungeonEntranceComponent extends Component{
         // Enter Button
         $.event('#enter', 'click', () => {
             let enemy = EnemyGenerator.spawnSkeleton();
-            state.setEnemyState(enemy);
-            state.setDungeonView('encounter');
+            State.setEnemyState(enemy);
+            State.setDungeonView('encounter');
             DungeonEncounterComponent.render('dungeon-view');
         });
 

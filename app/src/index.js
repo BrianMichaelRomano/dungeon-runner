@@ -1,5 +1,5 @@
 // Import State
-import { state } from './services/state.js';
+import { State } from './services/state.js';
 // Import Utils
 import { Utils as $ } from './services/utils.js';
 // Component Imports
@@ -8,16 +8,16 @@ import { InnComponent } from './components/inn-component/inn-component.js';
 import { DungeonComponent } from './components/dungeon-component/dungeon-component.js';
 
 
-const currState = state.getState();
+const currState = State.getState();
 
 // Dev Tools
     //Clear State 
 $.event('#clear-state', 'click', () => {
-    state.clearState();
+    State.clearState();
 });
     // Log State
 $.event('#log-state', 'click', () => {
-    state.logState();
+    State.logState();
 });
 
 // Conditionally load page of refresh

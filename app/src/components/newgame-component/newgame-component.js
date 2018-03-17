@@ -1,5 +1,5 @@
 // Import State
-import { state } from '../../services/state.js';
+import { State } from '../../services/state.js';
 // Import Utils
 import { Utils as $ } from '../../services/utils.js';
 // Import Entities
@@ -31,10 +31,10 @@ export class NewgameComponent extends Component {
         // add listener on button to save entered name to state
         $.event('#character-name-submit', 'click', () => {
             // Set submitted name to state
-            let stateUpdate = state.createState();
+            let stateUpdate = State.createState();
             let characterName = $.select('#character-name-input').value;
             stateUpdate.character = new Character(characterName);
-            state.setState(stateUpdate);
+            State.setState(stateUpdate);
             // render Inn Component on submit of character name
             InnComponent.render('page');
         });

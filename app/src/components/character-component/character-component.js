@@ -1,5 +1,5 @@
 // Import State
-import { state } from '../../services/state.js';
+import { State } from '../../services/state.js';
 // Import Utils
 import { Utils as $ } from '../../services/utils.js';
 // Import Components
@@ -16,7 +16,7 @@ export class CharacterComponent extends Component {
             view: './components/character-component/character-component.html',
             element: elementID,
             callback: this.controller,
-            data: state.getState()
+            data: State.getState()
         }
 
         // Render Character Page

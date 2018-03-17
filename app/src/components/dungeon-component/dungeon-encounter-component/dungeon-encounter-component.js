@@ -1,5 +1,5 @@
 // Import State
-import { state } from '../../../services/state.js';
+import { State } from '../../../services/state.js';
 // Import Utils
 import { Utils as $ } from '../../../services/utils.js';
 // Import Components
@@ -16,7 +16,7 @@ export class DungeonEncounterComponent extends Component {
             view: './components/dungeon-component/dungeon-encounter-component/dungeon-encounter-component.html',
             element: elementID,
             callback: this.controller,
-            data: state.getState()
+            data: State.getState()
         }
 
         // Render Dungeon Encounter View
@@ -29,7 +29,7 @@ export class DungeonEncounterComponent extends Component {
         // Fight button
         $.event('#fight', 'click', () => {
             DungeonExitComponent.render('dungeon-view');
-            state.setDungeonView('exit');
+            State.setDungeonView('exit');
         });
     }
 }

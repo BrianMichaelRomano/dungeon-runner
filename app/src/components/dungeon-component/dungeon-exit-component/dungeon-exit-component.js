@@ -1,5 +1,5 @@
 // Import State
-import { state } from '../../../services/state.js';
+import { State } from '../../../services/state.js';
 // Import Utils
 import { Utils as $ } from '../../../services/utils.js';
 // Import renderer
@@ -28,7 +28,7 @@ export class DungeonExitComponent extends Component {
         // Continue button
         $.event('#continue', 'click', () => {
             InnComponent.render('dungeon-view');
-            state.setDungeonView('entrance');
+            State.setDungeonView('entrance');
         });
     }
 }

@@ -1,5 +1,5 @@
 // Import State
-import { state } from '../../services/state.js';
+import { State } from '../../services/state.js';
 // Import Components
 import { Component } from '../../services/component.js';
 import { DungeonEntranceComponent } from './dungeon-entrance-component/dungeon-entrance-component.js';
@@ -26,7 +26,7 @@ export class DungeonComponent extends Component{
         console.log('Dungeon component initialized...');
 
         // Get last saved dungeonView
-        const dungeonView = state.getState().dungeon.view;
+        const dungeonView = State.getState().dungeon.view;
 
         // Render dungeon sub view conditionally
         if(dungeonView === 'entrance') {

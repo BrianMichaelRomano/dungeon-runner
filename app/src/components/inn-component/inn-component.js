@@ -1,5 +1,5 @@
 // Import State
-import { state } from '../../services/state.js';
+import { State } from '../../services/state.js';
 // Import Utils
 import { Utils as $ } from '../../services/utils.js';
 // Import Components
@@ -20,7 +20,7 @@ export class InnComponent extends Component {
             view: './components/inn-component/inn-component.html',
             element: elementID,
             callback: this.controller,
-            data: state.getState()
+            data: State.getState()
         }
 
         // Render Inn Page
