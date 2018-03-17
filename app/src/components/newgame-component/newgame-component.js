@@ -2,9 +2,12 @@
 import { state } from '../../services/state.js';
 // Import Utils
 import { Utils as $ } from '../../services/utils.js';
+// Import Entities
+import { Character } from '../../entities/character.js'; 
 // Import Components
 import { Component } from '../../services/component.js';
 import { InnComponent } from '../inn-component/inn-component.js';
+
 
 export class NewgameComponent extends Component {
     constructor() { }
@@ -29,7 +32,8 @@ export class NewgameComponent extends Component {
         $.event('#character-name-submit', 'click', () => {
             // Set submitted name to state
             let stateUpdate = state.createState();
-            stateUpdate.character.name = $.select('#character-name-input').value;
+            let characterName = $.select('#character-name-input').value;
+            stateUpdate.character = new Character(characterName);
             state.setState(stateUpdate);
             // render Inn Component on submit of character name
             InnComponent.render('page');
