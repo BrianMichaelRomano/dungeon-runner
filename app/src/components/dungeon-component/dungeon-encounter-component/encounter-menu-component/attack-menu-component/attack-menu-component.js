@@ -4,7 +4,7 @@ import { State } from '../../../../../services/state.js';
 import { Utils as $ } from '../../../../../services/utils.js';
 // Import Components
 import { Component } from '../../../../../services/component.js';
-import { Attack } from '../../../../../services/attack.js';
+import { Attack } from '../../../../../services/actions/attack.js';
 
 export class AttackMenuComponent extends Component {
     constructor() { }
