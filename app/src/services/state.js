@@ -1,14 +1,7 @@
 class State {
     constructor() {
         this.newState = {
-            character: {
-                name: '',
-                HP: 100,
-                AP: 80,
-                MP: 60,
-                attack: 10,
-                armor: 10,
-            },
+            character: null,
             dungeon: {
                 view: 'entrance'
             }
@@ -16,7 +9,14 @@ class State {
     }
 
     logState() {
-        console.table(this.getState());
+        const state = this.getState();
+        let stateEntries = Object.values(state);
+        let objKeys = Object.keys(state);
+        let counter = 0;
+        for(let obj in stateEntries) {
+            console.log(`Table below is for - ${objKeys[counter++].toUpperCase()}`);
+            console.table(stateEntries[obj]);
+        }
     }
 
     createState() {
