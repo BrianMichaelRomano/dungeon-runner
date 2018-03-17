@@ -5,6 +5,7 @@ import { Utils as $ } from '../../../../services/utils.js';
 // Import Components
 import { Component } from '../../../../services/component.js';
 import { InnComponent } from '../../../inn-component/inn-component.js';
+import { AttackMenuComponent } from './attack-menu-component/attack-menu-component.js';
 
 export class EncounterMenuComponent extends Component {
     constructor() { }
@@ -28,6 +29,10 @@ export class EncounterMenuComponent extends Component {
 
         $.event('#flee-btn', 'click', () => {
             InnComponent.render('page');
+        });
+
+        $.event('#attack-btn', 'click', () => {
+            AttackMenuComponent.render('selected-action-view');
         });
     }
 }
