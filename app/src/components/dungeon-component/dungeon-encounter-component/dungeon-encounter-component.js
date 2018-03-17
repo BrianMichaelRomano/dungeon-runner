@@ -15,7 +15,8 @@ export class DungeonEncounterComponent extends Component {
         const config = {
             view: './components/dungeon-component/dungeon-encounter-component/dungeon-encounter-component.html',
             element: elementID,
-            callback: this.controller
+            callback: this.controller,
+            data: state.getState()
         }
 
         // Render Dungeon Encounter View
