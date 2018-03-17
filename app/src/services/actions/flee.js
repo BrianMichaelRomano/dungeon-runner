@@ -1,9 +1,9 @@
 // Import components
 import { InnComponent } from '../../components/inn-component/inn-component.js'; 
 
-export class Attack {
+export class Flee {
     
-        static flee() {
+        static retreatToInn() {
             InnComponent.render('page');
         }
     }
