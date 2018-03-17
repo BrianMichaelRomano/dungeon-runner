@@ -4,7 +4,7 @@ import { State } from '../../../services/state.js';
 import { Utils as $ } from '../../../services/utils.js';
 // Import Components
 import { Component } from '../../../services/component.js';
-import { DungeonExitComponent } from  '../dungeon-exit-component/dungeon-exit-component.js';
+import { EncounterMenuComponent } from './encounter-menu-component/encounter-menu-component.js';
 
 export class DungeonEncounterComponent extends Component {
     constructor() { }
@@ -24,12 +24,7 @@ export class DungeonEncounterComponent extends Component {
     }
 
     static controller() {
-        console.log('Dungeon combat component initialized...');
-
-        // Fight button
-        $.event('#fight', 'click', () => {
-            DungeonExitComponent.render('dungeon-view');
-            State.setDungeonView('exit');
-        });
+        console.log('Dungeon encounter component initialized...'); 
+        EncounterMenuComponent.render('encounter-menu-view');        
     }
 }
