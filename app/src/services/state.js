@@ -41,6 +41,12 @@ class State {
         state.dungeon.view = view;
         this.setState(state);
     }
+
+    setEnemyState(enemy) {
+        let state = this.getState();
+        state.enemy = enemy;
+        this.setState(state);
+    }
 }
 
 export let state = new State();
