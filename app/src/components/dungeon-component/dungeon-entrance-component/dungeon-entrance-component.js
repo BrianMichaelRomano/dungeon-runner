@@ -30,10 +30,10 @@ export class DungeonEntranceComponent extends Component{
 
         // Enter Button
         $.event('#enter', 'click', () => {
-            DungeonEncounterComponent.render('dungeon-view');
-            state.setDungeonView('encounter');
             let enemy = EnemyGenerator.spawnSkeleton();
             state.setEnemyState(enemy);
+            state.setDungeonView('encounter');
+            DungeonEncounterComponent.render('dungeon-view');
         });
 
         // Back Button
