@@ -6,7 +6,11 @@ export class State {
             dungeon: {
                 view: 'entrance',
                 turn: 0
-            }
+            },
+            log: [
+                    'This is a test log.',
+                    'Another log message'
+                ]
         };
 
         return newState;
