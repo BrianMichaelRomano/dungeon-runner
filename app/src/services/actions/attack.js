@@ -24,7 +24,14 @@ export class Attack {
         if(type === 'simple') {
             console.log(`${attacker.entity} makes simple attack....`);
 
-            state[defender.entity].HP = defender.HP -= attacker.attack;
+            const simpleAttackCost = 10;
+
+            if(attacker.AP >= simpleAttackCost) {
+                state[defender.entity].HP = defender.HP -= attacker.attack;
+                state[attacker.entity].AP = attacker.AP - simpleAttackCost;
+            } else {
+                console.warn(`Not enough AP, ${attacker.name} does nothing...`);
+            }
         }
 
         return state;
