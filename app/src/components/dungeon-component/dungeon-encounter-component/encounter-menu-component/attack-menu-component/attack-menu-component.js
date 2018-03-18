@@ -4,7 +4,9 @@ import { State } from '../../../../../services/state.js';
 import { Utils as $ } from '../../../../../services/utils.js';
 // Import Components
 import { Component } from '../../../../../services/component.js';
-import { Attack } from '../../../../../services/actions/attack.js';
+import { DungeonEncounterComponent } from '../../dungeon-encounter-component.js';
+// Import Combat
+import { Combat } from '../../../../../services/combat.js';
 
 export class AttackMenuComponent extends Component {
     constructor() { }
@@ -27,7 +29,7 @@ export class AttackMenuComponent extends Component {
         console.log('Attack Menu Component initialized...');
 
         $.event('#simple-attack', 'click', () => {
-            Attack.simple();
+            Combat.turn('simple');
         });
     }
 }
