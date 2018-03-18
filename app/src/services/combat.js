@@ -5,11 +5,11 @@ import { DungeonEncounterComponent } from '../components/dungeon-component/dunge
 
 export class Combat {
 
-    static turn(action) {
+    static turn(type, action) {
         let state = State.getState();
 
-        state = this.playerTurn(state, action);
-        this.enemyTurn(state);
+        state = this.playerTurn(state, action, type);
+        this.enemyTurn(state, 'attack', 'simple');
 
 
         if(state.enemy.HP <= 0 || state.character.HP <= 0) {
@@ -21,28 +21,35 @@ export class Combat {
         }
     }
 
-    static playerTurn(state, action) {
-        
-        const character = state.character;
-        const enemy = state.enemy;
-        const turn = state.dungeon.turn;
+    static playerTurn(state, action, type) {
 
-        if(action === 'simple') {
-            console.log('Player makes simple attack....');
-            enemy.HP -= character.attack;
+        let resolvedState;
+
+        switch (action) {
+            case 'attack':
+                resolvedState = Attack.resolveAttack(state, type, 'character');
+                break;
+        
+            default:
+                break;
         }
 
-        return state;
+        return resolvedState;
     }
 
-    static enemyTurn(state) {
+    static enemyTurn(state, action, type) {
         
-        const character = state.character;
-        const enemy = state.enemy;
-        const turn = state.dungeon.turn;
-
-        console.log('Enemy makes simple attack....');
-        character.HP -= character.attack;
-        State.setState(state);
+        let resolvedState;
+        
+                switch (action) {
+                    case 'attack':
+                        resolvedState = Attack.resolveAttack(state, type, 'enemy');
+                        break;
+                
+                    default:
+                        break;
+                }
+        
+                return resolvedState;
     }
 }

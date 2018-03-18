@@ -29,7 +29,7 @@ export class AttackMenuComponent extends Component {
         console.log('Attack Menu Component initialized...');
 
         $.event('#simple-attack', 'click', () => {
-            Combat.turn('simple');
+            Combat.turn('simple', 'attack');
         });
     }
 }
