@@ -5,19 +5,19 @@ header {
 }
 
 /* Console */
-#console{
+#log{
     display: flex;
     justify-content: center;
 }
 
-#console div {
+#log div {
     background-color: lightgray;
     margin-top: 20px;
     width: 80%;
     height: 150px;
 }
 
-#console-header {
+#log-header {
     margin: 5px 0px 0px 10px;
 }
 
