@@ -16,7 +16,7 @@ export class Log {
 
         let output = '';
 
-        state.log.reverse().sort().forEach((logMessage) => {
+        state.log.sort().forEach((logMessage) => {
             output += `<li>${logMessage}</li>`;
         });
         
