@@ -8,7 +8,7 @@ export class Combat {
     static turn(type, action) {
         let state = State.getState();
 
-        this.entityTurn(state, action, type, 'character');
+        this.entityTurn(state, action, type);
         this.entityTurn(state, 'attack', 'simple', 'enemy');
 
 
@@ -21,7 +21,7 @@ export class Combat {
         }
     }
 
-    static entityTurn(state, action, type, entity) {
+    static entityTurn(state, action, type, entity = 'character') {
 
         let resolvedState;
 
