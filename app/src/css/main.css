@@ -15,10 +15,18 @@ header {
     margin-top: 20px;
     width: 80%;
     height: 150px;
+    overflow: scroll;   
 }
 
 #log-header {
     margin: 5px 0px 0px 10px;
+}
+
+#log ul {
+    font-size: 12px;
+    padding: 0px 10px;
+    margin: 0;
+    list-style: none; 
 }
 
 
@@ -61,11 +69,6 @@ nav {
     justify-content: center;
     text-align: center;
 }
-
- ul {
-    list-style: none;
-}
-
 
 /* CHARACTER */
 #character {
