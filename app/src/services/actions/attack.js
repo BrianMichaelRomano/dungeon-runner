@@ -1,3 +1,5 @@
+import { Log } from '../log.js';
+
 export class Attack {
 
     static resolveAttack(state, type, entity) {
@@ -23,7 +25,7 @@ export class Attack {
 
         switch (type) {
             case 'simple':
-                console.log(`${attacker.entity} makes simple attack....`);
+                Log.logMessage(state, `${attacker.entity} makes simple attack....`);
             
                 const simpleAttackCost = 10;
     

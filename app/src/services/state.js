@@ -7,10 +7,7 @@ export class State {
                 view: 'entrance',
                 turn: 0
             },
-            log: [
-                    'This is a test log.',
-                    'Another log message'
-                ]
+            log: []
         };
 
         return newState;
