@@ -4,7 +4,8 @@ export class State {
         const newState = {
             character: null,
             dungeon: {
-                view: 'entrance'
+                view: 'entrance',
+                turn: 0
             }
         };
 
