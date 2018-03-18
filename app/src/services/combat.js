@@ -41,15 +41,15 @@ export class Combat {
         
         let resolvedState;
         
-                switch (action) {
-                    case 'attack':
-                        resolvedState = Attack.resolveAttack(state, type, 'enemy');
-                        break;
-                
-                    default:
-                        break;
-                }
-        
-                return resolvedState;
+            switch (action) {
+                case 'attack':
+                    resolvedState = Attack.resolveAttack(state, type, 'enemy');
+                    break;
+            
+                default:
+                    break;
+            }
+    
+            return resolvedState;
     }
 }
