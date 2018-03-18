@@ -4,6 +4,24 @@ header {
     justify-content: center;
 }
 
+/* Console */
+#console{
+    display: flex;
+    justify-content: center;
+}
+
+#console div {
+    background-color: lightgray;
+    margin-top: 20px;
+    width: 80%;
+    height: 150px;
+}
+
+#console-header {
+    margin: 5px 0px 0px 10px;
+}
+
+
 /* Navigation */
 nav {
     display: flex;
