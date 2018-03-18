@@ -21,23 +21,24 @@ export class Attack {
         }
 
 
-        if(type === 'simple') {
-            console.log(`${attacker.entity} makes simple attack....`);
-
-            const simpleAttackCost = 10;
-
-            if(attacker.AP >= simpleAttackCost) {
-                state[defender.entity].HP = defender.HP -= attacker.attack;
-                state[attacker.entity].AP = attacker.AP - simpleAttackCost;
-            } else {
-                console.warn(`Not enough AP, ${attacker.name} does nothing...`);
-            }
+        switch (type) {
+            case 'simple':
+                console.log(`${attacker.entity} makes simple attack....`);
+            
+                const simpleAttackCost = 10;
+    
+                if(attacker.AP >= simpleAttackCost) {
+                    state[defender.entity].HP = defender.HP -= attacker.attack;
+                    state[attacker.entity].AP = attacker.AP - simpleAttackCost;
+                } else {
+                    console.warn(`Not enough AP, ${attacker.name} does nothing...`);
+                }
+                break;
+        
+            default:
+                break;
         }
 
         return state;
-    }
-
-    static simple() {
-        console.log('Simple attack made...');
     }
 }
