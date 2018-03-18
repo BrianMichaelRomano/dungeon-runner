@@ -8,8 +8,8 @@ export class Combat {
     static turn(type, action) {
         let state = State.getState();
 
-        state = this.playerTurn(state, action, type);
-        this.enemyTurn(state, 'attack', 'simple');
+        this.entityTurn(state, action, type, 'character');
+        this.entityTurn(state, 'attack', 'simple', 'enemy');
 
 
         if(state.enemy.HP <= 0 || state.character.HP <= 0) {
@@ -21,35 +21,17 @@ export class Combat {
         }
     }
 
-    static playerTurn(state, action, type) {
+    static entityTurn(state, action, type, entity) {
 
         let resolvedState;
 
         switch (action) {
             case 'attack':
-                resolvedState = Attack.resolveAttack(state, type, 'character');
+                resolvedState = Attack.resolveAttack(state, type, entity);
                 break;
         
             default:
                 break;
         }
-
-        return resolvedState;
-    }
-
-    static enemyTurn(state, action, type) {
-        
-        let resolvedState;
-        
-            switch (action) {
-                case 'attack':
-                    resolvedState = Attack.resolveAttack(state, type, 'enemy');
-                    break;
-            
-                default:
-                    break;
-            }
-    
-            return resolvedState;
     }
 }
