@@ -30,9 +30,10 @@ export class Attack {
 
         switch (type) {
             case 'simple':
-                Log.logMessage(`${attacker.entity} makes simple attack....`);
             
-                const simpleAttackCost = 10;
+            const simpleAttackCost = 10;
+
+            Log.logMessage(`${attacker.name} makes simple attack for ${attacker.attack} damage!`);
     
                 if(attacker.AP >= simpleAttackCost) {
                     const state = State.getState();                
