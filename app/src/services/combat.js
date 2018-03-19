@@ -40,8 +40,10 @@ export class Combat {
             state.dungeon.view = 'entrance';
             DungeonExitComponent.render('dungeon-view');
         } else {
-            State.setState(state);
             DungeonEncounterComponent.render('dungeon-view');
         }
+        
+        state.dungeon.turn++;
+        State.setState(state);
     }
 }
