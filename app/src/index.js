@@ -2,6 +2,8 @@
 import { State } from './services/state.js';
 // Import Utils
 import { Utils as $ } from './services/utils.js';
+// Import Log
+import { Log } from './services/log.js';
 // Component Imports
 import { NewgameComponent } from './components/newgame-component/newgame-component.js';
 import { InnComponent } from './components/inn-component/inn-component.js';
@@ -27,4 +29,8 @@ if(currState && currState.dungeon.view !== 'entrance') {
     InnComponent.render('page');
 } else {
     NewgameComponent.render('page');
+    State.setState(State.createState());
 };
+
+// Load logs
+Log.loadLogs();

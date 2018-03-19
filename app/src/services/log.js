@@ -23,4 +23,16 @@ export class Log {
         
         $.select('#log-list').innerHTML = output; 
     }
+
+    static loadLogs() {
+        const state = State.getState();        
+        
+        let output = '';
+        
+        state.log.sort().reverse().forEach((logMessage) => {
+            output += `<li>${logMessage}</li>`;
+        });
+        
+        $.select('#log-list').innerHTML = output; 
+    }
 }
