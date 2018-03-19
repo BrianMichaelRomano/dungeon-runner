@@ -10,6 +10,25 @@ export class Combat {
         this.entityTurn(action, type);
         this.entityTurn('attack', 'simple', 'enemy');
         
+        this.endTurn();
+    }
+
+    
+    static entityTurn(action, type, entity = 'character') {       
+        
+        switch (action) {
+            case 'attack':
+            Attack.resolveAttack(type, entity);
+            break;
+            
+            default:
+            break;
+        }
+    }
+
+    
+    static endTurn() {
+
         const state = State.getState();
 
         if(state.enemy.HP <= 0 || state.character.HP <= 0) {
@@ -18,18 +37,6 @@ export class Combat {
         } else {
             State.setState(state);
             DungeonEncounterComponent.render('dungeon-view');
-        }
-    }
-
-    static entityTurn(action, type, entity = 'character') {       
-
-        switch (action) {
-            case 'attack':
-                Attack.resolveAttack(type, entity);
-                break;
-        
-            default:
-                break;
         }
     }
 }
