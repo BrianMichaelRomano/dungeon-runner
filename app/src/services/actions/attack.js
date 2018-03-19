@@ -33,15 +33,15 @@ export class Attack {
             
             const simpleAttackCost = 10;
 
-            Log.logMessage(`${attacker.name} makes simple attack for ${attacker.attack} damage!`);
-    
-                if(attacker.AP >= simpleAttackCost) {
+            
+            if(attacker.AP >= simpleAttackCost) {
+                    Log.logMessage(`${attacker.name} makes simple attack for ${attacker.attack} damage!`);
                     const state = State.getState();                
                     state[defender.entity].HP = defender.HP -= attacker.attack;
                     state[attacker.entity].AP = attacker.AP - simpleAttackCost;
                     State.setState(state);
                 } else {
-                    console.warn(`Not enough AP, ${attacker.name} does nothing...`);
+                    Log.logMessage(`Not enough AP, ${attacker.name} does nothing...`);
                 }
                 break;
         

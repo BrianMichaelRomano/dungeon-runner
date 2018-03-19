@@ -13,6 +13,9 @@ export class Log {
         let timeStamp = `[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}]: `;
         let stampedMessage = timeStamp + message;
         state.log.push(stampedMessage);
+        if(state.log.length > 20) {
+            state.log.shift();
+        }
         State.setState(state);
 
         let output = '';
