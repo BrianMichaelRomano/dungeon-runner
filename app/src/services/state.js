@@ -7,7 +7,7 @@ export class State {
                 view: 'entrance',
                 turn: 0
             },
-            log: []
+            log: ['Welcome adventurer...']
         };
 
         return newState;
