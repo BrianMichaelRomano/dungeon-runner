@@ -1,3 +1,7 @@
+body ul {
+    list-style: none;
+}
+
 /* Header */
 header {
     display: flex;
@@ -26,7 +30,6 @@ header {
     font-size: 12px;
     padding: 0px 10px;
     margin: 0;
-    list-style: none; 
 }
 
 
