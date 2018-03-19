@@ -1,8 +1,13 @@
+// Import State
+import { State } from '../state.js';
+// Import Log
 import { Log } from '../log.js';
 
 export class Attack {
 
-    static resolveAttack(state, type, entity) {
+    static resolveAttack(type, entity) {
+
+        const state = State.getState();        
 
         let attacker;
         let defender; 
@@ -25,13 +30,15 @@ export class Attack {
 
         switch (type) {
             case 'simple':
-                Log.logMessage(state, `${attacker.entity} makes simple attack....`);
+                Log.logMessage(`${attacker.entity} makes simple attack....`);
             
                 const simpleAttackCost = 10;
     
                 if(attacker.AP >= simpleAttackCost) {
+                    const state = State.getState();                
                     state[defender.entity].HP = defender.HP -= attacker.attack;
                     state[attacker.entity].AP = attacker.AP - simpleAttackCost;
+                    State.setState(state);
                 } else {
                     console.warn(`Not enough AP, ${attacker.name} does nothing...`);
                 }
@@ -40,7 +47,5 @@ export class Attack {
             default:
                 break;
         }
-
-        return state;
     }
 }

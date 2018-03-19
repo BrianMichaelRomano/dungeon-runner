@@ -5,18 +5,19 @@ import { Utils as $ } from './utils.js';
 
 export class Log {
 
-    static logMessage(state, message) {
+    static logMessage(message) {
 
+        const state = State.getState();        
+        
         const date = new Date();
         let timeStamp = `[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}]: `;
         let stampedMessage = timeStamp + message;
         state.log.push(stampedMessage);
-        
         State.setState(state);
 
         let output = '';
 
-        state.log.sort().forEach((logMessage) => {
+        state.log.sort().reverse().forEach((logMessage) => {
             output += `<li>${logMessage}</li>`;
         });
         

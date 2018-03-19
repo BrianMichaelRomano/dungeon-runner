@@ -6,11 +6,11 @@ import { DungeonEncounterComponent } from '../components/dungeon-component/dunge
 export class Combat {
 
     static turn(type, action) {
-        let state = State.getState();
-
-        this.entityTurn(state, action, type);
-        this.entityTurn(state, 'attack', 'simple', 'enemy');
-
+        
+        this.entityTurn(action, type);
+        this.entityTurn('attack', 'simple', 'enemy');
+        
+        const state = State.getState();
 
         if(state.enemy.HP <= 0 || state.character.HP <= 0) {
             state.dungeon.view = 'entrance';
@@ -21,13 +21,11 @@ export class Combat {
         }
     }
 
-    static entityTurn(state, action, type, entity = 'character') {
-
-        let resolvedState;
+    static entityTurn(action, type, entity = 'character') {       
 
         switch (action) {
             case 'attack':
-                resolvedState = Attack.resolveAttack(state, type, entity);
+                Attack.resolveAttack(type, entity);
                 break;
         
             default:
