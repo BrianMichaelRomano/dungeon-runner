@@ -2,6 +2,8 @@
 import { State } from '../../../../../services/state.js';
 // Import Utils
 import { Utils as $ } from '../../../../../services/utils.js';
+// Import Combat
+import { Combat } from '../../../../../services/combat.js';
 // Import Components
 import { Component } from '../../../../../services/component.js';
 import { Defense } from '../../../../../services/actions/defense.js';
@@ -27,7 +29,7 @@ export class DefenseMenuComponent extends Component {
         console.log('Defense Menu Component initialized...');
 
         $.event('#block', 'click', () => {
-            Defense.block();
+            Combat.turn('block', 'defense');
         });
     }
 }

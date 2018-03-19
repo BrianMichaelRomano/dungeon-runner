@@ -1,5 +1,6 @@
 import { State } from '../services/state.js';
 import { Attack } from './actions/attack.js';
+import { Defense } from './actions/defense.js';
 import { DungeonExitComponent } from '../components/dungeon-component/dungeon-exit-component/dungeon-exit-component.js';
 import { DungeonEncounterComponent } from '../components/dungeon-component/dungeon-encounter-component/dungeon-encounter-component.js';
 
@@ -18,11 +19,15 @@ export class Combat {
         
         switch (action) {
             case 'attack':
-            Attack.resolveAttack(type, entity);
-            break;
+                Attack.resolveAttack(type, entity);
+                break;
+
+            case 'defense':
+                Defense.resolveDefense(type, entity);
+                break;  
             
             default:
-            break;
+                break;
         }
     }
 
