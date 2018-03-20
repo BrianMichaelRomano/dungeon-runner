@@ -3,6 +3,7 @@ export class State {
     static createState() {
         const newState = {
             character: null,
+            enemy: null,
             dungeon: {
                 view: 'entrance',
                 turn: 0
