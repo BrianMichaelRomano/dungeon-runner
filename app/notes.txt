@@ -1,0 +1,40 @@
+DungeonRunners
+
+Game Description-
+Player will hire and manage adventurers.
+Hire, fire, train and send them on dungeon runs.
+Player will do so from his castle.
+Each new day new adventurers will show up asking for work.
+Hiring adventurers has an initial cost and then reacurring cost each day.
+These cost will be relative to total skills.
+Skills will include,
+    Combat,
+    traps,
+    Magic,
+    Dungeon Lore,
+    Stealth,
+    Mapping,
+    Tracking,
+    Monster anatomy
+
+Attributes will include,
+    Luck,
+    Constitution,
+    Will,
+    Dexterity,
+    Intelligence,
+    Greed
+
+Adventurers should be called runners.
+
+Player should be called GrandRunner.
+
+Time to complete dungeon should be factored by skills, Attributes and dungeon complexity.
+
+Dungeons should be objects created by factory funtions with some randomness.
+
+Successful dungeon runs should be determined by comparison of skills+attributes and dungeon complexity.
+
+Successful dungeon runs should yield experience for runners and gold for GrandRunner.
+
+Unsuccessful dungeon runs should injure or kill runner.
